@@ -20,7 +20,7 @@ Tips:
 
 ## How it connects
 
-There is no game server. The host's phone holds the game state and sends each phone a view with everyone else's dice hidden. Phones find each other through the free public [PeerJS](https://peerjs.com) signaling service, then talk directly over WebRTC. The PeerJS library is included in `js/`, so the game doesn't depend on a CDN.
+There is no game server. The host's phone holds the game state and sends each phone a view with everyone else's dice hidden. Phones find each other through the free public [PeerJS](https://peerjs.com) signaling service, then talk directly over WebRTC. The PeerJS library and the fonts are included as files, so the game doesn't depend on a CDN (it falls back to one only if `peerjs.min.js` is missing).
 
 This setup is meant for friends. The host's phone holds the full game state, so someone technical could inspect it.
 
@@ -29,7 +29,7 @@ To use your own signaling server instead (for example, if the public one is down
 ## Publishing on GitHub Pages
 
 1. Create a new **public** repository on GitHub (private repos need a paid plan for Pages).
-2. On the new repo's page, click **uploading an existing file**, drag in everything from this folder (`index.html`, `manifest.webmanifest`, `README.md`, and the `js`, `icons`, `tests`, `docs` folders), and click **Commit changes**.
+2. On the new repo's page, click **uploading an existing file**, drag in every file from this folder (all files sit at the top level, no subfolders), and click **Commit changes**.
 3. Go to **Settings → Pages**. Under **Build and deployment**, set Source to **Deploy from a branch**, choose **main** and **/ (root)**, and click **Save**.
 4. After a minute or two, the game is live at `https://<username>.github.io/<repo-name>/`.
 
@@ -38,14 +38,16 @@ To use your own signaling server instead (for example, if the public one is down
 Everything is in `index.html`: a DOM-free engine, a multiplayer core, and the UI. Run the test harness before changing anything:
 
 ```bash
-node tests/merchants-table.test.js   # must print ✅ ALL CLEAN
+node merchants-table.test.js   # must print ✅ ALL CLEAN
 ```
 
-The harness checks hand ranking, pots, boasts, trades, events, 800 simulated pass-and-play games, and 150 simulated hosted games, verifying after every move that no phone's view reveals hidden dice. See `docs/HANDOFF.md` for the full rules, invariants and function map.
+The harness checks hand ranking, pots, boasts, trades, events, 800 simulated pass-and-play games, and 150 simulated hosted games, verifying after every move that no phone's view reveals hidden dice. See `HANDOFF.md` for the full rules, invariants and function map.
 
 ## Third-party code
 
-- `js/peerjs.min.js` — PeerJS 1.5.5, MIT License, © Michelle Bu and Eric Zhang.
-- `js/qrcode.js` — QR Code Generator 2.0.4, MIT License, © Kazuhiko Arase. "QR Code" is a registered trademark of DENSO WAVE INCORPORATED.
+- `peerjs.min.js` — PeerJS 1.5.5, MIT License, © Michelle Bu and Eric Zhang.
+- `qrcode.js` — QR Code Generator 2.0.4, MIT License, © Kazuhiko Arase. "QR Code" is a registered trademark of DENSO WAVE INCORPORATED.
 
-See `js/THIRD-PARTY-LICENSES.txt`.
+- Fonts: Cinzel, Cinzel Decorative and Spectral, SIL Open Font License 1.1 (via Fontsource). See `FONTS-LICENSE.txt`.
+
+See `THIRD-PARTY-LICENSES.txt`.

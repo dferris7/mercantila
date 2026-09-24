@@ -9,12 +9,20 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Merchant's Table">
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="icon" href="icons/icon-192.png">
-<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <title>The Merchant's Table</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@500;600;700;800;900&family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:'Cinzel';font-style:normal;font-weight:400 900;font-display:swap;src:url(cinzel-latin-wght-normal.woff2) format('woff2')}
+@font-face{font-family:'Cinzel Decorative';font-style:normal;font-weight:700;font-display:swap;src:url(cinzel-decorative-latin-700-normal.woff2) format('woff2')}
+@font-face{font-family:'Cinzel Decorative';font-style:normal;font-weight:900;font-display:swap;src:url(cinzel-decorative-latin-900-normal.woff2) format('woff2')}
+@font-face{font-family:'Spectral';font-style:normal;font-weight:400;font-display:swap;src:url(spectral-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:'Spectral';font-style:normal;font-weight:500;font-display:swap;src:url(spectral-latin-500-normal.woff2) format('woff2')}
+@font-face{font-family:'Spectral';font-style:normal;font-weight:600;font-display:swap;src:url(spectral-latin-600-normal.woff2) format('woff2')}
+@font-face{font-family:'Spectral';font-style:normal;font-weight:700;font-display:swap;src:url(spectral-latin-700-normal.woff2) format('woff2')}
+@font-face{font-family:'Spectral';font-style:italic;font-weight:400;font-display:swap;src:url(spectral-latin-400-italic.woff2) format('woff2')}
+@font-face{font-family:'Spectral';font-style:italic;font-weight:500;font-display:swap;src:url(spectral-latin-500-italic.woff2) format('woff2')}
+</style>
 <style>
 :root{
   color-scheme:dark;
@@ -31,7 +39,7 @@
   --r:12px;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{height:100%;margin:0}
+html,body{height:100%;margin:0;max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;text-size-adjust:100%}
 body{background:var(--night);color:var(--text);font-family:var(--body);font-size:16px;line-height:1.5;overflow:hidden;
   -webkit-font-smoothing:antialiased}
 button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
@@ -59,12 +67,12 @@ input{font:inherit}
 .ibtn .lbl{display:inline}
 @media (max-width:620px){.ibtn .lbl{display:none}.ibtn{padding:0 10px}.mark{display:none}}
 
-#view{position:relative;z-index:5;flex:1;min-height:0;overflow:auto;padding:16px;padding-bottom:calc(16px + env(safe-area-inset-bottom,0px))}
+#view{position:relative;z-index:5;flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;padding:16px;padding-bottom:calc(16px + env(safe-area-inset-bottom,0px))}
 .wrap{max-width:1040px;margin:0 auto}
 
 /* ---------- type ---------- */
 .eyebrow{font-family:var(--display);font-weight:700;font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--brass)}
-.h1{font-family:var(--deco);font-weight:900;font-size:clamp(40px,8vw,84px);line-height:.98;letter-spacing:.01em;margin:0;color:var(--text);text-wrap:balance;
+.h1{font-family:var(--deco);font-weight:900;font-size:clamp(30px,9vw,84px);overflow-wrap:anywhere;line-height:.98;letter-spacing:.01em;margin:0;color:var(--text);text-wrap:balance;
   text-shadow:0 2px 0 #0008,0 0 40px rgba(244,192,101,.25)}
 .h2{font-family:var(--display);font-weight:800;font-size:clamp(22px,3.6vw,32px);line-height:1.1;margin:0;text-wrap:balance}
 .h3{font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:.04em;margin:0}
@@ -73,7 +81,7 @@ input{font:inherit}
 .num{font-variant-numeric:tabular-nums lining-nums}
 
 /* ---------- buttons ---------- */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:0 22px;border-radius:10px;
+.btn{max-width:100%;text-align:center;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:0 22px;border-radius:10px;
   font-family:var(--display);font-weight:800;font-size:14px;letter-spacing:.08em;text-transform:uppercase;transition:transform .08s,filter .15s,box-shadow .15s}
 .btn:active:not(:disabled){transform:translateY(2px)}
 .btn:disabled{opacity:.38;filter:saturate(.5)}
@@ -134,7 +142,7 @@ input{font:inherit}
 .seal{width:84px;height:84px}
 
 /* ---------- setup ---------- */
-.setup-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+.setup-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(210px,100%),1fr));gap:12px}
 .pcard{background:rgba(255,255,255,.35);border:1px solid rgba(134,103,47,.3);border-radius:12px;padding:14px;display:grid;gap:10px;justify-items:center}
 .pcard input{width:100%;text-align:center;font-family:var(--display);font-weight:700;font-size:16px;color:var(--ink);background:transparent;border:0;border-bottom:2px solid rgba(134,103,47,.45);padding:6px 4px}
 .pcard input:focus{outline:none;border-bottom-color:var(--wax)}
@@ -146,7 +154,7 @@ input{font:inherit}
 .chip{min-width:48px;height:44px;padding:0 14px;border-radius:10px;font-family:var(--display);font-weight:800;font-size:17px;color:var(--ink);
   border:1px solid rgba(134,103,47,.45);background:rgba(255,255,255,.3)}
 .chip[aria-pressed="true"]{background:var(--ink);color:var(--parch);border-color:var(--ink)}
-.cfg{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.cfg{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:12px}
 .cfg-box{border:1px solid rgba(134,103,47,.35);border-radius:12px;padding:12px 14px;display:grid;gap:8px;background:rgba(255,255,255,.18)}
 .stepper{display:flex;align-items:center;gap:10px}
 .stepper button{width:40px;height:40px;border-radius:10px;border:1px solid rgba(134,103,47,.5);font-size:20px;font-weight:700;color:var(--ink);background:rgba(255,255,255,.35)}
@@ -191,7 +199,7 @@ input{font:inherit}
 .tk .pw b{color:var(--candle);font-family:var(--display);font-weight:700;font-size:11.5px;letter-spacing:.04em}
 .spark{display:block;width:100%;height:34px;margin-top:4px}
 
-.merchants{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;margin-top:16px}
+.merchants{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(240px,100%),1fr));gap:10px;margin-top:16px}
 .mcard{border-radius:12px;background:rgba(42,26,16,.85);border:1px solid rgba(201,164,92,.22);padding:10px 12px;display:grid;gap:8px}
 .mcard .top{display:flex;align-items:center;gap:10px}
 .mcard .nm{font-family:var(--display);font-weight:800;font-size:15px}
@@ -235,8 +243,12 @@ input{font:inherit}
 .bet-chip{grid-column:1/-1;font-size:11.5px;color:var(--candle);font-weight:700}
 @media (max-width:760px){
   .arena{height:auto;display:grid;gap:10px}
-  .seats-strip{display:flex;gap:8px;overflow-x:auto;padding:4px 2px 8px;scroll-snap-type:x mandatory}
-  .seat{position:relative;transform:none;left:auto!important;top:auto!important;flex:none;width:150px;scroll-snap-align:start}
+  .seats-strip{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100px,100%),1fr));gap:6px}
+  .seat{position:relative;transform:none;left:auto!important;top:auto!important;width:auto;min-width:0;padding:6px 7px;gap:0 6px;border-radius:10px}
+  .seat .pt{width:30px!important;height:30px!important}.seat .pt>svg{width:30px;height:30px}
+  .seat .dealer{width:15px;height:15px;font-size:9px;right:-4px;bottom:-3px}
+  .seat .nm{font-size:12px}.seat .fl{font-size:12.5px}.seat .st{font-size:10.5px}
+  .seat .boast{font-size:10.5px;padding:1px 4px;margin-top:3px}
   .felt{position:relative;inset:auto;border-radius:36px;padding:26px 10px;min-height:220px;box-shadow:0 0 0 6px #4A2F1C,0 0 0 8px var(--brass-lo),0 20px 40px -16px #000,inset 0 0 40px rgba(0,0,0,.5)}
   .felt::before{inset:10px;border-radius:28px}
   .felt .board{gap:6px}
@@ -268,7 +280,7 @@ input{font:inherit}
 .x{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;color:var(--ink);background:rgba(42,29,18,.08);font-size:18px;flex:none}
 .x:hover{background:rgba(42,29,18,.16)}
 .cover{text-align:center;display:grid;gap:16px;justify-items:center;padding:12px 4px}
-.cover .big{font-family:var(--deco);font-weight:900;font-size:clamp(34px,7vw,56px);line-height:1;color:var(--wax)}
+.cover .big{overflow-wrap:anywhere;max-width:100%;font-family:var(--deco);font-weight:900;font-size:clamp(34px,7vw,56px);line-height:1;color:var(--wax)}
 .peek-layer{position:fixed;inset:0;z-index:80;background:rgba(10,6,3,.9);display:grid;place-items:center;padding:16px;text-align:center}
 .peek-layer .inner{display:grid;gap:14px;justify-items:center}
 
@@ -337,7 +349,7 @@ input[type=range]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;bac
 .dash .t{border-top:1px solid rgba(134,103,47,.35);padding-top:3px;margin-top:2px}
 .dash .net .v,.dash .net .c{color:var(--wax);font-family:var(--display);font-weight:800}
 .mcard .dash .u{color:var(--text-dim)} .mcard .dash .net .v,.mcard .dash .net .c{color:var(--candle)} .mcard .dash .t{border-color:rgba(201,164,92,.25)}
-.hold-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.hold-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(250px,100%),1fr));gap:12px}
 .hold-card{padding:12px;border-radius:12px;background:rgba(255,255,255,.35);border:1px solid rgba(134,103,47,.3);display:grid;gap:8px}
 .rules{display:grid;gap:14px;font-size:15px}
 .rules h4{font-family:var(--display);font-weight:800;font-size:15px;letter-spacing:.06em;margin:0 0 4px;color:var(--wax)}
@@ -350,7 +362,8 @@ input[type=range]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;bac
   font-family:var(--display);font-weight:700;font-size:13px;letter-spacing:.06em;color:#2B1A08;background:linear-gradient(180deg,#F7D98C,#E0AE4E);
   padding:10px 16px;border-radius:999px;box-shadow:0 10px 30px -10px #000;opacity:0;transition:opacity .25s,transform .25s}
 #toast.on{opacity:1;transform:translateX(-50%) translateY(-6px)}
-.flycoin{position:fixed;z-index:70;width:26px;height:26px;pointer-events:none}
+#flylayer{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:70}
+.flycoin{position:absolute;left:0;top:0;width:26px;height:26px;pointer-events:none}
 .crown{position:absolute;left:50%;top:-16px;transform:translateX(-50%);width:28px;height:20px}
 .end-hero{display:grid;justify-items:center;gap:12px;text-align:center}
 .modes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;width:100%}
@@ -369,12 +382,44 @@ input[type=range]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;bac
 .rchip .pt{width:24px!important;height:24px!important}
 .mine{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:12px;background:rgba(0,0,0,.28);border:1px solid rgba(201,164,92,.22)}
 .mine .dice{gap:4px;flex-wrap:nowrap}
+/* small phones */
+.wrap,.ledger,.tray,.mcard,.pcard,.srow,.rrow,.sheet{min-width:0;max-width:100%}
+.ledger,.tray{overflow-wrap:anywhere}
+@media (max-width:420px){
+  #view{padding:12px 10px}
+  .ledger{padding:16px 14px}.ledger::before{inset:5px}
+  .sheet{max-height:calc(100% - 8px)}.scrim{padding:8px}
+  .h2{font-size:22px}
+  .btn{padding:0 14px;letter-spacing:.05em;font-size:13px}
+  .btn-sm{padding:0 10px;font-size:11.5px}
+  .actions .btn{flex:1 1 110px}
+  .ibtn{height:34px;padding:0 9px}
+  #bar{gap:8px;padding-left:10px;padding-right:10px}
+  .felt .die,.felt .slot{width:40px;height:42px}.felt .board{gap:4px}
+  .felt{min-height:0;padding:16px 8px;gap:8px}.table-screen{gap:10px}.arena{gap:8px}
+  #toast{bottom:auto;top:calc(58px + env(safe-area-inset-top,0px));max-width:calc(100% - 24px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .die.lg{width:62px;height:64px}
+  .ticker{gap:8px}.tk{padding:8px 9px 6px}.tk .pr b{font-size:22px}
+  .mine{gap:8px;padding:8px}.mine .die.md{width:34px;height:36px}
+  .roomcode{letter-spacing:.08em}
+  .codein{font-size:38px}
+  .stepper b{min-width:54px}
+  .qrow{grid-template-columns:1fr auto;}
+  .qrow>.soft{display:none}
+  .toggle button{padding:8px 10px;font-size:11px}
+  .srow .dice .die.sm{width:26px;height:27px}
+}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;animation-delay:0s!important;transition-duration:.001ms!important}}
 </style>
 </head>
 <body>
-<script src="js/peerjs.min.js"></script>
-<script src="js/qrcode.js"></script>
+<script src="peerjs.min.js"></script>
+<script src="qrcode.js"></script>
+<script data-loader>/* fallbacks: a js/ subfolder, then a CDN */
+if(typeof Peer==="undefined")document.write('<script src="js/peerjs.min.js"><\/script>');
+if(typeof qrcode==="undefined")document.write('<script src="js/qrcode.js"><\/script>');</script>
+<script data-loader>if(typeof Peer==="undefined")document.write('<script src="https://cdn.jsdelivr.net/npm/peerjs@1.5.5/dist/peerjs.min.js"><\/script>');
+if(typeof qrcode==="undefined")document.write('<script src="https://cdn.jsdelivr.net/npm/qrcode-generator@2.0.4/dist/qrcode.js"><\/script>');</script>
 <div id="app"><canvas id="fx" aria-hidden="true"></canvas><header id="bar" hidden></header><main id="view"></main></div>
 <div id="sheet"></div><div id="peek"></div><div id="toast" role="status" aria-live="polite"></div>
 <script>/* ======================================================================
@@ -1459,8 +1504,10 @@ function closePeek(){U.peekOpen=null;$("peek").innerHTML="";}
 
 /* ---------- coin flight from a seat to the pot ---------- */
 function flyCoin(from){const s=document.querySelector(`.seat[data-seat="${from}"]`),pot=document.querySelector(".pot .coins");if(!s||!pot||!s.animate)return;
-  const a=s.getBoundingClientRect(),b=pot.getBoundingClientRect();for(let k=0;k<3;k++){const el=document.createElement("div");el.className="flycoin";el.innerHTML=coinSVG();document.body.appendChild(el);
-    const x0=a.left+a.width/2-13,y0=a.top+a.height/2-13,x1=b.left+b.width/2-13+(k-1)*6,y1=b.top+b.height/2-13;
+  let layer=$("flylayer");if(!layer){layer=document.createElement("div");layer.id="flylayer";document.body.appendChild(layer);}
+  const W=innerWidth,H=innerHeight,cl=(v,m)=>Math.max(0,Math.min(m-26,v));
+  const a=s.getBoundingClientRect(),b=pot.getBoundingClientRect();for(let k=0;k<3;k++){const el=document.createElement("div");el.className="flycoin";el.innerHTML=coinSVG();layer.appendChild(el);setTimeout(()=>el.remove(),1500);
+    const x0=cl(a.left+a.width/2-13,W),y0=cl(a.top+a.height/2-13,H),x1=cl(b.left+b.width/2-13+(k-1)*6,W),y1=cl(b.top+b.height/2-13,H);
     el.animate([{transform:`translate(${x0}px,${y0}px) scale(.9)`,opacity:1},{transform:`translate(${(x0+x1)/2}px,${Math.min(y0,y1)-60}px) scale(1.15)`,opacity:1,offset:.5},{transform:`translate(${x1}px,${y1}px) scale(.8)`,opacity:.2}],
       {duration:560+k*90,easing:"cubic-bezier(.3,.7,.4,1)",delay:k*60,fill:"forwards"}).onfinish=()=>el.remove();}}
 

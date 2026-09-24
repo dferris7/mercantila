@@ -2,7 +2,9 @@
 
 **Purpose:** upload this with the two code files so Claude has full context. It describes the **v2 rebuild** (Sept 2026). v1 notes are superseded where they conflict.
 
-**Repo layout:** `index.html` (the whole game) · `js/peerjs.min.js`, `js/qrcode.js` (vendored, MIT) · `manifest.webmanifest` + `icons/` (installable web app) · `tests/merchants-table.test.js` (harness) · `docs/HANDOFF.md` (this file) · `README.md`.
+**Repo layout (flat, every file at the top level; GitHub's web uploader drops folders):** `index.html` (the whole game) · `peerjs.min.js`, `qrcode.js` (vendored, MIT; `index.html` falls back to `js/` then jsDelivr if missing) · `*.woff2` self-hosted fonts (OFL) · `manifest.webmanifest` + `icon-*.png` (installable web app) · `merchants-table.test.js` (harness) · `HANDOFF.md` (this file) · `README.md`.
+
+**Mobile layout:** tested for zero horizontal overflow at 320px on every screen and sheet with the real fonts. Phone seats wrap into a compact grid; coin-flight animations run inside a clipped `#flylayer`.
 
 ## 0. Multiplayer (v2.1)
 
@@ -73,7 +75,7 @@ State: engine state in global `S`; UI state in `S.ui` (accessed through `U`). Tr
 
 Verify after every change:
 ```bash
-node tests/merchants-table.test.js     # must print ✅ ALL CLEAN
+node merchants-table.test.js     # must print ✅ ALL CLEAN
 ```
 The harness also runs 150 hosted multiplayer games and asserts after every action that no seat's view leaks hidden information.
 
