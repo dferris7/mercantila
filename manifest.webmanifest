@@ -1,0 +1,15 @@
+{
+  "name": "The Merchant's Table",
+  "short_name": "Merchant's Table",
+  "description": "Dice hold'em and commodity trading for 2 to 6 merchants, on one phone or many.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#110C08",
+  "theme_color": "#110C08",
+  "icons": [
+    {"src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png"},
+    {"src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable"}
+  ]
+}
