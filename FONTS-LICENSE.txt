@@ -1,4 +1,4 @@
-Fonts: Cinzel, Cinzel Decorative, Spectral — SIL Open Font License 1.1 (via Fontsource)
+Fonts: Cinzel, Cinzel Decorative, Spectral, Orbitron, Chakra Petch — SIL Open Font License 1.1 (via Fontsource)
 
 Copyright 2020 The Cinzel Project Authors (https://github.com/NDISCOVER/Cinzel)
 

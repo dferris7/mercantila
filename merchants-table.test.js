@@ -236,6 +236,53 @@ console.log('Private messages (host relays; only the two people involved can see
  hostHandle(0,{type:'start'});ok(hostHandle(2,{type:'dm',to:0,text:'mid-game'}).ok&&S.phase==='market','messages work during a game without touching game state');
  ok(new Set(S.dms.map(m=>m.id)).size===S.dms.length,'message ids are unique');}
 
+
+console.log('Themes (sci-fi skin changes looks and words, never rules):');
+{const {applySkin,skinText,eventText,EVENT_TEXT,COMM}=M;
+ ok(EVENTS.every(c=>EVENT_TEXT.scifi[c.t]&&EVENT_TEXT.scifi[c.t][0]&&EVENT_TEXT.scifi[c.t][1].length>20),'every event card has sci-fi text ('+EVENTS.length+' cards)');
+ const names0=COMM.map(c=>c.n).join();applySkin('scifi',{persist:false});
+ ok(COMM.map(c=>c.n).join()==='Water,Biomass,Alloy,Isotopes,Data,Qubits','sci-fi renames the six commodities');
+ ok(COMM.every(c=>c.ab&&c.abd)&&CKEYS.join()==='wheat,wood,brick,ore,silver,gold','power names change; internal keys (and saves) do not');
+ ok(eventText("Dragon's Awakening","x").t==='Qubit Famine','event titles follow the theme');
+ const html='<button class="btn btn-gold" data-arg="gold:1">Pay 30 fl in florins at the market</button>';const out=skinText(html);
+ ok(out.startsWith('<button class="btn btn-gold" data-arg="gold:1">')&&/30 cr in credits at the exchange/.test(out),'theme wording swaps text but never tags, classes or data');
+ applySkin('medieval',{persist:false});ok(COMM.map(c=>c.n).join()===names0,'switching back restores the medieval names');
+ ok(skinText(html)===html,'medieval text is untouched');
+ for(const k of Object.keys(S))delete S[k];Object.assign(S,{players:[],totalHands:5,target:525,targetAuto:true});M.hostInitLobby('Host',0,0);M.hostJoin({name:'A'});
+ ok(M.hostHandle(1,{type:'skin',skin:'scifi'}).err&&M.hostHandle(0,{type:'skin',skin:'plaid'}).err,'only the host can set the table theme, and only to a real theme');
+ ok(M.hostHandle(0,{type:'skin',skin:'scifi'}).ok&&M.makeView(S,1).skin==='scifi','the host theme reaches every phone');
+ M.hostHandle(0,{type:'start'});ok(M.hostHandle(0,{type:'skin',skin:'medieval'}).err&&S.skin==='scifi','the theme is locked once the table opens');}
+
+
+console.log('Theme leak scan of everything the engine writes (events, effects, tips, host logs):');
+{const {applySkin,skinText,eventText,tradeHints,HOST}=M;const goodsSwap=M.goodsSwap;
+ const MED=[/\bflorins?\b/i,/\d\s?fl\b/,/Mercantila/,/Merchant['’]s Table/,/\b(Wheat|Wood|Brick|Silver|Gold|Ore)\b/,/\b(wheat|wood|brick|silver|gold)\b/,/Spoil the Stock|Whittle|Recast|Temper\b|Insider Word|Sellsword/,/\b[Mm]arket\b/,/\bgoods\b/i];
+ const SCI=[/\bcredits?\b/i,/\d\s?cr\b/,/Helion|Syndicate/,/\b(Water|Biomass|Alloy|Isotopes|Data|Qubits)\b/,/Signal Jam|Calibrate|Hot-swap|Overclock|Intercept|Proxy Agent/,/\b[Ee]xchange\b/,/\bcargo\b/i];
+ for(const theme of ['scifi','medieval']){applySkin(theme,{persist:false});const bad=theme==='scifi'?MED:SCI;const leaks=[];
+  const chk=(where,s)=>{const shown=skinText(goodsSwap(String(s)));bad.forEach(re=>{if(re.test(shown))leaks.push(where+': '+shown.slice(0,90));});};
+  for(let rep=0;rep<4;rep++)for(const card of EVENTS){for(const k of Object.keys(S))delete S[k];Object.assign(S,{players:[],totalHands:6,target:9999,targetAuto:false});
+    for(let i=0;i<3;i++)S.players.push({name:'P'+i});newGame();S.handNo=3;S.players[0].fl=250;S.players[2].fl=5;
+    const ec=applyEvent(card);const tx=eventText(ec.t0,ec.x0);chk(card.t+' title',tx.t);chk(card.t+' text',tx.x);chk(card.t+' effect',ec.eff);
+    if(S.pendingChoice){const pc=S.pendingChoice;resolveEventChoice(pc.decree?CKEYS[rng(0,5)]:(pc.chooser===0?1:0));chk(card.t+' resolved',S.eventCard.resolved);}}
+  for(let i=0;i<300;i++){CKEYS.forEach(k=>{S.prices[k]=rng(5,15);S.history[k]=[rng(5,15),rng(5,15),S.prices[k]];});const p=S.players[i%3];p.fl=rng(0,300);CKEYS.forEach(k=>p.port[k]=rng(0,8));S.handNo=1+i%6;tradeHints(p).forEach(h=>chk('tip',h));}
+  // host log lines for every kind of move
+  for(const k of Object.keys(S))delete S[k];Object.assign(S,{players:[],totalHands:4,target:9999,targetAuto:false});M.hostInitLobby('Host',0,0);M.hostJoin({name:'A'});M.hostJoin({name:'B'});
+  M.hostHandle(0,{type:'start'});const logs=[];const grab=()=>{if(S.lastAct)logs.push(S.lastAct.text);};
+  let g=0;while(S.phase!=='over'&&g++<3000){grab();
+    if(S.phase==='market'){if(S.pendingChoice){const pc=S.pendingChoice;M.hostHandle(pc.chooser,{type:'choose',v:pc.decree?'gold':(pc.chooser===0?1:0)});continue;}
+      S.players.forEach((_,i)=>{M.hostHandle(i,{type:'trade',t:{mode:'order',buy:{silver:1},sell:{wheat:1}}});M.hostHandle(i,{type:'ready'});});continue;}
+    if(S.phase==='result'){S.players.forEach((_,i)=>M.hostHandle(i,{type:'ready'}));continue;}
+    if(S.window){M.hostHandle(0,{type:'force'});continue;}
+    const s=S.turn,L=legal(),r=Math.random();const p=S.players[s];
+    if(L.canPledge&&r<.3){M.hostHandle(s,{type:'pledge',sel:{[CKEYS.find(k=>p.port[k]>0)]:1}});continue;}
+    if(L.canAbility&&r<.3){const k=CKEYS.find(k=>abilityReady(p,k));M.hostHandle(s,{type:'power',k,idx:0,sign:-1});continue;}
+    if(L.canBoast&&r<.1){M.hostHandle(s,{type:'boast',tier:3,stake:1});continue;}
+    if(L.boastTargets.length&&r<.2){M.hostHandle(s,{type:'challenge',target:L.boastTargets[0]});continue;}
+    M.hostHandle(s,L.canCall?(r<.8?{type:'call'}:{type:'fold'}):(L.canRaise&&r<.5?{type:'raise',amount:L.minRaise}:{type:'check'}));}
+  new Set(logs).forEach(l=>chk('log',l));
+  ok(leaks.length===0,`${theme}: no ${theme==='scifi'?'medieval':'sci-fi'} words in event cards, effects, tips or ${new Set(logs).size} kinds of host log line`+(leaks.length?' — '+leaks.slice(0,3).join(' | '):''));}
+ applySkin('medieval',{persist:false});}
+
 console.log('Simulation:');
 const allInts=()=>S.players.every(p=>Number.isInteger(p.fl)&&p.fl>=0&&Number.isInteger(p.escrow)&&p.escrow>=0&&CKEYS.every(k=>Number.isInteger(p.port[k])&&p.port[k]>=0))&&Number.isInteger(S.pot);
 let loops=0,nonint=0,leak=0,hands=0,sitouts=0,pledges=0,boasts=0,chals=0,abil=0,trades=0,maxSteps=0,elim=0,tgt=0,cap=0;const byN={};

@@ -20,6 +20,10 @@ Tips:
 - Same Wi-Fi is the most reliable. Mobile data usually works: PeerJS falls back to its free relay servers when phones can't connect directly. A few mobile networks block this anyway; if a phone won't connect, put it on Wi-Fi.
 - Add it to your home screen (Share → **Add to Home Screen** on iPhone, ⋮ → **Install app** on Android) for a full-screen app.
 
+## Themes
+
+Pick **Medieval** (candlelit guild hall, florins, wheat and gold) or **Sci-fi** (the Syndicate Table in the Helion Reach: holographic table, credits, water, alloy, data and qubits) when you set up the table: in pass-and-play setup, or in the host's lobby for online games. The choice applies to everyone and is locked once the table opens (the host can pick again for a new game from the lobby). Themes change the look, sounds, names and event stories only; the rules are identical.
+
 ## How it connects
 
 There is no game server. The host's phone holds the game state and sends each phone a view with everyone else's dice hidden. Phones find each other through the free public [PeerJS](https://peerjs.com) signaling service, then talk directly over WebRTC. The PeerJS library and the fonts are included as files, so the game doesn't depend on a CDN (it falls back to one only if `peerjs.min.js` is missing).
@@ -51,6 +55,6 @@ The harness checks hand ranking, pots, boasts, trades, events, 800 simulated pas
 - `morphdom` 2.7.4 (inlined in `index.html`) — MIT License, © Patrick Steele-Idem.
 - `qrcode.js` — QR Code Generator 2.0.4, MIT License, © Kazuhiko Arase. "QR Code" is a registered trademark of DENSO WAVE INCORPORATED.
 
-- Fonts: Cinzel, Cinzel Decorative and Spectral, SIL Open Font License 1.1 (via Fontsource). See `FONTS-LICENSE.txt`.
+- Fonts: Cinzel, Cinzel Decorative, Spectral, Orbitron and Chakra Petch, SIL Open Font License 1.1 (via Fontsource). See `FONTS-LICENSE.txt`.
 
 See `THIRD-PARTY-LICENSES.txt`.

@@ -22,6 +22,13 @@
 @font-face{font-family:'Spectral';font-style:normal;font-weight:700;font-display:swap;src:url(spectral-latin-700-normal.woff2) format('woff2')}
 @font-face{font-family:'Spectral';font-style:italic;font-weight:400;font-display:swap;src:url(spectral-latin-400-italic.woff2) format('woff2')}
 @font-face{font-family:'Spectral';font-style:italic;font-weight:500;font-display:swap;src:url(spectral-latin-500-italic.woff2) format('woff2')}
+@font-face{font-family:'Orbitron';font-style:normal;font-weight:400 900;font-display:swap;src:url(orbitron-latin-wght-normal.woff2) format('woff2')}
+@font-face{font-family:'Chakra Petch';font-style:normal;font-weight:400;font-display:swap;src:url(chakra-petch-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:'Chakra Petch';font-style:normal;font-weight:500;font-display:swap;src:url(chakra-petch-latin-500-normal.woff2) format('woff2')}
+@font-face{font-family:'Chakra Petch';font-style:normal;font-weight:600;font-display:swap;src:url(chakra-petch-latin-600-normal.woff2) format('woff2')}
+@font-face{font-family:'Chakra Petch';font-style:normal;font-weight:700;font-display:swap;src:url(chakra-petch-latin-700-normal.woff2) format('woff2')}
+@font-face{font-family:'Chakra Petch';font-style:italic;font-weight:400;font-display:swap;src:url(chakra-petch-latin-400-italic.woff2) format('woff2')}
+@font-face{font-family:'Chakra Petch';font-style:italic;font-weight:500;font-display:swap;src:url(chakra-petch-latin-500-italic.woff2) format('woff2')}
 </style>
 <style>
 :root{
@@ -500,6 +507,130 @@ body.has-chat #view{padding-bottom:calc(96px + env(safe-area-inset-bottom,0px))}
   .chat-fab{right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));width:54px;height:54px}
   .chat-toast{right:12px;left:12px;bottom:calc(78px + env(safe-area-inset-bottom,0px));max-width:none}
 }
+
+/* ---------- theme picker ---------- */
+.themes{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.theme-opt{display:grid;justify-items:center;gap:3px;width:148px;padding:10px 10px 9px;border-radius:12px;border:1px solid rgba(201,164,92,.35);background:rgba(42,26,16,.55);color:var(--text)}
+.ledger .theme-opt{background:rgba(255,255,255,.3);color:var(--ink);border-color:rgba(134,103,47,.4)}
+.theme-opt[aria-pressed="true"]{box-shadow:0 0 0 2px var(--candle);border-color:transparent}
+.theme-opt b{font-family:var(--display);font-size:14px;letter-spacing:.06em}
+.theme-opt small{font-size:11.5px;opacity:.75;text-align:center;line-height:1.2}
+.tprev{display:flex;gap:6px;height:34px;align-items:center}
+.tprev .d{width:30px;height:30px;display:block;clip-path:polygon(50% 0,100% 30%,100% 75%,50% 100%,0 75%,0 30%)}
+.tprev .md1{background:linear-gradient(160deg,#FBF3E1,#BFA67B)}.tprev .md2{background:linear-gradient(160deg,#D65A4B,#761E1E)}
+.tprev .sf1{background:linear-gradient(160deg,#D8FBFF,#2A8CB5);box-shadow:0 0 10px #46D7FF}.tprev .sf2{background:linear-gradient(160deg,#FFE0A8,#B85A1C);box-shadow:0 0 10px #FF9A3D}
+
+/* =================== SCI-FI SKIN =================== */
+html[data-skin="scifi"]{
+  --night:#04070D; --walnut:#0B1422; --walnut-2:#101C2E; --walnut-3:#18293F;
+  --baize:#0A2233; --baize-lit:#113A52; --baize-deep:#051320;
+  --brass:#46D7FF; --brass-hi:#A6EEFF; --brass-lo:#1C6C8A;
+  --candle:#FFB24A; --wax:#FF9A3D; --wax-hi:#FFB870;
+  --parch:#0F1B2D; --parch-2:#0A1424; --parch-3:#16273E; --ink:#E4EEFF; --ink-soft:#91A9C9;
+  --text:#E4EEFF; --text-soft:#9DB4D2; --text-dim:#617A9B;
+  --up:#57E39A; --down:#FF6B7A; --up-ink:#57E39A; --down-ink:#FF7A86;
+  --display:'Orbitron','Chakra Petch',system-ui,sans-serif; --deco:'Orbitron','Chakra Petch',system-ui,sans-serif; --body:'Chakra Petch',system-ui,'Segoe UI',sans-serif;
+  --glass:rgba(12,24,42,.82); --line:rgba(70,215,255,.28); --line-hi:rgba(70,215,255,.6); --row:rgba(70,215,255,.05);
+}
+html[data-skin="scifi"] body{background:var(--night)}
+html[data-skin="scifi"] #app{background:
+  radial-gradient(1px 1px at 12% 18%,#fff8,transparent),radial-gradient(1px 1px at 72% 12%,#fff6,transparent),radial-gradient(1.5px 1.5px at 38% 72%,#cfefff88,transparent),
+  radial-gradient(1px 1px at 88% 64%,#fff7,transparent),radial-gradient(1px 1px at 22% 88%,#fff5,transparent),radial-gradient(1.2px 1.2px at 56% 40%,#fff5,transparent),
+  radial-gradient(ellipse 70% 45% at 85% 110%,rgba(255,154,61,.22),transparent 70%),
+  radial-gradient(ellipse 80% 60% at 10% -10%,rgba(70,215,255,.16),transparent 70%),
+  radial-gradient(ellipse 120% 100% at 50% 40%,#0A1526 0%,#060B16 55%,#02040A 100%)}
+html[data-skin="scifi"] #bar{background:linear-gradient(180deg,rgba(6,12,22,.95),rgba(6,12,22,.6));border-bottom:1px solid var(--line)}
+html[data-skin="scifi"] .mark{font-family:'Orbitron',sans-serif;font-weight:800;letter-spacing:.14em;text-transform:uppercase;font-size:13px;color:var(--brass-hi)}
+html[data-skin="scifi"] .h1{font-family:'Orbitron',sans-serif;font-weight:900;letter-spacing:.06em;text-transform:uppercase;font-size:clamp(28px,7.5vw,72px);
+  background:linear-gradient(180deg,#F2FBFF 30%,#7FDFFF 70%,#46A9D8);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:none;filter:drop-shadow(0 0 18px rgba(70,215,255,.35))}
+html[data-skin="scifi"] .h2,html[data-skin="scifi"] .h3{letter-spacing:.05em}
+html[data-skin="scifi"] .h2{font-weight:700}
+html[data-skin="scifi"] .eyebrow{color:var(--brass);letter-spacing:.3em}
+html[data-skin="scifi"] .ledger .eyebrow{color:var(--candle)}
+html[data-skin="scifi"] .it{font-style:italic}
+/* glass HUD panels with corner brackets */
+html[data-skin="scifi"] .ledger,html[data-skin="scifi"] .ecard .face{background:linear-gradient(180deg,rgba(16,30,52,.94),rgba(8,15,28,.96));color:var(--ink);
+  box-shadow:0 30px 60px -24px #000,inset 0 0 0 1px var(--line),inset 0 0 40px rgba(70,215,255,.05);border-radius:10px;backdrop-filter:blur(6px)}
+html[data-skin="scifi"] .ledger::before,html[data-skin="scifi"] .ecard .face::before{content:"";position:absolute;inset:6px;border:0;border-radius:6px;pointer-events:none;
+  background:linear-gradient(var(--brass),var(--brass)) top left/16px 2px,linear-gradient(var(--brass),var(--brass)) top left/2px 16px,
+  linear-gradient(var(--brass),var(--brass)) top right/16px 2px,linear-gradient(var(--brass),var(--brass)) top right/2px 16px,
+  linear-gradient(var(--brass),var(--brass)) bottom left/16px 2px,linear-gradient(var(--brass),var(--brass)) bottom left/2px 16px,
+  linear-gradient(var(--brass),var(--brass)) bottom right/16px 2px,linear-gradient(var(--brass),var(--brass)) bottom right/2px 16px;background-repeat:no-repeat;opacity:.8}
+html[data-skin="scifi"] .ecard .face{position:relative}
+html[data-skin="scifi"] .ecard .etext{color:var(--text-soft)}
+html[data-skin="scifi"] .ecard .eff{border-top-color:var(--line);color:var(--candle)}
+html[data-skin="scifi"] .mv{background:var(--row)}
+/* rows, tiles and controls inside panels */
+html[data-skin="scifi"] :is(.pcard,.cfg-box,.ctile,.qrow,.power,.tier,.slider,.srow,.rrow,.hold-card,.trow,.tp-row,.choice button,.theme-opt,.quote,.tsum){background:var(--row);border:1px solid var(--line);color:var(--ink)}
+html[data-skin="scifi"] :is(.choice button,.power,.ctile,.tier):hover:not(:disabled){background:rgba(70,215,255,.12);border-color:var(--line-hi)}
+html[data-skin="scifi"] :is(.tier,.ctile,.chip,.theme-opt)[aria-pressed="true"]{background:rgba(70,215,255,.18);color:var(--brass-hi);border-color:var(--brass);box-shadow:0 0 0 1px var(--brass),0 0 18px rgba(70,215,255,.25)}
+html[data-skin="scifi"] :is(.stepper button,.tstep button,.x,.chip){background:rgba(70,215,255,.07);border:1px solid var(--line);color:var(--ink)}
+html[data-skin="scifi"] .toggle{border-color:var(--line)}html[data-skin="scifi"] .toggle button{color:var(--ink)}
+html[data-skin="scifi"] .toggle button[aria-pressed="true"]{background:var(--brass);color:#032034}
+html[data-skin="scifi"] .pcard input,html[data-skin="scifi"] .codein{color:var(--ink);border-color:var(--line-hi);background:rgba(4,10,20,.6)}
+html[data-skin="scifi"] .codein{font-family:'Orbitron',sans-serif}
+html[data-skin="scifi"] .stepper b,html[data-skin="scifi"] .slider .read,html[data-skin="scifi"] .rrow .rk,html[data-skin="scifi"] .roomcode{color:var(--candle)}
+html[data-skin="scifi"] .roomcode{font-family:'Orbitron',sans-serif;text-shadow:0 0 24px rgba(255,178,74,.4)}
+html[data-skin="scifi"] .quote b,html[data-skin="scifi"] .tsum .net b,html[data-skin="scifi"] .dash .net .v,html[data-skin="scifi"] .dash .net .c{color:var(--candle)}
+html[data-skin="scifi"] .srow.win,html[data-skin="scifi"] .rrow.lead{background:linear-gradient(90deg,rgba(255,178,74,.2),rgba(70,215,255,.05));box-shadow:inset 0 0 0 1px var(--candle)}
+html[data-skin="scifi"] .trow.buy{background:rgba(87,227,154,.08);border-color:rgba(87,227,154,.4)}html[data-skin="scifi"] .trow.sell{background:rgba(255,107,122,.08);border-color:rgba(255,107,122,.4)}
+html[data-skin="scifi"] .note{background:rgba(255,107,122,.08);border-color:rgba(255,107,122,.35);color:#FFC2C8}
+html[data-skin="scifi"] .note.gold,html[data-skin="scifi"] .tip{background:rgba(255,178,74,.08);border-color:rgba(255,178,74,.4);color:#FFE2B8}
+html[data-skin="scifi"] .tip .tag.gold{color:#032034;background:var(--candle)}
+html[data-skin="scifi"] .bar{background:rgba(70,215,255,.12)}html[data-skin="scifi"] .bar i{background:linear-gradient(90deg,var(--brass-lo),var(--brass));box-shadow:0 0 8px var(--brass)}
+html[data-skin="scifi"] .dash .t{border-color:var(--line)}
+html[data-skin="scifi"] .rtable td,html[data-skin="scifi"] .rtable th{border-color:var(--line)}
+html[data-skin="scifi"] .scrim{background:rgba(2,5,12,.78)}
+html[data-skin="scifi"] .board-mini{background:radial-gradient(ellipse at 50% 30%,#113A52,#071A28 70%);box-shadow:inset 0 0 30px rgba(0,0,0,.6),0 0 0 1px var(--line-hi)}
+/* buttons */
+html[data-skin="scifi"] .btn{border-radius:6px;letter-spacing:.12em;clip-path:polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px)}
+html[data-skin="scifi"] .btn-gold{color:#1A0C00;background:linear-gradient(180deg,#FFD08A,#FF9A3D);box-shadow:0 0 22px -4px rgba(255,154,61,.7)}
+html[data-skin="scifi"] .btn-wax{color:#fff;background:linear-gradient(180deg,#FF5C74,#B3203D);box-shadow:0 0 22px -6px rgba(255,92,116,.7)}
+html[data-skin="scifi"] .btn-line{color:var(--brass-hi);border:1px solid var(--line-hi);background:rgba(70,215,255,.06)}
+html[data-skin="scifi"] .btn-line:hover:not(:disabled){background:rgba(70,215,255,.16)}
+html[data-skin="scifi"] .btn-ink{color:var(--ink);border:1px solid var(--line);background:rgba(70,215,255,.04)}
+html[data-skin="scifi"] .ibtn{border-color:var(--line);color:var(--brass-hi);background:rgba(70,215,255,.05);border-radius:6px}
+/* market cards, seats, tray */
+html[data-skin="scifi"] :is(.tk,.mcard,.seat,.tray,.mode){background:linear-gradient(180deg,rgba(14,28,48,.9),rgba(8,16,30,.92));border:1px solid var(--line);box-shadow:0 12px 30px -14px #000,inset 0 1px 0 rgba(166,238,255,.06);border-radius:10px}
+html[data-skin="scifi"] .tk .pr b{color:var(--brass-hi);text-shadow:0 0 12px rgba(70,215,255,.35)}
+html[data-skin="scifi"] .tk .pw{border-top-color:var(--line)}html[data-skin="scifi"] .tk .pw b{color:var(--candle)}
+html[data-skin="scifi"] .seat.turn{box-shadow:0 0 0 1px var(--candle),0 0 26px rgba(255,178,74,.45)}
+html[data-skin="scifi"] .seat .fl,html[data-skin="scifi"] .tray .who .meta b,html[data-skin="scifi"] .mcard .w b{color:var(--brass-hi)}
+html[data-skin="scifi"] .seat .boast{background:rgba(255,92,116,.18);border-color:rgba(255,92,116,.55);color:#FFD1D8}
+html[data-skin="scifi"] .dealer{background:linear-gradient(180deg,#A6EEFF,#46D7FF);color:#032034}
+html[data-skin="scifi"] .mine{background:rgba(70,215,255,.06);border-color:var(--line)}
+html[data-skin="scifi"] .foot-cta{background:linear-gradient(180deg,transparent,rgba(4,7,13,.95) 40%)}
+/* holographic tactical table */
+html[data-skin="scifi"] .felt{background:
+   repeating-linear-gradient(0deg,rgba(70,215,255,.08) 0 1px,transparent 1px 26px),repeating-linear-gradient(90deg,rgba(70,215,255,.08) 0 1px,transparent 1px 26px),
+   radial-gradient(ellipse at 50% 45%,rgba(70,215,255,.22),rgba(10,34,51,.95) 55%,#030C16 100%);
+  box-shadow:0 0 0 2px var(--brass-lo),0 0 0 8px rgba(10,20,34,.95),0 0 0 9px var(--line-hi),0 0 60px rgba(70,215,255,.25),0 40px 80px -20px #000,inset 0 0 60px rgba(0,0,0,.6)}
+html[data-skin="scifi"] .felt::before{border:1px solid rgba(70,215,255,.3);border-style:dashed}
+html[data-skin="scifi"] .felt .street{color:var(--brass-hi);font-family:'Orbitron',sans-serif;letter-spacing:.3em}
+html[data-skin="scifi"] .pot b{color:var(--candle);text-shadow:0 0 18px rgba(255,178,74,.45)}
+@media (max-width:760px){html[data-skin="scifi"] .felt{box-shadow:0 0 0 2px var(--brass-lo),0 0 0 5px rgba(10,20,34,.95),0 0 0 6px var(--line-hi),0 0 40px rgba(70,215,255,.2),inset 0 0 40px rgba(0,0,0,.6)}}
+/* glowing dice */
+html[data-skin="scifi"] .die{filter:drop-shadow(0 0 5px rgba(70,215,255,.55)) drop-shadow(0 4px 4px rgba(0,0,0,.5))}
+html[data-skin="scifi"] .die[data-s="garnet"]{filter:drop-shadow(0 0 6px rgba(255,154,61,.6)) drop-shadow(0 4px 4px rgba(0,0,0,.5))}
+html[data-skin="scifi"] .die[data-s="sapphire"]{filter:drop-shadow(0 0 7px rgba(192,139,255,.7))}
+html[data-skin="scifi"] .die.dimmed{filter:none;opacity:.35}
+html[data-skin="scifi"] .die.glow{filter:drop-shadow(0 0 10px #FFB24A) drop-shadow(0 0 3px #fff)}
+html[data-skin="scifi"] .die text{font-family:'Orbitron',sans-serif}
+/* chat + toast */
+html[data-skin="scifi"] .chat-panel{background:#060D18;border-color:var(--line-hi);border-radius:12px}
+html[data-skin="scifi"] .chat-head,html[data-skin="scifi"] .chat-compose,html[data-skin="scifi"] .chat-quick{background:#0A1526}
+html[data-skin="scifi"] .chat-msgs{background:radial-gradient(ellipse at 50% 0%,rgba(70,215,255,.08),transparent 60%),#050B15}
+html[data-skin="scifi"] .bub.me{background:linear-gradient(180deg,#FFD08A,#FF9A3D);color:#1A0C00}
+html[data-skin="scifi"] .bub.them{background:#16283F;color:var(--ink);border:1px solid var(--line)}
+html[data-skin="scifi"] .chat-fab,html[data-skin="scifi"] .chat-send{background:linear-gradient(180deg,#A6EEFF,#46D7FF);color:#032034;box-shadow:0 0 22px -4px rgba(70,215,255,.8)}
+html[data-skin="scifi"] .chat-compose input{background:#0E1B2E;border-color:var(--line)}
+html[data-skin="scifi"] .chat-toast button{background:#0F1B2D;color:var(--ink);border-color:var(--line-hi)}
+html[data-skin="scifi"] #toast{background:linear-gradient(180deg,#A6EEFF,#46D7FF);color:#032034;font-family:var(--body)}
+html[data-skin="scifi"] #netbar{background:#0A1526;border-color:var(--line-hi);color:var(--brass-hi)}
+html[data-skin="scifi"] input[type=range]{background:linear-gradient(90deg,var(--brass-lo),var(--brass))}
+html[data-skin="scifi"] input[type=range]::-webkit-slider-thumb{border-color:var(--candle);background:#0A1526}
+html[data-skin="scifi"] .qr{box-shadow:0 0 0 6px #FBF3E1,0 0 0 7px var(--brass)}
+
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;animation-delay:0s!important;transition-duration:.001ms!important}}
 </style>
 </head>
@@ -532,7 +663,7 @@ const COMM=[
 ];
 const CKEYS=COMM.map(c=>c.k);
 const CMAP={};COMM.forEach(c=>CMAP[c.k]=c);
-const WORLD="Mercantila";
+let WORLD="Mercantila";
 const START_FL=100;
 const START_PORT={wheat:5,wood:5,brick:5,ore:5,silver:5,gold:5};
 const ANTE=5, MINBET=5;
@@ -613,10 +744,10 @@ const EVENTS=[
   {t:"The Great Plague",k:"allU",a:-2,x:"Pestilence empties the streets and demand collapses evenly across the board."},
   {t:"Royal Jubilee",k:"allU",a:1,x:"The crown's jubilee loosens every purse. All goods tick upward together."},
   {t:"Hard Winter",k:"allU",a:-1,x:"A cruel winter slows every road and dampens every trade alike."},
-  {t:"Market Boom",k:"allV",d:1,lo:1,hi:4,x:"Speculative fever sweeps the exchange. Every commodity climbs, though none alike."},
+  {t:"Market Boom",k:"allV",d:1,lo:1,hi:4,x:"Speculative fever sweeps the markets. Every commodity climbs, though none alike."},
   {t:"Market Panic",k:"allV",d:-1,lo:1,hi:4,x:"A bank fails at dawn and panic spreads. Prices tumble unevenly across the board."},
   {t:"Speculative Frenzy",k:"allV",d:1,lo:1,hi:3,x:"Rumor and greed inflate the whole market in ragged fits and starts."},
-  {t:"Credit Crunch",k:"allV",d:-1,lo:1,hi:3,x:"Lenders call in their debts and the market sags in uneven steps."},
+  {t:"Moneylenders' Squeeze",k:"allV",d:-1,lo:1,hi:3,x:"Lenders call in their debts and the market sags in uneven steps."},
   {t:"Spoilage",k:"resAll",g:"staples",a:-3,x:"Damp rot tears through the warehouses. Perishable stock is lost by the cartload."},
   {t:"Black Frost",k:"resAll",g:"any",a:-3,x:"A killing frost ruins goods in every storehouse across the realm."},
   {t:"Bountiful Shipment",k:"resAll",g:"any",a:3,x:"A fat merchant convoy arrives and every house takes delivery of fresh stock."},
@@ -648,7 +779,7 @@ function richestIdx(){return extremeIdx(1);}
 function poorestIdx(){return extremeIdx(-1);}
 function applyRes(p,k,a){p.port[k]=Math.max(0,p.port[k]+a);}
 function applyEvent(card){
-  S.eventCard={t:card.t,x:card.x,k:card.k,moves:{}};S.pendingChoice=null;let eff="";
+  S.eventCard={t:card.t,x:card.x,t0:card.t,x0:card.x,k:card.k,moves:{}};S.pendingChoice=null;let eff="";
   const before={};CKEYS.forEach(k=>before[k]=S.prices[k]);
   if(card.k==="one"){shiftPrice(card.c,card.a);eff=`${CMAP[card.c].n} ${card.a>0?"+":""}${card.a} fl`;}
   else if(card.k==="grp"){GROUPS[card.g].forEach(k=>shiftPrice(k,card.a));eff=`${GRPNAME[card.g]} ${card.a>0?"rise":"fall"} ${Math.abs(card.a)}`;}
@@ -921,7 +1052,7 @@ function tradeHints(p){const out=[];const lastHand=S.handNo>=S.totalHands;const 
   const held=moves.filter(m=>p.port[m.k]>0);const cheap=moves.slice().sort((a,b)=>a.p-b.p)[0];const rich=held.slice().sort((a,b)=>b.p-a.p)[0];
   if(p.fl<ANTE)out.push(hv>0?`You can't cover the ${ANTE} fl ante right now. Selling something would get you dealt in this hand.`:`You can't cover the ${ANTE} fl ante this hand.`);
   else if(p.fl<ANTE*4&&hv>0)out.push(`Your purse is thin (${p.fl} fl). A small sale would give you room to call bets and boasts.`);
-  if(lastHand)out.push(`This is the last hand. Goods are valued at the closing price after one more market move, while florins stay exactly as they are.`);
+  if(lastHand)out.push(`This is the last hand. Everything you hold is valued at the closing price after one more market move, while florins stay exactly as they are.`);
   if(rich&&rich.p>=12&&out.length<2)out.push(`${CMAP[rich.k].n} is near the top of its range at ${rich.p} fl. Some merchants would take the gain; others ride it.`);
   const riser=moves.filter(m=>m.d>0&&m.d2>0).sort((a,b)=>b.d-a.d)[0];
   if(riser&&out.length<2)out.push(`${CMAP[riser.k].n} has climbed two hands running. Momentum can continue, or it can turn.`);
@@ -1009,6 +1140,7 @@ function hostHandle(seat,a){
   const p=S.players[seat];if(!p)return {err:"Unknown seat"};
   const nm=p.name;const t=a.type;
   if(t==="dm")return hostDM(seat,a);
+  if(t==="skin"){if(seat!==0)return {err:"Only the host can change the theme"};if(S.phase!=="lobby")return {err:"The theme is set before the table opens"};if(!["medieval","scifi"].includes(a.skin))return {err:"Unknown theme"};S.skin=a.skin;return {ok:true,quiet:true};}
   if(t==="profile"){if(S.phase!=="lobby")return {err:"Game already started"};p.name=cleanName(a.name,seat);p.pi=(a.pi|0)%6;p.hi=(a.hi|0)%4;return {ok:true,quiet:true};}
   if(t==="settings"){if(seat!==0||S.phase!=="lobby")return {err:"Only the host can change settings"};
     if(typeof a.targetAuto==="boolean")S.targetAuto=a.targetAuto;if(a.target)S.target=Math.max(300,Math.min(5000,a.target|0));
@@ -1070,7 +1202,7 @@ const PALETTES=[
   {skin:"#B37A52",shade:"#94603C",hair:"#2A1A10",cloth:"#5E6A38",trim:"#E3D39A",bg:"#262C14"},
 ];
 const HAIR_STYLES=["Cropped","Long","Merchant's cap","Curls & beard"];
-function charSVG(pi,hi,size){size=size||64;const p=PALETTES[((pi%6)+6)%6];const h=((hi%4)+4)%4;const id=`pg${pi}${h}`;
+function charSVG(pi,hi,size){size=size||64;if(SKIN_ID==="scifi")return charSVGScifi(pi,hi,size);const p=PALETTES[((pi%6)+6)%6];const h=((hi%4)+4)%4;const id=`pg${pi}${h}`;
   const back=h===1?`<path d="M30 58 Q26 22 60 20 Q94 22 90 58 Q92 88 98 112 L22 112 Q28 88 30 58Z" fill="${p.hair}"/>`:"";
   let front="";
   if(h===0)front=`<path d="M35 52 Q34 26 60 26 Q87 26 85 52 Q82 40 72 37 Q62 34 52 38 Q42 40 35 52Z" fill="${p.hair}"/>`;
@@ -1119,15 +1251,15 @@ const DIE_STYLES={
   sapphire:{f:"#5C86C4",f2:"#2E5390",r:"#284A80",l:"#1F3C6A",b:"#132646",ink:"#F4F0E4",edge:"#0D1A30"},
   back:   {f:"#4A3020",f2:"#34211A",r:"#3A2618",l:"#2C1C12",b:"#1C120B",ink:"#C9A45C",edge:"#8A6B35"},
 };
-function dieSVG(v,style){const st=DIE_STYLES[style]||DIE_STYLES.bone;
+function dieSVG(v,style){const set=SKIN_ID==="scifi"?DIE_STYLES_SCIFI:DIE_STYLES;const st=set[style]||set.bone;
   const lab=v?(S.numerals==="roman"?ROMAN[v]:String(v)):"✦";
   const fs=v?(S.numerals==="roman"?({1:32,2:28,3:22,4:17})[lab.length]:34):20;
-  return `<svg viewBox="0 0 100 104"><defs><linearGradient id="dg-${style}" x1="0" y1="0" x2=".3" y2="1"><stop offset="0" stop-color="${st.f}"/><stop offset="1" stop-color="${st.f2}"/></linearGradient></defs>
+  return `<svg viewBox="0 0 100 104"><defs><linearGradient id="dg-${SKIN_ID}-${style}" x1="0" y1="0" x2=".3" y2="1"><stop offset="0" stop-color="${st.f}"/><stop offset="1" stop-color="${st.f2}"/></linearGradient></defs>
    <g stroke="${st.edge}" stroke-width="1.8" stroke-linejoin="round">
     <polygon points="50,8 89,31 89,76" fill="${st.r}"/>
     <polygon points="89,76 50,99 11,76" fill="${st.b}"/>
     <polygon points="11,76 11,31 50,8" fill="${st.l}"/>
-    <polygon points="50,8 89,76 11,76" fill="url(#dg-${style})"/></g>
+    <polygon points="50,8 89,76 11,76" fill="url(#dg-${SKIN_ID}-${style})"/></g>
    <polygon points="50,15 60,33 40,33" fill="#fff" opacity=".28"/>
    <text x="50" y="58" text-anchor="middle" dominant-baseline="central" font-family="Cinzel,Georgia,serif" font-weight="800" font-size="${fs}" fill="${st.ink}">${lab}</text></svg>`;}
 function die(v,style,cls,attr){return `<span class="die ${cls||""}" data-v="${v||0}" data-s="${style||"bone"}" role="img" aria-label="${v?"die showing "+v:"hidden die"}" ${attr||""}>${dieSVG(v,style||"bone")}</span>`;}
@@ -1142,18 +1274,19 @@ const ICONS={
   silver:`<path d="M3 16 L6 10 L18 10 L21 16Z" fill="#C3CBD4" stroke="#56606B" stroke-width="1" stroke-linejoin="round"/><path d="M6 10 L8 7 L16 7 L18 10Z" fill="#E6EBF0" stroke="#56606B" stroke-width="1" stroke-linejoin="round"/><path d="M8 13 h6" stroke="#fff" stroke-width="1.2" stroke-linecap="round"/>`,
   gold:`<circle cx="12" cy="12" r="8.5" fill="#E6BC4F" stroke="#7A5720" stroke-width="1.2"/><circle cx="12" cy="12" r="6" fill="none" stroke="#B88A2C" stroke-width="1"/><path d="M12 8 L13.2 11 L16 11.2 L13.8 13 L14.6 16 L12 14.3 L9.4 16 L10.2 13 L8 11.2 L10.8 11Z" fill="#FFF0B8"/>`,
 };
-function icon(k,cls){return `<span class="ic ${cls||""}" aria-hidden="true"><svg viewBox="0 0 24 24">${ICONS[k]||""}</svg></span>`;}
-function coinsSVG(n){const stacks=Math.max(1,Math.min(3,Math.ceil(n/40)));const h=Math.max(1,Math.min(6,Math.ceil(n/15)));let out="";
+function icon(k,cls){const set=SKIN_ID==="scifi"?ICONS_SCIFI:ICONS;return `<span class="ic ${cls||""}" aria-hidden="true"><svg viewBox="0 0 24 24">${set[k]||""}</svg></span>`;}
+function coinsSVG(n){if(SKIN_ID==="scifi")return coinsScifi(n);const stacks=Math.max(1,Math.min(3,Math.ceil(n/40)));const h=Math.max(1,Math.min(6,Math.ceil(n/15)));let out="";
   for(let s=0;s<stacks;s++){const x=12+s*16,hh=Math.max(1,h-s);for(let i=0;i<hh;i++){const y=36-i*5-(s===1?3:0);
     out+=`<ellipse cx="${x}" cy="${y+2}" rx="10" ry="4" fill="#8A6420"/><ellipse cx="${x}" cy="${y}" rx="10" ry="4" fill="#E6BC4F" stroke="#7A5720" stroke-width=".8"/>`;}}
   return `<svg class="coins" viewBox="0 0 54 44" aria-hidden="true">${out}</svg>`;}
-function coinSVG(){return `<svg viewBox="0 0 26 26"><circle cx="13" cy="13" r="11" fill="#E6BC4F" stroke="#7A5720" stroke-width="1.5"/><circle cx="13" cy="13" r="7.5" fill="none" stroke="#B88A2C"/><text x="13" y="13.5" text-anchor="middle" dominant-baseline="central" font-family="Cinzel,serif" font-weight="900" font-size="9" fill="#7A5720">F</text></svg>`;}
-function sealSVG(){return `<svg class="seal" viewBox="0 0 84 84" aria-hidden="true"><defs><radialGradient id="sealg" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#D8634C"/><stop offset="1" stop-color="#7E2419"/></radialGradient></defs>
+function coinSVG(){if(SKIN_ID==="scifi")return coinScifi();return `<svg viewBox="0 0 26 26"><circle cx="13" cy="13" r="11" fill="#E6BC4F" stroke="#7A5720" stroke-width="1.5"/><circle cx="13" cy="13" r="7.5" fill="none" stroke="#B88A2C"/><text x="13" y="13.5" text-anchor="middle" dominant-baseline="central" font-family="Cinzel,serif" font-weight="900" font-size="9" fill="#7A5720">F</text></svg>`;}
+function sealSVG(){if(SKIN_ID==="scifi")return sealScifi();return `<svg class="seal" viewBox="0 0 84 84" aria-hidden="true"><defs><radialGradient id="sealg" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#D8634C"/><stop offset="1" stop-color="#7E2419"/></radialGradient></defs>
   <path d="M42 3 Q52 8 60 6 Q66 14 75 17 Q76 27 81 34 Q76 43 79 52 Q71 58 69 68 Q59 69 52 76 Q42 72 32 76 Q25 69 15 68 Q13 58 5 52 Q8 43 3 34 Q8 27 9 17 Q18 14 24 6 Q32 8 42 3Z" fill="url(#sealg)"/>
   <circle cx="42" cy="41" r="25" fill="none" stroke="#F0B9A8" stroke-opacity=".45" stroke-width="1.5"/>
   <text x="42" y="42" text-anchor="middle" dominant-baseline="central" font-family="Cinzel Decorative,Cinzel,serif" font-weight="900" font-size="26" fill="#FBD9CC" fill-opacity=".92">M</text></svg>`;}
 /* event glyphs by card kind */
-function glyphSVG(k){const g={
+function glyphSVG(k){let out=glyphSVGBase(k);(GLYPH_RECOLOR[SKIN_ID]||[]).forEach(([f,t])=>{out=out.split(f).join(t);});return out;}
+function glyphSVGBase(k){const g={
   one:`<circle cx="27" cy="27" r="24" fill="#9E3527"/><path d="M27 12 L31 24 L43 24 L33 31 L37 43 L27 35 L17 43 L21 31 L11 24 L23 24Z" fill="#F4C065"/>`,
   grp:`<circle cx="27" cy="27" r="24" fill="#245247"/><path d="M12 36 L20 22 L28 30 L36 16 L44 28" stroke="#F4C065" stroke-width="3.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>`,
   allU:`<circle cx="27" cy="27" r="24" fill="#34507A"/><circle cx="27" cy="27" r="9" fill="#F4C065"/>${[0,45,90,135,180,225,270,315].map(a=>`<path d="M27 11 L27 6" stroke="#F4C065" stroke-width="3" stroke-linecap="round" transform="rotate(${a} 27 27)"/>`).join("")}`,
@@ -1179,6 +1312,7 @@ function uiIcon(n){return `<svg viewBox="0 0 24 24" fill="none" stroke="currentC
   sound:`<path d="M11 5 6 9H3v6h3l5 4zM16 9a4 4 0 0 1 0 6M19 6a8 8 0 0 1 0 12"/>`,
   mute:`<path d="M11 5 6 9H3v6h3l5 4zM17 9l5 6M22 9l-5 6"/>`,
   door:`<path d="M14 3h5v18h-5M10 17l5-5-5-5M15 12H3"/>`,
+  theme:`<circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18z" fill="currentColor"/>`,
   eye:`<path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>`,
  }[n]||""}</svg>`;}
 
@@ -1193,11 +1327,11 @@ const SFX=(()=>{let ctx=null;const on=()=>!(S.ui&&S.ui.muted);
     o.connect(g).connect(c.destination);o.start(c.currentTime+t);o.stop(c.currentTime+t+dur+.05);}
   return {
     unlock(){ac();},
-    dice(n){if(!on())return;for(let i=0;i<(n||3)*2;i++)noise(i*0.055+Math.random()*.03,.05,1800+Math.random()*1600,.35);},
-    coin(){if(!on())return;tone(0,1760,.18,.12,"triangle");tone(.05,2349,.22,.09,"triangle");},
-    card(){if(!on())return;noise(0,.18,900,.25);},
+    dice(n){if(!on())return;if(SKIN_ID==="scifi"){for(let i=0;i<(n||3)*2;i++)tone(i*0.05,700+Math.random()*900,.04,.05,"square");return;}for(let i=0;i<(n||3)*2;i++)noise(i*0.055+Math.random()*.03,.05,1800+Math.random()*1600,.35);},
+    coin(){if(!on())return;if(SKIN_ID==="scifi"){tone(0,1318,.08,.08,"sine");tone(.07,1976,.12,.07,"sine");return;}tone(0,1760,.18,.12,"triangle");tone(.05,2349,.22,.09,"triangle");},
+    card(){if(!on())return;if(SKIN_ID==="scifi"){noise(0,.25,2600,.18);tone(0,220,.25,.04,"sawtooth");return;}noise(0,.18,900,.25);},
     tap(){if(!on())return;tone(0,660,.06,.05,"sine");},
-    win(){if(!on())return;[523,659,784,1047].forEach((f,i)=>tone(i*.11,f,.5,.1,"triangle"));},
+    win(){if(!on())return;if(SKIN_ID==="scifi"){[440,554,659,880,1108].forEach((f,i)=>tone(i*.08,f,.45,.07,"sawtooth"));return;}[523,659,784,1047].forEach((f,i)=>tone(i*.11,f,.5,.1,"triangle"));},
     lose(){if(!on())return;tone(0,330,.25,.08,"sine");tone(.12,247,.35,.08,"sine");},
   };})();
 
@@ -1207,20 +1341,171 @@ const FX=(()=>{let cv,cx,parts=[],raf=0,w=0,h=0;const reduce=typeof matchMedia!=
   function ember(){return {x:Math.random()*w,y:h+10,vx:(Math.random()-.5)*.25,vy:-(.25+Math.random()*.5),r:.8+Math.random()*1.8,life:1,decay:.0015+Math.random()*.002,kind:"e"};}
   function loop(){cx.clearRect(0,0,w,h);if(!reduce&&parts.filter(p=>p.kind==="e").length<34&&Math.random()<.25)parts.push(ember());
     parts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.life-=p.decay;if(p.kind==="c"){p.vy+=.18;p.rot+=p.vr;}
-      if(p.kind==="e"){cx.globalAlpha=Math.max(0,p.life)*.55;cx.fillStyle="#F4C065";cx.beginPath();cx.arc(p.x,p.y,p.r,0,6.283);cx.fill();}
-      else{cx.globalAlpha=Math.max(0,Math.min(1,p.life*1.5));cx.save();cx.translate(p.x,p.y);cx.scale(Math.cos(p.rot),1);cx.fillStyle="#E6BC4F";cx.strokeStyle="#7A5720";cx.lineWidth=1.2;
-        cx.beginPath();cx.arc(0,0,p.r,0,6.283);cx.fill();cx.stroke();cx.restore();}});
+      if(p.kind==="e"){cx.globalAlpha=Math.max(0,p.life)*.55;cx.fillStyle=SKIN_ID==="scifi"?(p.r>2?"#46D7FF":"#DDEBFF"):"#F4C065";cx.beginPath();cx.arc(p.x,p.y,SKIN_ID==="scifi"?p.r*.7:p.r,0,6.283);cx.fill();}
+      else{cx.globalAlpha=Math.max(0,Math.min(1,p.life*1.5));cx.save();cx.translate(p.x,p.y);cx.scale(Math.cos(p.rot),1);if(SKIN_ID==="scifi"){cx.fillStyle="#46D7FF";cx.strokeStyle="#A6EEFF";cx.lineWidth=1.2;cx.beginPath();for(let q=0;q<6;q++){const an=q*Math.PI/3;cx.lineTo(Math.cos(an)*p.r,Math.sin(an)*p.r);}cx.closePath();cx.fill();cx.stroke();}else{cx.fillStyle="#E6BC4F";cx.strokeStyle="#7A5720";cx.lineWidth=1.2;
+        cx.beginPath();cx.arc(0,0,p.r,0,6.283);cx.fill();cx.stroke();}cx.restore();}});
     cx.globalAlpha=1;parts=parts.filter(p=>p.life>0&&p.y<h+40);raf=requestAnimationFrame(loop);}
   return {init(){cv=document.getElementById("fx");if(!cv)return;cx=cv.getContext("2d");size();addEventListener("resize",size);if(!raf)loop();},
     burst(x,y,n){if(reduce||!cv)return;for(let i=0;i<(n||40);i++){const a=Math.random()*Math.PI*2,s=3+Math.random()*6;
       parts.push({kind:"c",x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s-5,r:5+Math.random()*4,life:1,decay:.008+Math.random()*.006,rot:Math.random()*6,vr:.2+Math.random()*.3});}}};})();
 
+/* ===================== SKINS (visual + wording themes; rules never change) ===================== */
+let SKIN_ID="medieval";
+const SKIN_BASE={comm:COMM.map(c=>({k:c.k,n:c.n,col:c.col,ab:c.ab,abd:c.abd})),grp:Object.assign({},GRPNAME)};
+const SKINS={
+  medieval:{id:"medieval",label:"Medieval",title:"The Merchant's Table",world:"Mercantila",
+    lede:null,streets:["The Opening","The Stock","The Fourth Die","The Final Die"],
+    reveal:["","The Stock: three dice hit the table","The fourth die is thrown","The final die is thrown"],
+    theme:"#110C08"},
+  scifi:{id:"scifi",label:"Sci-fi",title:"The Syndicate Table",world:"the Helion Reach",
+    lede:"You are trade lords at the Syndicate Table of the Helion Reach, where desert worlds, orbital foundries and rogue AIs set the price of everything. Hidden dice, a shared board and whole-credit betting. Boast a hand you may not hold, read an exchange that answers to no one, and spend your cargo on powers that bend the dice.",
+    streets:["Opening Bids","First Scan","Fourth Signal","Final Signal"],
+    reveal:["","First scan: three dice lock onto the grid","A fourth signal resolves","The final signal resolves"],
+    theme:"#04070D",
+    comm:{wheat:{n:"Water",col:"#5FC8FF",ab:"Signal Jam",abd:"Re-roll one community die."},
+          wood:{n:"Biomass",col:"#7EE081",ab:"Calibrate",abd:"Nudge one community die up or down 1."},
+          brick:{n:"Alloy",col:"#C9D3DE",ab:"Hot-swap",abd:"Re-roll one of your private dice."},
+          ore:{n:"Isotopes",col:"#B7FF5A",ab:"Overclock",abd:"Nudge one of your private dice up or down 1."},
+          silver:{n:"Data",col:"#C08BFF",ab:"Intercept",abd:"Secretly preview the next community die."},
+          gold:{n:"Qubits",col:"#FFB24A",ab:"Proxy Agent",abd:"Gain a third private die this hand."}},
+    grp:{staples:"Life support (water & biomass)",metals:"Industrials (alloy & isotopes)",luxuries:"Tech (data & qubits)"}},
+};
+/* Sci-fi event cards: same effects, new story. Keyed by the medieval title. */
+const EVENT_TEXT={scifi:{
+  "Dragon's Awakening":["Qubit Famine","A rogue AI hoards every qubit it can reach on the relay net. Qubits grow scarce and dear."],
+  "Goldsmiths' Strike":["Fabricator Strike","The quantum fabricators down tools and finished qubits vanish from the exchange."],
+  "Wheat Blight":["Ice Comet Landfall","A comet of pure ice breaks up over the dunes. Water floods every station."],
+  "Bumper Harvest":["Condenser Surplus","The moisture condensers run at full capacity after a humid season. Water prices sag."],
+  "Silver Vein Struck":["Data Leak","A megacorp's archives spill across the relay. Data floods every node."],
+  "King's Armorers":["Fleet Mobilization","The Admiralty buys isotopes by the ton ahead of a campaign."],
+  "Iron Glut":["Reactor Glut","A war winds down and leaves the reactor yards overstocked. Isotope prices sag."],
+  "The Great Fire":["Greenhouse Breach","A hull breach vents half the hydroponic domes. Biomass commands a premium."],
+  "Quarry Collapse":["Foundry Meltdown","The orbital foundry's core overheats and alloy turns scarce overnight."],
+  "Masons' Holiday":["Construction Freeze","A building moratorium idles the shipyards while alloy stockpiles swell."],
+  "War Drums":["Border Skirmish","Warships gather at the frontier gate. Every yard scrambles for alloy and isotopes."],
+  "Peace Accord":["Ceasefire Signed","A truce is signed and the fleets sell off their industrial reserves."],
+  "Sumptuary Laws":["Tech Embargo","The Senate restricts high-end tech imports. Data and qubits lose their shine."],
+  "Royal Wedding":["Imperial Coronation","A lavish coronation sets every great house bidding for data and qubits."],
+  "Famine":["Drought Season","The condensers fail and the domes wither. Water and biomass turn precious."],
+  "Season of Plenty":["Terraforming Boom","Newly terraformed valleys flood the stations with water and biomass."],
+  "A Golden Age":["Galactic Renaissance","A decade of peace lifts every exchange in the Reach alike."],
+  "The Great Plague":["Nanite Plague","A nanite outbreak locks down the stations and demand collapses evenly across the board."],
+  "Royal Jubilee":["Founders' Day","The station's founding festival loosens every purse. Every commodity ticks upward together."],
+  "Hard Winter":["Solar Storm","A solar storm scrambles the trade lanes and dampens every deal alike."],
+  "Market Boom":["Speculator Swarm","Algorithmic traders pile in. Every commodity climbs, though none alike."],
+  "Market Panic":["Exchange Crash","A clearing bank's AI fails at dawn. Prices tumble unevenly across the board."],
+  "Speculative Frenzy":["Hype Cycle","Rumor and trading bots inflate the whole exchange in ragged fits and starts."],
+  "Moneylenders' Squeeze":["Credit Crunch","Lenders call in their debts and the exchange sags in uneven steps."],
+  "Spoilage":["Containment Failure","A coolant leak spoils stored supplies. Life-support stock is lost by the crate."],
+  "Black Frost":["EMP Burst","An electromagnetic pulse fries cargo holds across the Reach."],
+  "Bountiful Shipment":["Supply Drop","A fat convoy drops out of hyperspace and every house takes delivery of fresh cargo."],
+  "Smuggler's Cache":["Smuggler's Cache","A smuggler slips the poorest merchant a crate of contraband tech."],
+  "Warehouse Fire":["Hangar Fire","Flames gut a wing of the richest merchant's hangar."],
+  "Caravan Tribute":["Syndicate Tribute","The wealthiest house must load a rival's freighter with a small fortune in one commodity."],
+  "Privateer's Raid":["Pirate Boarding","The leanest merchant turns pirate and boards a rival's freighter for a fortune in one commodity."],
+  "Levy in Kind":["Guild Levy","The Guild collects its dues in cargo. The richest ships a chosen merchant a haul of stock."],
+  "Caravan Waylaid":["Freighter Hijacked","Raiders in the poorest merchant's pay hijack a rival's freighter and strip its hold."],
+  "Crown Patent":["Senate Charter","The wealthiest lord secures a Senate charter and drives one commodity of their choice sharply upward."],
+  "Cornering the Market":["Cornering the Exchange","The richest merchant quietly hoards a chosen commodity until its price leaps."],
+  "Market Sabotage":["Market Sabotage","The leanest merchant floods the exchange with cheap stock and crashes a commodity of their choice."],
+  "Guild Undercut":["Price War","The poorest house undercuts every price on one chosen commodity."],
+}};
+function eventText(t,x){const m=EVENT_TEXT[SKIN_ID]&&EVENT_TEXT[SKIN_ID][t];return m?{t:m[0],x:m[1]}:{t,x};}
+function SK(){return SKINS[SKIN_ID];}
+/* Words that change with the skin, applied to rendered text only (never to tags or attributes). */
+const SKIN_WORDS={scifi:[
+  [/The Merchant['’]s Table/g,"The Syndicate Table"],[/Merchant['’]s Table/g,"Syndicate Table"],
+  [/on the continent of (Mercantila|the Helion Reach)/g,"across the Helion Reach"],[/of Mercantila/g,"of the Helion Reach"],[/Mercantila/g,"the Helion Reach"],
+  [/(\d) fl\b/g,"$1 cr"],[/whole-florin/g,"whole-credit"],[/\bflorins\b/g,"credits"],[/\bFlorins\b/g,"Credits"],[/\bflorin\b/g,"credit"],
+  [/\bThe Market\b/g,"The Exchange"],[/\bthe market\b/g,"the exchange"],[/\bMarket\b/g,"Exchange"],[/\bmarket\b/g,"exchange"],
+  [/\bgoods\b/g,"cargo"],[/\bGoods\b/g,"Cargo"],[/\bGOODS\b/g,"CARGO"],
+  [/\bthe dealer\b/gi,"the dealer"],
+]};
+/* cached strings made under the other skin (event effects, logs) also swap commodity names */
+function goodsSwap(s){if(SKIN_ID==="medieval"){const sc=SKINS.scifi.comm;return String(s).replace(/\b(Water|Biomass|Alloy|Isotopes|Data|Qubits)\b/g,w=>{const k=Object.keys(sc).find(k=>sc[k].n===w);return SKIN_BASE.comm.find(c=>c.k===k).n;});}
+  const sc=SKINS.scifi.comm;return String(s).replace(/\b(Wheat|Wood|Brick|Ore|Silver|Gold|wheat|wood|brick|ore|silver|gold)\b/g,w=>{const k=w.toLowerCase();const n=sc[k].n;return w[0]===w[0].toUpperCase()?n:n.toLowerCase();});}
+function skinText(html){const rules=SKIN_WORDS[SKIN_ID];if(!rules)return html;
+  return String(html).split(/(<[^>]*>)/).map(part=>{if(!part||part[0]==="<")return part;let s=part;rules.forEach(([re,to])=>{s=s.replace(re,to);});return s;}).join("");}
+function applySkin(id,opts){opts=opts||{};if(!SKINS[id])id="medieval";SKIN_ID=id;const sk=SKINS[id];
+  COMM.forEach((c,i)=>{const base=SKIN_BASE.comm[i];const o=(sk.comm&&sk.comm[c.k])||{};c.n=o.n||base.n;c.col=o.col||base.col;c.ab=o.ab||base.ab;c.abd=o.abd||base.abd;});
+  Object.keys(GRPNAME).forEach(g=>{GRPNAME[g]=(sk.grp&&sk.grp[g])||SKIN_BASE.grp[g];});
+  WORLD=sk.world;
+  if(typeof document!=="undefined"){const tt=document.getElementById("toast");if(tt&&tt.dataset.skin!==id){tt.classList.remove("on");tt.textContent="";}if(tt)tt.dataset.skin=id;document.documentElement.dataset.skin=id;document.title=sk.title;
+    const m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute("content",sk.theme);}
+  if(opts.persist!==false)try{localStorage.setItem("mt-skin",JSON.stringify(id));}catch(e){}}
+function deviceSkin(){try{const v=JSON.parse(localStorage.getItem("mt-skin"));return SKINS[v]?v:"medieval";}catch(e){return "medieval";}}
+
+/* ---------- sci-fi art ---------- */
+const PALETTES_SCIFI=[
+  {skin:"#F0C9A4",shade:"#D9A77E",hair:"#1A2233",cloth:"#1F3550",trim:"#46D7FF",bg:"#0A1830"},
+  {skin:"#C98F63",shade:"#A87046",hair:"#E9EEF5",cloth:"#5A3A22",trim:"#FFB24A",bg:"#24160A"},
+  {skin:"#EBC39C",shade:"#CFA077",hair:"#B0452F",cloth:"#2A2F38",trim:"#FF6B7A",bg:"#1A0E14"},
+  {skin:"#8A5A3B",shade:"#6C432A",hair:"#0B0E14",cloth:"#3A4A2A",trim:"#B7FF5A",bg:"#12200E"},
+  {skin:"#F3D2B3",shade:"#DDB18E",hair:"#8CA6C8",cloth:"#3B2A5A",trim:"#C08BFF",bg:"#160E2A"},
+  {skin:"#B37A52",shade:"#94603C",hair:"#2A1A10",cloth:"#6B5536",trim:"#FFD08A",bg:"#221A0C"},
+];
+function charSVGScifi(pi,hi,size){const p=PALETTES_SCIFI[((pi%6)+6)%6];const h=((hi%4)+4)%4;const id=`ps${pi}${h}`;
+  const back=h===1?`<path d="M30 58 Q26 22 60 20 Q94 22 90 58 Q92 88 98 112 L22 112 Q28 88 30 58Z" fill="${p.hair}"/>`:"";
+  let front="",over="";
+  if(h===0)front=`<path d="M36 50 Q35 28 60 28 Q85 28 84 50 Q80 38 60 37 Q40 38 36 50Z" fill="${p.hair}"/>
+    <rect x="83" y="54" width="7" height="14" rx="2" fill="#1B2536" stroke="${p.trim}" stroke-width="1.2"/><circle cx="86.5" cy="58" r="1.6" fill="${p.trim}"/><path d="M86 68 Q84 76 72 78" stroke="#1B2536" stroke-width="1.6" fill="none"/>`;
+  if(h===1)front=`<path d="M34 56 Q34 28 60 28 Q86 28 86 56 Q80 40 64 37 Q50 44 40 42 Q36 48 34 56Z" fill="${p.hair}"/>
+    <path d="M35 44 Q60 34 85 44" stroke="${p.trim}" stroke-width="2.4" fill="none"/><path d="M60 35 l4 5 -4 5 -4 -5z" fill="${p.trim}"/>`;
+  if(h===2){front=`<path d="M31 60 Q28 22 60 20 Q92 22 89 60 L84 62 Q84 34 60 32 Q36 34 36 62Z" fill="#2B3446" stroke="#5E6B82" stroke-width="1.5"/>
+    <path d="M40 22 Q60 14 80 22" stroke="${p.trim}" stroke-width="2" fill="none" opacity=".8"/>`;
+    over=`<path d="M38 52 Q60 46 82 52 L80 64 Q60 70 40 64Z" fill="${p.trim}" opacity=".38" stroke="${p.trim}" stroke-width="1.2"/><path d="M44 54 L56 52" stroke="#fff" stroke-width="1.5" opacity=".6"/>`;}
+  if(h===3){front=`<path d="M22 118 Q20 60 30 42 Q42 14 60 14 Q78 14 90 42 Q100 60 98 118 L84 118 Q86 70 80 52 Q72 32 60 32 Q48 32 40 52 Q34 70 36 118Z" fill="${p.cloth}" stroke="${p.trim}" stroke-width="1.2" stroke-opacity=".6"/>`;
+    over=`<circle cx="71" cy="59" r="6" fill="#0B1220" stroke="${p.trim}" stroke-width="1.5"/><circle cx="71" cy="59" r="2.6" fill="${p.trim}"/><path d="M77 57 L86 53" stroke="${p.trim}" stroke-width="1.2" opacity=".8"/>`;}
+  return `<svg width="${size}" height="${size}" viewBox="0 0 120 120" aria-hidden="true">
+   <defs><radialGradient id="${id}b" cx=".5" cy=".35" r=".7"><stop offset="0" stop-color="${p.bg}" stop-opacity=".5"/><stop offset="1" stop-color="${p.bg}"/></radialGradient>
+   <clipPath id="${id}c"><circle cx="60" cy="60" r="56"/></clipPath></defs>
+   <circle cx="60" cy="60" r="58" fill="url(#${id}b)" stroke="${p.trim}" stroke-width="2.5"/>
+   <circle cx="60" cy="60" r="53" fill="none" stroke="${p.trim}" stroke-opacity=".25" stroke-dasharray="3 5"/>
+   <g clip-path="url(#${id}c)">${back}
+    <path d="M14 122 Q18 90 60 86 Q102 90 106 122Z" fill="${p.cloth}"/>
+    <path d="M40 90 L60 98 L80 90 L80 122 L40 122Z" fill="#000" opacity=".2"/>
+    <path d="M44 92 L60 100 L76 92" stroke="${p.trim}" stroke-width="2.2" fill="none"/><circle cx="60" cy="108" r="3" fill="${p.trim}" opacity=".9"/>
+    <path d="M51 76 L51 90 Q60 96 69 90 L69 76Z" fill="${p.shade}"/>
+    <ellipse cx="35.5" cy="62" rx="4.5" ry="7" fill="${p.shade}"/><ellipse cx="84.5" cy="62" rx="4.5" ry="7" fill="${p.shade}"/>
+    <ellipse cx="60" cy="58" rx="24" ry="27.5" fill="${p.skin}"/>
+    <path d="M72 36 Q86 50 80 74 Q74 86 60 86 Q76 76 78 58 Q78 44 72 36Z" fill="${p.shade}" opacity=".55"/>
+    <path d="M44 52 Q49 49 54 51" stroke="${p.hair}" stroke-width="2.6" fill="none" stroke-linecap="round"/><path d="M66 51 Q71 49 76 52" stroke="${p.hair}" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+    <ellipse cx="49" cy="59" rx="4.2" ry="3.4" fill="#F4F8FF"/><ellipse cx="71" cy="59" rx="4.2" ry="3.4" fill="#F4F8FF"/>
+    <circle cx="49.6" cy="59.3" r="2.3" fill="#10223A"/><circle cx="71.6" cy="59.3" r="2.3" fill="#10223A"/><circle cx="50.4" cy="58.4" r=".8" fill="#fff"/><circle cx="72.4" cy="58.4" r=".8" fill="#fff"/>
+    <path d="M60 60 Q57 68 59 70.5 Q61 71.5 63 70.5" stroke="${p.shade}" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <path d="M53 76 Q60 79 67 76" stroke="#7A3F32" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    ${front}${over}</g></svg>`;}
+const DIE_STYLES_SCIFI={
+  bone:   {f:"#D8FBFF",f2:"#6FD6F2",r:"#3FB3D9",l:"#2A8CB5",b:"#155E80",ink:"#032034",edge:"#B8F6FF"},
+  garnet: {f:"#FFE0A8",f2:"#FF9A3D",r:"#E0772A",l:"#B85A1C",b:"#6E300A",ink:"#2A0E00",edge:"#FFE6BE"},
+  sapphire:{f:"#F1D2FF",f2:"#B06BFF",r:"#8F4CE0",l:"#6B33B5",b:"#3B1670",ink:"#1C0636",edge:"#EBC8FF"},
+  back:   {f:"#122238",f2:"#0A1526",r:"#0E1B2E",l:"#0A1424",b:"#050B15",ink:"#46D7FF",edge:"#2D6E8C"},
+};
+const ICONS_SCIFI={
+  wheat:`<path d="M12 3 Q18 11 18 15 A6 6 0 0 1 6 15 Q6 11 12 3Z" fill="#5FC8FF" stroke="#1B5D82" stroke-width="1"/><path d="M9 15 Q9 18 12 18.5" stroke="#E6F7FF" stroke-width="1.3" fill="none" stroke-linecap="round"/>`,
+  wood:`<rect x="7" y="4" width="10" height="17" rx="3" fill="#123" stroke="#7EE081" stroke-width="1.2"/><path d="M12 18 L12 11 M12 13 Q9 12 9 9 Q12 9 12 12 M12 12 Q15 11 15 8 Q12 8 12 11" stroke="#7EE081" stroke-width="1.3" fill="none"/>`,
+  brick:`<path d="M4 9 L8 5 L20 5 L20 15 L16 19 L4 19Z" fill="#8C99A8" stroke="#3A4452" stroke-width="1"/><path d="M4 9 L16 9 L20 5 M16 9 L16 19" stroke="#E4ECF4" stroke-width="1" fill="none"/>`,
+  ore:`<circle cx="12" cy="12" r="2.4" fill="#B7FF5A"/><ellipse cx="12" cy="12" rx="9" ry="3.6" fill="none" stroke="#B7FF5A" stroke-width="1.2"/><ellipse cx="12" cy="12" rx="9" ry="3.6" fill="none" stroke="#B7FF5A" stroke-width="1.2" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9" ry="3.6" fill="none" stroke="#B7FF5A" stroke-width="1.2" transform="rotate(-60 12 12)"/>`,
+  silver:`<rect x="6" y="6" width="12" height="12" rx="1.5" fill="#1E1433" stroke="#C08BFF" stroke-width="1.3"/><rect x="9" y="9" width="6" height="6" fill="#C08BFF"/><path d="M9 3v3M12 3v3M15 3v3M9 18v3M12 18v3M15 18v3M3 9h3M3 12h3M3 15h3M18 9h3M18 12h3M18 15h3" stroke="#C08BFF" stroke-width="1.1"/>`,
+  gold:`<path d="M12 3 L20 7.5 L20 16.5 L12 21 L4 16.5 L4 7.5Z" fill="#2A1A06" stroke="#FFB24A" stroke-width="1.3"/><path d="M4 7.5 L12 12 L20 7.5 M12 12 L12 21" stroke="#FFB24A" stroke-width="1.1" fill="none"/><circle cx="12" cy="12" r="2.2" fill="#FFE2A8"/>`,
+};
+function sealScifi(){return `<svg class="seal" viewBox="0 0 84 84" aria-hidden="true"><defs><linearGradient id="sealsf" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#46D7FF"/><stop offset="1" stop-color="#1C6C8A"/></linearGradient></defs>
+  <path d="M42 4 L75 23 L75 61 L42 80 L9 61 L9 23Z" fill="#081424" stroke="url(#sealsf)" stroke-width="3"/>
+  <path d="M42 14 L66 28 L66 56 L42 70 L18 56 L18 28Z" fill="none" stroke="#46D7FF" stroke-opacity=".4" stroke-dasharray="4 4"/>
+  <path d="M30 50 Q30 32 42 30 Q54 32 54 40 L44 40 Q42 36 38 38 Q36 40 38 42 L50 46 Q56 50 52 56 Q46 60 36 56 Q32 54 32 50Z" fill="#FFB24A"/></svg>`;}
+function coinsScifi(n){const stacks=Math.max(1,Math.min(3,Math.ceil(n/40)));const h=Math.max(1,Math.min(6,Math.ceil(n/15)));let out="";
+  for(let s=0;s<stacks;s++){const x=12+s*16,hh=Math.max(1,h-s);for(let i=0;i<hh;i++){const y=36-i*5-(s===1?3:0);
+    out+=`<path d="M${x-10} ${y+2} l4 -4 h12 l4 4 l-4 4 h-12z" fill="#0E4A63"/><path d="M${x-10} ${y} l4 -4 h12 l4 4 l-4 4 h-12z" fill="#46D7FF" stroke="#A6EEFF" stroke-width=".8"/>`;}}
+  return `<svg class="coins" viewBox="0 0 54 44" aria-hidden="true">${out}</svg>`;}
+function coinScifi(){return `<svg viewBox="0 0 26 26"><path d="M3 13 L8 5 H18 L23 13 L18 21 H8Z" fill="#46D7FF" stroke="#A6EEFF" stroke-width="1.4"/><text x="13" y="13.5" text-anchor="middle" dominant-baseline="central" font-family="Orbitron,sans-serif" font-weight="900" font-size="8" fill="#032034">CR</text></svg>`;}
+const GLYPH_RECOLOR={scifi:[["#9E3527","#6B1E3A"],["#245247","#0E4A63"],["#34507A","#1B3A6B"],["#5B3566","#3B1670"],["#7A5A24","#5A3A0E"],["#F4C065","#46D7FF"],["#C9A45C","#46D7FF"],["#7A2A1F","#032034"]]};
+
 /* ===================== UI (DOM only below this line) ===================== */
 const SAVE_KEY="merchants-table-save-v2";
 const $=id=>document.getElementById(id);
 const esc=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-const STREET_NAMES=["The Opening","The Stock","The Fourth Die","The Final Die"];
-const REVEAL_LINES=["","The Stock: three dice hit the table","The fourth die is thrown","The final die is thrown"];
+const STREET_NAMES=new Proxy([],{get:(_,k)=>SK().streets[k]});
+const REVEAL_LINES=new Proxy([],{get:(_,k)=>SK().reveal[k]});
 const TRANSIENT=["sheet","armed","abil","trade","boast","raise","pledge","fly","rollPending","peekOpen"];
 function freshUI(){return {screen:"title",tray:"bet",peekQueue:[],peekPos:0,peekShown:false,allinDone:"",revealFrom:0,expand:null,muted:false};}
 S.ui=freshUI();
@@ -1233,7 +1518,7 @@ function loadSave(){try{const t=localStorage.getItem(SAVE_KEY);if(!t)return null
 function clearSave(){try{localStorage.removeItem(SAVE_KEY);}catch(e){}}
 
 /* ---------- small helpers ---------- */
-function toast(msg){const t=$("toast");if(!t)return;t.textContent=msg;t.classList.add("on");clearTimeout(toast._t);toast._t=setTimeout(()=>t.classList.remove("on"),2200);}
+function toast(msg){const t=$("toast");if(!t)return;t.textContent=skinText(goodsSwap(msg));t.classList.add("on");clearTimeout(toast._t);toast._t=setTimeout(()=>t.classList.remove("on"),2200);}
 const fl=n=>`${n} fl`;
 const seatOrderFrom=start=>{const N=S.players.length,o=[];for(let s=1;s<=N;s++)o.push((start+s)%N);return o;};
 function tradeLeft(){return S.players.filter(p=>!p.traded).length;}
@@ -1249,7 +1534,7 @@ function bestFiveDice(p,ev,size){ // colour the scoring five: private dice garne
 
 /* ====================== RENDER ====================== */
 /* Patch the DOM in place (morphdom) instead of replacing it, so taps don't replay entrance animations or flash. */
-function patchDOM(el,html){if(typeof morphdom==="undefined"){el.innerHTML=html;return;}
+function patchDOM(el,html){html=skinText(html);if(typeof morphdom==="undefined"){el.innerHTML=html;return;}
   const tmp=el.cloneNode(false);tmp.innerHTML=html;
   morphdom(el,tmp,{childrenOnly:true,onBeforeElUpdated:(from,to)=>{if(from.isEqualNode(to))return false;
     if(from===document.activeElement&&from.tagName==="INPUT"&&from.type!=="range"&&from.type!=="checkbox"){to.value=from.value;}return true;}});}
@@ -1279,12 +1564,14 @@ function rTitle(){const sv=loadSave();const tdice=[3,7,5,8,2].map((v,i)=>die(v,i
   return `<div class="title-screen"><div class="inner">
    ${sealSVG()}
    <div class="eyebrow">Dice, nerve &amp; commerce on the continent of ${WORLD}</div>
-   <h1 class="h1">The Merchant's<br>Table</h1>
+   <h1 class="h1">${SK().title.replace(/ (\S+)$/,"<br>$1")}</h1>
    <div class="title-dice">${tdice}</div>
-   <p class="lede">You are merchant lords at the high table of ${WORLD}. Hidden dice, a shared board and whole-florin betting. Boast a hand you may not hold, read a market that answers to no one, and spend your goods on powers that bend the dice.</p>
+   <p class="lede">${SK().lede?esc(SK().lede):`You are merchant lords at the high table of ${WORLD}. Hidden dice, a shared board and whole-florin betting. Boast a hand you may not hold, read a market that answers to no one, and spend your goods on powers that bend the dice.`}</p>
    ${titleButtons(sv)}
   </div></div>`;}
 
+function themePicker(){return `<div class="themes" role="group" aria-label="Theme">${Object.values(SKINS).map(s=>`<button class="theme-opt ${s.id}" data-act="skin" data-arg="${s.id}" aria-pressed="${SKIN_ID===s.id}">
+   <span class="tprev">${s.id==="scifi"?`<i class="d sf1"></i><i class="d sf2"></i>`:`<i class="d md1"></i><i class="d md2"></i>`}</span><b>${s.label}</b><small>${s.id==="scifi"?"Star ports, cr&#101;dits, AI":"Candlelit, flor&#105;ns, guilds"}</small></button>`).join("")}</div>`;}
 function titleButtons(sv){const hs=lsGet("mt-host"),gs=lsGet("mt-guest");const fresh=o=>o&&Date.now()-(o.at||0)<12*3600e3;
   const canResumeHost=fresh(hs)&&hs.real&&hs.real.phase!=="over";
   return `<div class="modes">
@@ -1319,6 +1606,7 @@ function rSetup(){ensurePlayers();if(S.targetAuto)S.target=autoTarget(S.count);
      <div class="cfg-box"><span class="label">Turn limit</span>
        <div class="stepper"><button data-act="turns" data-arg="-1" aria-label="Fewer turns">−</button><b class="num">${S.totalHands}</b><button data-act="turns" data-arg="1" aria-label="More turns">+</button></div>
        <span class="soft it" style="font-size:13px">If nobody reaches the target, the richest merchant after this many hands wins.</span></div>
+     <div class="cfg-box"><span class="label">Table theme</span>${themePicker()}<span class="soft it" style="font-size:13px">Set once for the whole game.</span></div>
      <div class="cfg-box"><span class="label">Trading tips</span>
        <div class="row"><div class="toggle"><button data-act="hintsSet" data-arg="1" aria-pressed="${hintsOn()}">On</button><button data-act="hintsSet" data-arg="0" aria-pressed="${!hintsOn()}">Off</button></div></div>
        <span class="soft it" style="font-size:13px">A prompt with a gentle tip opens each market. Experienced players can turn it off.</span></div>
@@ -1331,7 +1619,8 @@ function rSetup(){ensurePlayers();if(S.targetAuto)S.target=autoTarget(S.count);
   </div></div>`;}
 
 /* ---------------- MARKET ---------------- */
-function eventCardHTML(){const ec=S.eventCard;if(!ec)return "";const pc=S.pendingChoice;
+function eventCardHTML(){const ec0=S.eventCard;if(!ec0)return "";const pc=S.pendingChoice;
+  const ev=eventText(ec0.t0||ec0.t,ec0.x0||ec0.x);const ec=Object.assign({},ec0,{t:ev.t,x:ev.x,eff:goodsSwap(ec0.eff||""),resolved:ec0.resolved?goodsSwap(ec0.resolved):""});
   const mv=Object.keys(ec.moves||{}).map(k=>{const d=ec.moves[k];return `<span class="mv ${d>0?"u":"d"}">${icon(k)}${d>0?"▲ +":"▼ "}${Math.abs(d)}</span>`;}).join("");
   let choice="";
   if(pc&&pc.decree&&!(MP()&&pc.chooser!==ME())){const ch=S.players[pc.chooser];
@@ -1346,7 +1635,7 @@ function eventCardHTML(){const ec=S.eventCard;if(!ec)return "";const pc=S.pendin
       <span class="soft it">${pc.take?"A rival with less gives up what they have.":`You hold ${ch.port[pc.res]}.`}</span></p>
      <div class="choice">${S.players.map((p,i)=>i===pc.chooser?"":`<button data-act="choose" data-arg="${i}"><span>${esc(p.name)}</span><span class="s">${p.port[pc.res]} ${cn} · worth ${fl(wealth(p))}</span></button>`).join("")}</div>`;}
   return `<div class="ecard"><div class="face">
-    <div class="kind">${glyphSVG(ec.k)}<div><div class="eyebrow" style="color:var(--wax)">Event · hand ${S.handNo}</div><div class="t">${esc(ec.t)}</div></div></div>
+    <div class="kind">${glyphSVG(ec.k)}<div><div class="eyebrow" style="color:var(--wax)">${SKIN_ID==="scifi"?"Transmission":"Event"} · hand ${S.handNo}</div><div class="t">${esc(ec.t)}</div></div></div>
     <p class="etext">${esc(ec.x)}</p>
     <div class="eff">${esc(ec.eff)}</div>${mv?`<div class="moves">${mv}</div>`:""}
     ${ec.resolved&&!pc?`<div class="soft it" style="margin-top:8px;font-size:14px">${esc(ec.resolved)}</div>`:""}
@@ -1643,10 +1932,10 @@ function peekHTML(i){const p=S.players[i];const ev=bestOf(p);const pv=p.preview&
    <div class="dice">${p.priv.map(d=>die(d,"garnet","lg")).join("")}</div>
    <div class="board-mini" style="min-width:260px">${community().length?community().map(d=>die(d,"bone","sm")).join(""):`<span class="dim it">No community dice yet</span>`}</div>
    <p style="margin:0;font-size:18px">Best hand now: <b style="color:var(--candle)">${ev.name}</b> <span class="soft">· ${ev.detail}</span></p>
-   ${pv?`<p style="margin:0" class="soft">Insider Word: the next die will show <b style="color:#9FBEEA">${pv.v}</b></p>`:""}
+   ${pv?`<p style="margin:0" class="soft">${CMAP.silver.ab}: the next die will show <b style="color:#9FBEEA">${pv.v}</b></p>`:""}
    ${t?`<p style="margin:0" class="soft">Your boast: ${t.n} or better</p>`:""}
    <p class="dim it" style="margin:0;font-size:13px">${U.peekOpen==="tap"?"Tap anywhere to hide":"Release to hide"}</p></div></div>`;}
-function openPeek(i,mode){U.peekOpen=mode;$("peek").innerHTML=peekHTML(i);}
+function openPeek(i,mode){U.peekOpen=mode;$("peek").innerHTML=skinText(peekHTML(i));}
 function closePeek(){U.peekOpen=null;$("peek").innerHTML="";}
 
 /* ---------- coin flight from a seat to the pot ---------- */
@@ -1659,7 +1948,7 @@ function flyCoin(from){const s=document.querySelector(`.seat[data-seat="${from}"
       {duration:560+k*90,easing:"cubic-bezier(.3,.7,.4,1)",delay:k*60,fill:"forwards"}).onfinish=()=>el.remove();}}
 
 /* ====================== FLOW ====================== */
-function startGame(){S.players.forEach((p,i)=>{p.name=(p.name||"").trim()||`Merchant ${i+1}`;});newGame();startHand();U.screen="market";U.expand=null;U.tradePromptHand=0;SFX.card();render();setTimeout(maybeTradePrompt,700);}
+function startGame(){S.skin=SKIN_ID;S.players.forEach((p,i)=>{p.name=(p.name||"").trim()||`Merchant ${i+1}`;});newGame();startHand();U.screen="market";U.expand=null;U.tradePromptHand=0;SFX.card();render();setTimeout(maybeTradePrompt,700);}
 function dealHand(){S.players.forEach(p=>{p.flAtDeal=p.fl;p.pledged=0;});postAntes();SFX.dice(4);
   const live=liveIdx();
   if(live.length===0){S._show={winners:[],byFold:true,pots:[],boasts:[],nobody:true};S.phase="result";U.screen="result";return render();}
@@ -1688,7 +1977,7 @@ const ACT={
   toSetup(){if(!S.players.length)S.count=S.count||3;U.screen="setup";U.sheet=null;render();},
   toTitle(){U.screen="title";render();},
   resume(){const sv=loadSave();if(!sv)return toast("No saved game found");Object.keys(S).forEach(k=>delete S[k]);Object.assign(S,sv);S.ui=Object.assign(freshUI(),sv.ui);TRANSIENT.forEach(k=>S.ui[k]=null);
-    if(U.screen==="deal")U.peekShown=false;render();},
+    if(U.screen==="deal")U.peekShown=false;applySkin(S.skin||deviceSkin(),{persist:false});render();},
   count(n){S.count=+n;render();},
   look(a){const [i,h]=a.split(":").map(Number);S.players[i].hi=h;render();},
   pal(a){const [i,j]=a.split(":").map(Number);S.players[i].pi=j;render();},
@@ -1759,7 +2048,7 @@ const ACT={
   mylook(h){const pr=profile();const el=$("myname");if(el)pr.name=el.value;pr.hi=+h;lsSet("mt-profile",pr);if(MP()&&S.phase==="lobby")send({type:"profile",name:pr.name,pi:pr.pi,hi:pr.hi});else render();},
   mypal(j){const pr=profile();const el=$("myname");if(el)pr.name=el.value;pr.pi=+j;lsSet("mt-profile",pr);if(MP()&&S.phase==="lobby")send({type:"profile",name:pr.name,pi:pr.pi,hi:pr.hi});else render();},
   saveProfile(){const pr=profile();const el=$("myname");if(el)pr.name=el.value.trim();lsSet("mt-profile",pr);send({type:"profile",name:pr.name,pi:pr.pi,hi:pr.hi});toast("Merchant updated");},
-  share(){const url=joinURL(NET.code);if(navigator.share){navigator.share({title:"The Merchant's Table",text:`Join my table. Room code ${NET.code}`,url}).catch(()=>{});}else ACT.copyLink();},
+  share(){const url=joinURL(NET.code);if(navigator.share){navigator.share({title:SK().title,text:`Join my table. Room code ${NET.code}`,url}).catch(()=>{});}else ACT.copyLink();},
   copyLink(){const url=joinURL(NET.code);try{navigator.clipboard.writeText(url).then(()=>toast("Link copied"),()=>toast(url));}catch(e){toast(url);}},
   mpset(a){const o={};if(a==="auto")o.targetAuto=true;if(a==="custom"){o.targetAuto=false;o.target=S.target;}if(a==="t-")o.target=S.target-25;if(a==="t+")o.target=S.target+25;
     if(a==="h-")o.totalHands=S.totalHands-1;if(a==="h+")o.totalHands=S.totalHands+1;send(Object.assign({type:"settings"},o));},
@@ -1769,6 +2058,9 @@ const ACT={
   mpForce(){send({type:"force"});},
   mpPass(){send({type:"pass"});},
   mpRematch(){send({type:"rematch"});},
+  skin(id){ // the table theme is set once, before play: pass-and-play setup, or the host's lobby
+    if(MP()){if(NET.role==="host"&&S.phase==="lobby")send({type:"skin",skin:id});return;}
+    if(U.screen!=="setup")return;applySkin(id);SFX.card();render();},
   hintsSet(v){setHints(v==="1");render();},
   toResultLocal(){U.screen="result";render();},
 };
@@ -1799,7 +2091,7 @@ function bindInput(){
     patchSheet();});
   document.addEventListener("change",e=>{const k=e.target.dataset&&e.target.dataset.inp;if(k&&k!=="name"){const id=e.target.id;renderSheet();const n=$(id);if(n)n.focus();}});
 }
-function boot(){bindInput();FX.init();if(autoRejoin())return;const room=roomFromURL();if(room){U.joinCode=room;U.screen="join";}render();}
+function boot(){applySkin(deviceSkin(),{persist:false});bindInput();FX.init();if(autoRejoin())return;const room=roomFromURL();if(room){U.joinCode=room;U.screen="join";}render();}
 
 /* ===================== MULTIPLAYER TRANSPORT + SCREENS (DOM) ===================== */
 const PEER_PREFIX="mercantila-v2-";
@@ -1836,7 +2128,7 @@ function hostCreate(resume){
   if(resume){const sv=lsGet("mt-host");if(!sv)return toast("No hosted game to resume");NET.code=sv.code;NET.real=sv.real;Object.assign(HOST,sv.host);
     NET.real.conn=NET.real.players.map((_,i)=>i===0);}
   else{NET.code=newRoomCode();const real={players:[],count:2,totalHands:10,target:525,targetAuto:true,numerals:"arabic",phase:"lobby"};
-    NET.real=real;withReal(()=>hostInitLobby(pr.name||"Host",pr.pi,pr.hi));}
+    NET.real=real;withReal(()=>hostInitLobby(pr.name||"Host",pr.pi,pr.hi));NET.real.skin=SKIN_ID;}
   NET.role="host";NET.seat=0;NET.status="Opening the table…";hostOpenPeer(!!resume,0);hostBroadcast();keepAwake();
 }
 function hostOpenPeer(resume,attempt){
@@ -1917,16 +2209,16 @@ function send(a){if(NET.role==="host")return hostAct(a);if(NET.conn&&NET.conn.op
   toast("Reconnecting to the table. Try again in a moment");failPending();}
 /* connection banner + status dot, drawn without touching the game screen */
 function renderNet(){const el=$("netbar");if(!el)return;const show=MP()&&NET.status&&U.screen!=="lobby";
-  el.hidden=!show;if(show)el.innerHTML=`<span class="spin" aria-hidden="true"></span>${esc(NET.status)}`;
+  el.hidden=!show;if(show)el.innerHTML=skinText(`<span class="spin" aria-hidden="true"></span>${esc(NET.status)}`);
   document.body.classList.toggle("net-down",MP()&&NET.role==="guest"&&!(NET.conn&&NET.conn.open));}
-function leaveMP(){lsDel("mt-active");const wasHost=NET.role==="host";try{if(NET.peer)NET.peer.destroy();}catch(e){}clearInterval(NET.pinger);clearInterval(NET.watch);
+function leaveMP(){lsDel("mt-active");{const tt=document.getElementById("toast");if(tt){tt.classList.remove("on");tt.textContent="";clearTimeout(toast._t);}}const wasHost=NET.role==="host";try{if(NET.peer)NET.peer.destroy();}catch(e){}clearInterval(NET.pinger);clearInterval(NET.watch);
   Object.assign(NET,{role:"solo",peer:null,conns:{},conn:null,status:""});if(NET.wake)try{NET.wake.release();}catch(e){}
-  S={players:[],count:3,totalHands:10,target:525,targetAuto:true,numerals:"arabic",phase:"idle",ui:Object.assign(freshUI(),{muted:U.muted})};U.screen="title";render();
+  S={players:[],count:3,totalHands:10,target:525,targetAuto:true,numerals:"arabic",phase:"idle",ui:Object.assign(freshUI(),{muted:U.muted})};applySkin(deviceSkin(),{persist:false});U.screen="title";render();
   if(wasHost)toast("Table closed. You can resume hosting from the title screen");}
 
 /* ---------------- views arrive: animate what changed, then render ---------------- */
 function failPending(){if(U.sheet&&U.sheet.stage==="pending"){U.sheet=null;render();}}
-function applyView(v){const prev=S;const ui=prev.ui||freshUI();v.ui=ui;const me=v.mySeat;
+function applyView(v){const prev=S;const ui=prev.ui||freshUI();v.ui=ui;const me=v.mySeat;if(v.skin&&v.skin!==SKIN_ID)applySkin(v.skin,{persist:NET.role==="host"});
   const prevAct=prev.lastAct&&prev.lastAct.seq,act=v.lastAct;
   const newAct=act&&act.seq!==prevAct&&prev.players&&prev.players.length;
   S=v;
@@ -1993,6 +2285,7 @@ function rLobby(){const me=ME();const host=NET.role==="host";const url=NET.code?
    <div class="ledger" style="display:grid;gap:12px"><div class="label" style="text-align:center">Your merchant</div>${profileCard(profile(),true)}
      <div class="row c"><button class="btn btn-ink btn-sm" data-act="saveProfile">Update my merchant</button></div>
      <div class="row c"><span class="label">Trading tips</span><div class="toggle"><button data-act="hintsSet" data-arg="1" aria-pressed="${hintsOn()}">On</button><button data-act="hintsSet" data-arg="0" aria-pressed="${!hintsOn()}">Off</button></div></div></div>
+   <div class="ledger" style="display:grid;gap:10px;justify-items:center"><span class="label">Table theme</span>${host?themePicker()+`<p class="soft it" style="margin:0;font-size:13px">Everyone plays in this theme. It's locked once the table opens.</p>`:`<p class="soft" style="margin:0">${SK().label} · chosen by the host</p>`}</div>
    ${host?`<div class="ledger cfg">
      <div class="cfg-box"><span class="label">Win target</span><div class="toggle"><button data-act="mpset" data-arg="auto" aria-pressed="${S.targetAuto}">Auto</button><button data-act="mpset" data-arg="custom" aria-pressed="${!S.targetAuto}">Custom</button></div>
        <div class="stepper"><button data-act="mpset" data-arg="t-" ${S.targetAuto?"disabled":""} aria-label="Lower target">−</button><b class="num">${S.targetAuto?autoTarget(S.players.length):S.target}</b><button data-act="mpset" data-arg="t+" ${S.targetAuto?"disabled":""} aria-label="Raise target">+</button></div></div>
@@ -2092,7 +2385,7 @@ function autoRejoin(){const a=lsGet("mt-active");if(!a||!a.code||Date.now()-(a.a
   return false;}
 
 if(typeof window!=="undefined"&&typeof document!=="undefined"&&document.getElementById("view")){boot();}
-if(typeof module!=="undefined")module.exports={tradeHints,hostDM,DM_MAX,makeView,hostHandle,hostJoin,hostInitLobby,hostStart,hostDeal,hostNext,hostFlow,hostRematch,HOST,newRoomCode,S,newGame,startHand,postAntes,apply,legal,evalHand,cmp,wealth,holdingsValue,doShowdown,doPledge,canPledge,activeIdx,liveIdx,streetDone,advanceStreet,nextActor,firstActive,abilityReady,doAbility,allinPending,evolveMarket,buildPots,settlePots,settleBoasts,endHandByFold,challengeTerms,boastCap,tradeQuote,doTrade,CMAP,CKEYS,COMM,ANTE,PMIN,PMAX,EVENTS,GROUPS,HAND_TIERS,RANK_NAMES,RK,drawEvent,applyEvent,resolveEventChoice,shuffleEvents,richestIdx,poorestIdx,applyFinalReprice,gameOverReason,ranking,autoTarget,bestOf,bestFull,SELL_FEE,BROKE_FEE,PLEDGE_RATE,BOAST_CAP};
+if(typeof module!=="undefined")module.exports={goodsSwap,applySkin,skinText,eventText,SKINS,EVENT_TEXT,tradeHints,hostDM,DM_MAX,makeView,hostHandle,hostJoin,hostInitLobby,hostStart,hostDeal,hostNext,hostFlow,hostRematch,HOST,newRoomCode,S,newGame,startHand,postAntes,apply,legal,evalHand,cmp,wealth,holdingsValue,doShowdown,doPledge,canPledge,activeIdx,liveIdx,streetDone,advanceStreet,nextActor,firstActive,abilityReady,doAbility,allinPending,evolveMarket,buildPots,settlePots,settleBoasts,endHandByFold,challengeTerms,boastCap,tradeQuote,doTrade,CMAP,CKEYS,COMM,ANTE,PMIN,PMAX,EVENTS,GROUPS,HAND_TIERS,RANK_NAMES,RK,drawEvent,applyEvent,resolveEventChoice,shuffleEvents,richestIdx,poorestIdx,applyFinalReprice,gameOverReason,ranking,autoTarget,bestOf,bestFull,SELL_FEE,BROKE_FEE,PLEDGE_RATE,BOAST_CAP};
 </script>
 </body>
 </html>
