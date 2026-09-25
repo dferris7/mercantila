@@ -62,6 +62,28 @@ console.log('Trade (one per market phase, fees only on multi-kind sales):');
  ok(!doTrade(mkP(),{mode:'sell',k:'gold',q:9}).ok,'cannot sell more than held');
  S.phase='betting';ok(!doTrade(mkP(),{mode:'buy',k:'gold',q:1}).ok,'no trading mid-hand');}
 
+
+console.log('Mixed buy + sell orders (one trade per hand):');
+{const {tradeHints}=M;S.prices={wheat:10,wood:6,brick:8,ore:12,silver:5,gold:15};S.phase='market';S.history={};CKEYS.forEach(k=>S.history[k]=[S.prices[k]]);S.handNo=2;S.totalHands=10;
+ const p=mkP({fl:10});S.players=[p];
+ let q=tradeQuote(p,{mode:'order',sell:{ore:3},buy:{gold:3}});
+ ok(q.ok&&q.net===36-45&&q.fee===0,'sale proceeds fund purchases in the same trade (sell 3 ore, buy 3 gold)');
+ ok(!tradeQuote(mkP({fl:10}),{mode:'order',buy:{gold:2}}).ok,'cannot buy more than florins + sale proceeds');
+ ok(!tradeQuote(p,{mode:'order',sell:{gold:1},buy:{gold:1}}).ok,'cannot buy and sell the same commodity in one order');
+ ok(!tradeQuote(p,{mode:'order',sell:{gold:9}}).ok,'cannot sell more than held');
+ ok(!tradeQuote(p,{mode:'order'}).ok,'an empty order is refused');
+ ok(!tradeQuote(p,{mode:'order',buy:{diamonds:1}}).ok,'unknown commodities are refused');
+ q=tradeQuote(mkP({fl:50}),{mode:'order',sell:{wheat:2,wood:2},buy:{silver:2}});ok(q.fee===Math.round(32*0.05)&&q.net===32-2-10,'selling 2 kinds pays 5% on sales only; buys are free');
+ q=tradeQuote(mkP({fl:0}),{mode:'order',sell:{wheat:2,wood:2},buy:{silver:2}});ok(q.fee===Math.round(32*0.10),'10% when starting with no florins');
+ ok(tradeQuote(mkP({fl:0}),{mode:'order',sell:{ore:1},buy:{silver:2}}).fee===0,'selling one kind is free even while buying');
+ const r=doTrade(p,{mode:'order',sell:{ore:3},buy:{gold:3}});ok(r.ok&&p.fl===1&&p.port.ore===2&&p.port.gold===8,'order executes atomically');
+ ok(!doTrade(p,{mode:'order',buy:{silver:0},sell:{wheat:1}}).ok&&p.port.wheat===5,'a second trade in the same market is refused');
+ // hints
+ const broke=mkP({fl:2});S.players=[broke];let hs=tradeHints(broke);ok(hs.length>=1&&hs.length<=2&&/ante/.test(hs[0]),'short of the ante: the first tip mentions selling to get dealt in');
+ const flush=mkP({fl:250});S.prices.wheat=5;hs=tradeHints(flush);ok(hs.some(h=>/spare/.test(h)),'plenty of florins: a tip mentions a cheap commodity');
+ let allOk=true;for(let i=0;i<300;i++){CKEYS.forEach(k=>{S.prices[k]=rng(5,15);S.history[k]=[rng(5,15),rng(5,15),S.prices[k]];});const x=mkP({fl:rng(0,300),port:{wheat:rng(0,9),wood:rng(0,9),brick:rng(0,9),ore:rng(0,9),silver:rng(0,9),gold:rng(0,9)}});S.players=[x];const h=tradeHints(x);if(!(h.length>=1&&h.length<=2&&h.every(s=>typeof s==='string'&&s.length>10&&!/must|should/i.test(s))))allOk=false;}
+ ok(allOk,'tips always give 1-2 suggestions and never say "must" or "should"');}
+
 console.log('Pledge (50% fire-sale when short of a call):');
 {S.prices={wheat:10,wood:10,brick:10,ore:10,silver:10,gold:10};
  const p=mkP({fl:0,port:{wheat:0,wood:0,brick:2,ore:3,silver:0,gold:1}});S.players=[p];S._injected=0;
@@ -172,7 +194,7 @@ console.log('Multiplayer host (views never leak hidden dice):');
    hostHandle(0,{type:'start'});if(g===0&&!hostJoin({name:'late'}).err)errs++;let guard=0;
    while(S.phase!=='over'&&guard++<20000){check();acts++;
      if(S.phase==='market'){if(S.pendingChoice){const pc=S.pendingChoice;hostHandle(pc.chooser,{type:'choose',v:pc.decree?CKEYS[rng(0,5)]:S.players.map((_,i)=>i).filter(i=>i!==pc.chooser)[0]});continue;}
-       for(let s=0;s<n&&S.phase==='market';s++){if(Math.random()<.3)hostHandle(s,{type:'trade',t:{mode:'buy',k:CKEYS[rng(0,5)],q:1}});if(!S.ready[s])hostHandle(s,{type:'ready'});}continue;}
+       for(let s=0;s<n&&S.phase==='market';s++){if(Math.random()<.3)hostHandle(s,{type:'trade',t:{mode:'order',buy:{[CKEYS[rng(0,5)]]:1},sell:{[CKEYS[rng(0,5)]]:0}}});if(!S.ready[s])hostHandle(s,{type:'ready'});}continue;}
      if(S.phase==='result'){S.players.forEach((_,i)=>{if(!S.ready[i])hostHandle(i,{type:'ready'});});continue;}
      if(S.phase==='betting'){
        if(S.window){const w=S.window;w.pend.forEach(i=>hostHandle(i,Math.random()<.5?{type:'pass'}:{type:'power',k:CKEYS.find(k=>abilityReady(S.players[i],k))||'gold',idx:0,sign:1}));
@@ -195,6 +217,24 @@ console.log('Multiplayer host (views never leak hidden dice):');
  ok(errs===0,'out-of-turn, non-host and late-join attempts are refused');
  ok(rejoinOK,'a dropped merchant rejoins their own seat with their token');
  console.log(`  ${games} hosted games · ${acts} host actions checked`);}
+
+
+console.log('Private messages (host relays; only the two people involved can see them):');
+{const {hostDM,makeView,hostJoin,hostInitLobby,hostHandle,HOST}=M;
+ for(const k of Object.keys(S))delete S[k];Object.assign(S,{players:[],totalHands:5,target:525,targetAuto:true});hostInitLobby('Host',0,0);
+ hostJoin({name:'A',pi:1,hi:1});hostJoin({name:'B',pi:2,hi:2});
+ ok(hostHandle(1,{type:'dm',to:2,text:'secret plan'}).ok,'a guest can message another guest');
+ ok(hostHandle(0,{type:'dm',to:1,text:'hi A'}).ok,'the host can message a guest');
+ const v0=makeView(S,0),v1=makeView(S,1),v2=makeView(S,2);
+ ok(v1.dms.length===2&&v2.dms.length===1&&v0.dms.length===1,'each view holds only its own conversations');
+ ok(!v0.dms.some(m=>m.x==='secret plan'),'the host view never contains a message between two guests');
+ ok(v2.dms[0].f===1&&v2.dms[0].to===2,'sender is stamped by the host, not the client');
+ ok(hostHandle(1,{type:'dm',to:1,text:'me'}).err&&hostHandle(1,{type:'dm',to:9,text:'x'}).err&&hostHandle(1,{type:'dm',to:'2',text:'x'}).err,'self, unknown or malformed recipients are refused');
+ ok(hostHandle(1,{type:'dm',to:2,text:'   '}).err,'empty messages are refused');
+ hostHandle(2,{type:'dm',to:1,text:'x'.repeat(1000)});ok(S.dms[S.dms.length-1].x.length===M.DM_MAX,'long messages are capped at '+M.DM_MAX+' characters');
+ let blocked=0;for(let i=0;i<12;i++)if(hostHandle(0,{type:'dm',to:2,text:'spam '+i}).err)blocked++;ok(blocked>=4,'rapid-fire messages are rate limited');
+ hostHandle(0,{type:'start'});ok(hostHandle(2,{type:'dm',to:0,text:'mid-game'}).ok&&S.phase==='market','messages work during a game without touching game state');
+ ok(new Set(S.dms.map(m=>m.id)).size===S.dms.length,'message ids are unique');}
 
 console.log('Simulation:');
 const allInts=()=>S.players.every(p=>Number.isInteger(p.fl)&&p.fl>=0&&Number.isInteger(p.escrow)&&p.escrow>=0&&CKEYS.every(k=>Number.isInteger(p.port[k])&&p.port[k]>=0))&&Number.isInteger(S.pot);

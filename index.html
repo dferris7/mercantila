@@ -409,6 +409,97 @@ input[type=range]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;bac
   .toggle button{padding:8px 10px;font-size:11px}
   .srow .dice .die.sm{width:26px;height:27px}
 }
+.scr{height:100%}
+#netbar{position:fixed;left:50%;transform:translateX(-50%);top:calc(60px + env(safe-area-inset-top,0px));z-index:58;display:flex;align-items:center;gap:8px;max-width:calc(100% - 24px);
+  padding:8px 14px;border-radius:999px;background:#3A2517;border:1px solid rgba(244,192,101,.5);color:var(--candle);font:700 13px/1.2 var(--body);box-shadow:0 10px 30px -10px #000}
+#netbar[hidden]{display:none}
+#netbar .spin{width:12px;height:12px;border-radius:50%;border:2px solid rgba(244,192,101,.35);border-top-color:var(--candle);animation:spin .9s linear infinite;flex:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+body.net-down .tray .actions,body.net-down .tray .minor,body.net-down .foot-cta .btn,body.net-down .sheet .btn-gold,body.net-down .sheet .btn-wax{opacity:.45;pointer-events:none}
+/* ---------- combined trade + prompt ---------- */
+.tlist{display:grid;gap:6px}
+.trow{display:grid;grid-template-columns:minmax(0,1fr) auto 62px;gap:8px;align-items:center;padding:8px 10px;border-radius:10px;background:rgba(255,255,255,.35);border:1px solid rgba(134,103,47,.3)}
+.trow.buy{background:rgba(62,117,54,.12);border-color:rgba(62,117,54,.45)}
+.trow.sell{background:rgba(165,57,42,.1);border-color:rgba(165,57,42,.4)}
+.trow .tn{display:flex;align-items:center;gap:8px;min-width:0}.trow .tn>span{display:grid;min-width:0;line-height:1.25}
+.trow .tn b{font-family:var(--display);font-size:14px}.trow .tn small{font-size:12px;color:var(--ink-soft)}
+.tstep{display:flex;align-items:center;gap:6px}
+.tstep button{width:36px;height:36px;border-radius:10px;border:1px solid rgba(134,103,47,.5);font-size:20px;font-weight:700;color:var(--ink);background:rgba(255,255,255,.5)}
+.tstep button:disabled{opacity:.3}
+.tstep b{min-width:56px;text-align:center;font-family:var(--display);font-weight:800;font-size:13.5px}
+.trow.buy .tstep b{color:var(--up-ink)}.trow.sell .tstep b{color:var(--down-ink)}
+.tamt{text-align:right;font-weight:700;font-size:13.5px}.trow.buy .tamt{color:var(--down-ink)}.trow.sell .tamt{color:var(--up-ink)}
+.tsum{display:grid;gap:4px;padding:10px 12px;border-radius:10px;background:rgba(42,29,18,.07);font-size:14.5px}
+.tsum>div{display:flex;justify-content:space-between;gap:10px}.tsum .net{border-top:1px solid rgba(134,103,47,.35);padding-top:5px;margin-top:2px;font-family:var(--display);font-weight:800}
+.tsum .net b{color:var(--wax)}.tsum .bad{color:var(--down-ink);font-weight:700;justify-content:center}
+.tp{display:grid;gap:12px;justify-items:center;text-align:center}
+.tip{display:grid;gap:6px;justify-items:start;text-align:left;width:100%;padding:12px 14px;border-radius:12px;background:rgba(217,165,63,.14);border:1px solid rgba(160,120,40,.4)}
+.tip p{margin:0;font-size:15px}
+.tip .tag.gold{color:#7A5418;background:rgba(217,165,63,.3)}
+.tp-list{display:grid;gap:8px;width:100%;text-align:left}
+.tp-row{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px;align-items:center;padding:10px;border-radius:12px;background:rgba(255,255,255,.35);border:1px solid rgba(134,103,47,.3)}
+.tp-row p{margin:2px 0 0;font-size:13.5px;color:var(--ink-soft)}
+.hint-toggle{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;color:var(--ink-soft);cursor:pointer}
+.hint-toggle input{width:18px;height:18px;accent-color:var(--wax)}
+@media (max-width:420px){.trow{grid-template-columns:minmax(0,1fr) auto;}.trow .tamt{display:none}.tstep b{min-width:48px}.tp-row{grid-template-columns:auto minmax(0,1fr)}.tp-row .btn{grid-column:1/-1}}
+/* ---------- chat ---------- */
+body.has-chat #view{padding-bottom:calc(96px + env(safe-area-inset-bottom,0px))}
+.chat-fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:55;width:58px;height:58px;border-radius:50%;display:grid;place-items:center;
+  color:#2B1A08;background:linear-gradient(180deg,#F7D98C,#D9A53F);box-shadow:0 10px 26px -8px #000,inset 0 1px 0 #fff8,0 0 0 3px rgba(17,12,8,.6);transition:transform .15s}
+.chat-fab:hover{transform:scale(1.06)}.chat-fab:active{transform:scale(.96)}
+.chat-fab[hidden]{display:none}
+.badge{position:absolute;min-width:20px;height:20px;padding:0 6px;border-radius:999px;background:#D8412F;color:#fff;font:700 11.5px/20px var(--body);font-style:normal;text-align:center;box-shadow:0 0 0 2px var(--night)}
+.chat-fab .badge{top:-2px;right:-2px}
+.chat-panel{position:fixed;z-index:66;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));width:360px;height:min(560px,calc(100dvh - 90px));display:flex;flex-direction:column;
+  border-radius:18px;overflow:hidden;background:#1E140D;border:1px solid rgba(201,164,92,.35);box-shadow:0 30px 70px -20px #000,0 0 0 1px rgba(0,0,0,.4);
+  animation:chatpop .22s cubic-bezier(.2,.9,.3,1.2) both;transform-origin:100% 100%}
+.chat-panel[hidden]{display:none}
+@keyframes chatpop{from{opacity:.001;transform:scale(.85) translateY(20px)}to{opacity:1;transform:none}}
+.chat-head{display:flex;align-items:center;gap:10px;padding:12px 12px 12px 16px;background:linear-gradient(180deg,#3B2618,#2A1A10);border-bottom:1px solid rgba(201,164,92,.25);flex:none}
+.ch-title{flex:1;font-family:var(--display);font-weight:800;font-size:18px;letter-spacing:.04em;color:var(--text)}
+.ch-who{flex:1;min-width:0;display:grid;line-height:1.2}.ch-who b{font-family:var(--display);font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.ch-who small{font-size:12px;color:var(--text-soft)}
+.chat-x,.chat-back{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;color:var(--text-soft);background:rgba(255,255,255,.06);flex:none;font-size:16px}
+.chat-back{font-size:26px;line-height:1;padding-bottom:3px;margin-left:-6px}
+.chat-x:hover,.chat-back:hover{background:rgba(255,255,255,.14);color:var(--text)}
+.cc-pt{position:relative;line-height:0;flex:none}.cc-pt .dot{position:absolute;right:0;bottom:0;width:11px;height:11px;border-radius:50%;background:#6D5E48;box-shadow:0 0 0 2px #1E140D}.cc-pt .dot.on{background:#6CC25A}
+.chat-list{flex:1;overflow-y:auto;padding:6px}
+.chat-contact{width:100%;display:flex;align-items:center;gap:12px;padding:10px;border-radius:12px;text-align:left}
+.chat-contact:hover{background:rgba(255,255,255,.05)}
+.cc-mid{flex:1;min-width:0;display:grid;line-height:1.3}.cc-mid b{font-family:var(--display);font-size:14.5px;color:var(--text)}
+.cc-mid>span{font-size:13.5px;color:var(--text-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chat-contact.unread .cc-mid>span{color:var(--text);font-weight:600}
+.cc-end{display:grid;justify-items:end;gap:4px}.cc-end small{font-size:11px;color:var(--text-dim)}.cc-end .badge{position:static;box-shadow:none}
+.chat-note{margin:0;padding:10px 16px 14px;font-size:12px;color:var(--text-dim);text-align:center;font-style:italic}
+.chat-msgs{flex:1;overflow-y:auto;padding:12px 12px 6px;display:flex;flex-direction:column;gap:3px;overscroll-behavior:contain;
+  background:radial-gradient(ellipse at 50% 0%,rgba(244,192,101,.06),transparent 60%),#18100A}
+.chat-empty{margin:auto;max-width:240px;text-align:center;font-size:13.5px;color:var(--text-dim);font-style:italic}
+.chat-stamp{align-self:center;font-size:11px;color:var(--text-dim);margin:10px 0 4px;letter-spacing:.04em}
+.bub{max-width:78%;padding:8px 12px;border-radius:18px;font-size:15px;line-height:1.35;overflow-wrap:anywhere;white-space:pre-wrap;animation:bubin .18s ease both}
+@keyframes bubin{from{opacity:.001;transform:translateY(6px)}to{opacity:1;transform:none}}
+.bub.me{align-self:flex-end;color:#2B1A08;background:linear-gradient(180deg,#F5D488,#E1B253);border-bottom-right-radius:6px}
+.bub.them{align-self:flex-start;color:var(--ink);background:#EFE3C8;border-bottom-left-radius:6px}
+.bub.grouped.me{border-bottom-right-radius:18px;border-top-right-radius:6px}
+.bub.grouped.them{border-bottom-left-radius:18px;border-top-left-radius:6px}
+.bub:not(.grouped){margin-bottom:5px}
+.chat-quick{display:flex;gap:6px;overflow-x:auto;padding:8px 10px 0;flex:none;scrollbar-width:none;background:#1E140D}
+.chat-quick::-webkit-scrollbar{display:none}
+.chat-quick button{flex:none;height:30px;padding:0 12px;border-radius:999px;border:1px solid rgba(201,164,92,.35);color:var(--brass-hi);font-size:13px;background:rgba(201,164,92,.06);white-space:nowrap}
+.chat-quick button:hover{background:rgba(201,164,92,.16)}
+.chat-compose{display:flex;gap:8px;align-items:center;padding:10px;padding-bottom:calc(10px + env(safe-area-inset-bottom,0px));background:#1E140D;flex:none}
+.chat-compose input{flex:1;min-width:0;height:42px;border-radius:999px;border:1px solid rgba(201,164,92,.3);background:#2A1B11;color:var(--text);padding:0 16px;font-size:16px}
+.chat-compose input:focus{outline:none;border-color:var(--candle)}
+.chat-send{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;flex:none;color:#2B1A08;background:linear-gradient(180deg,#F7D98C,#D9A53F)}
+.chat-toast{position:fixed;z-index:67;right:16px;bottom:calc(86px + env(safe-area-inset-bottom,0px));max-width:min(320px,calc(100% - 32px))}
+.chat-toast[hidden]{display:none}
+.chat-toast.show{animation:chatpop .25s cubic-bezier(.2,.9,.3,1.2) both}
+.chat-toast button{display:flex;align-items:center;gap:10px;padding:10px 14px 10px 10px;border-radius:16px;text-align:left;background:#EFE3C8;color:var(--ink);box-shadow:0 16px 40px -12px #000;border:1px solid rgba(134,103,47,.4)}
+.chat-toast button>span{display:grid;min-width:0;line-height:1.3}.chat-toast b{font-family:var(--display);font-size:13.5px}
+.chat-toast button>span>span{font-size:14px;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+@media (max-width:520px){
+  .chat-panel{left:8px;right:8px;bottom:8px;width:auto;height:min(82dvh,640px);border-radius:18px;transform-origin:50% 100%}
+  .chat-fab{right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));width:54px;height:54px}
+  .chat-toast{right:12px;left:12px;bottom:calc(78px + env(safe-area-inset-bottom,0px));max-width:none}
+}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;animation-delay:0s!important;transition-duration:.001ms!important}}
 </style>
 </head>
@@ -421,7 +512,9 @@ if(typeof qrcode==="undefined")document.write('<script src="js/qrcode.js"><\/scr
 <script data-loader>if(typeof Peer==="undefined")document.write('<script src="https://cdn.jsdelivr.net/npm/peerjs@1.5.5/dist/peerjs.min.js"><\/script>');
 if(typeof qrcode==="undefined")document.write('<script src="https://cdn.jsdelivr.net/npm/qrcode-generator@2.0.4/dist/qrcode.js"><\/script>');</script>
 <div id="app"><canvas id="fx" aria-hidden="true"></canvas><header id="bar" hidden></header><main id="view"></main></div>
-<div id="sheet"></div><div id="peek"></div><div id="toast" role="status" aria-live="polite"></div>
+<div id="sheet"></div><div id="chat"></div><div id="netbar" role="status" aria-live="polite" hidden></div><div id="peek"></div><div id="toast" role="status" aria-live="polite"></div>
+<script data-lib>/* morphdom 2.7.4, MIT License, (c) Patrick Steele-Idem */
+(function(global,factory){typeof exports==="object"&&typeof module!=="undefined"?module.exports=factory():typeof define==="function"&&define.amd?define(factory):(global=global||self,global.morphdom=factory())})(this,function(){"use strict";var DOCUMENT_FRAGMENT_NODE=11;function morphAttrs(fromNode,toNode){var toNodeAttrs=toNode.attributes;var attr;var attrName;var attrNamespaceURI;var attrValue;var fromValue;if(toNode.nodeType===DOCUMENT_FRAGMENT_NODE||fromNode.nodeType===DOCUMENT_FRAGMENT_NODE){return}for(var i=toNodeAttrs.length-1;i>=0;i--){attr=toNodeAttrs[i];attrName=attr.name;attrNamespaceURI=attr.namespaceURI;attrValue=attr.value;if(attrNamespaceURI){attrName=attr.localName||attrName;fromValue=fromNode.getAttributeNS(attrNamespaceURI,attrName);if(fromValue!==attrValue){if(attr.prefix==="xmlns"){attrName=attr.name}fromNode.setAttributeNS(attrNamespaceURI,attrName,attrValue)}}else{fromValue=fromNode.getAttribute(attrName);if(fromValue!==attrValue){fromNode.setAttribute(attrName,attrValue)}}}var fromNodeAttrs=fromNode.attributes;for(var d=fromNodeAttrs.length-1;d>=0;d--){attr=fromNodeAttrs[d];attrName=attr.name;attrNamespaceURI=attr.namespaceURI;if(attrNamespaceURI){attrName=attr.localName||attrName;if(!toNode.hasAttributeNS(attrNamespaceURI,attrName)){fromNode.removeAttributeNS(attrNamespaceURI,attrName)}}else{if(!toNode.hasAttribute(attrName)){fromNode.removeAttribute(attrName)}}}}var range;var NS_XHTML="http://www.w3.org/1999/xhtml";var doc=typeof document==="undefined"?undefined:document;var HAS_TEMPLATE_SUPPORT=!!doc&&"content"in doc.createElement("template");var HAS_RANGE_SUPPORT=!!doc&&doc.createRange&&"createContextualFragment"in doc.createRange();function createFragmentFromTemplate(str){var template=doc.createElement("template");template.innerHTML=str;return template.content.childNodes[0]}function createFragmentFromRange(str){if(!range){range=doc.createRange();range.selectNode(doc.body)}var fragment=range.createContextualFragment(str);return fragment.childNodes[0]}function createFragmentFromWrap(str){var fragment=doc.createElement("body");fragment.innerHTML=str;return fragment.childNodes[0]}function toElement(str){str=str.trim();if(HAS_TEMPLATE_SUPPORT){return createFragmentFromTemplate(str)}else if(HAS_RANGE_SUPPORT){return createFragmentFromRange(str)}return createFragmentFromWrap(str)}function compareNodeNames(fromEl,toEl){var fromNodeName=fromEl.nodeName;var toNodeName=toEl.nodeName;var fromCodeStart,toCodeStart;if(fromNodeName===toNodeName){return true}fromCodeStart=fromNodeName.charCodeAt(0);toCodeStart=toNodeName.charCodeAt(0);if(fromCodeStart<=90&&toCodeStart>=97){return fromNodeName===toNodeName.toUpperCase()}else if(toCodeStart<=90&&fromCodeStart>=97){return toNodeName===fromNodeName.toUpperCase()}else{return false}}function createElementNS(name,namespaceURI){return!namespaceURI||namespaceURI===NS_XHTML?doc.createElement(name):doc.createElementNS(namespaceURI,name)}function moveChildren(fromEl,toEl){var curChild=fromEl.firstChild;while(curChild){var nextChild=curChild.nextSibling;toEl.appendChild(curChild);curChild=nextChild}return toEl}function syncBooleanAttrProp(fromEl,toEl,name){if(fromEl[name]!==toEl[name]){fromEl[name]=toEl[name];if(fromEl[name]){fromEl.setAttribute(name,"")}else{fromEl.removeAttribute(name)}}}var specialElHandlers={OPTION:function(fromEl,toEl){var parentNode=fromEl.parentNode;if(parentNode){var parentName=parentNode.nodeName.toUpperCase();if(parentName==="OPTGROUP"){parentNode=parentNode.parentNode;parentName=parentNode&&parentNode.nodeName.toUpperCase()}if(parentName==="SELECT"&&!parentNode.hasAttribute("multiple")){if(fromEl.hasAttribute("selected")&&!toEl.selected){fromEl.setAttribute("selected","selected");fromEl.removeAttribute("selected")}parentNode.selectedIndex=-1}}syncBooleanAttrProp(fromEl,toEl,"selected")},INPUT:function(fromEl,toEl){syncBooleanAttrProp(fromEl,toEl,"checked");syncBooleanAttrProp(fromEl,toEl,"disabled");if(fromEl.value!==toEl.value){fromEl.value=toEl.value}if(!toEl.hasAttribute("value")){fromEl.removeAttribute("value")}},TEXTAREA:function(fromEl,toEl){var newValue=toEl.value;if(fromEl.value!==newValue){fromEl.value=newValue}var firstChild=fromEl.firstChild;if(firstChild){var oldValue=firstChild.nodeValue;if(oldValue==newValue||!newValue&&oldValue==fromEl.placeholder){return}firstChild.nodeValue=newValue}},SELECT:function(fromEl,toEl){if(!toEl.hasAttribute("multiple")){var selectedIndex=-1;var i=0;var curChild=fromEl.firstChild;var optgroup;var nodeName;while(curChild){nodeName=curChild.nodeName&&curChild.nodeName.toUpperCase();if(nodeName==="OPTGROUP"){optgroup=curChild;curChild=optgroup.firstChild}else{if(nodeName==="OPTION"){if(curChild.hasAttribute("selected")){selectedIndex=i;break}i++}curChild=curChild.nextSibling;if(!curChild&&optgroup){curChild=optgroup.nextSibling;optgroup=null}}}fromEl.selectedIndex=selectedIndex}}};var ELEMENT_NODE=1;var DOCUMENT_FRAGMENT_NODE$1=11;var TEXT_NODE=3;var COMMENT_NODE=8;function noop(){}function defaultGetNodeKey(node){if(node){return node.getAttribute&&node.getAttribute("id")||node.id}}function morphdomFactory(morphAttrs){return function morphdom(fromNode,toNode,options){if(!options){options={}}if(typeof toNode==="string"){if(fromNode.nodeName==="#document"||fromNode.nodeName==="HTML"||fromNode.nodeName==="BODY"){var toNodeHtml=toNode;toNode=doc.createElement("html");toNode.innerHTML=toNodeHtml}else{toNode=toElement(toNode)}}else if(toNode.nodeType===DOCUMENT_FRAGMENT_NODE$1){toNode=toNode.firstElementChild}var getNodeKey=options.getNodeKey||defaultGetNodeKey;var onBeforeNodeAdded=options.onBeforeNodeAdded||noop;var onNodeAdded=options.onNodeAdded||noop;var onBeforeElUpdated=options.onBeforeElUpdated||noop;var onElUpdated=options.onElUpdated||noop;var onBeforeNodeDiscarded=options.onBeforeNodeDiscarded||noop;var onNodeDiscarded=options.onNodeDiscarded||noop;var onBeforeElChildrenUpdated=options.onBeforeElChildrenUpdated||noop;var skipFromChildren=options.skipFromChildren||noop;var addChild=options.addChild||function(parent,child){return parent.appendChild(child)};var childrenOnly=options.childrenOnly===true;var fromNodesLookup=Object.create(null);var keyedRemovalList=[];function addKeyedRemoval(key){keyedRemovalList.push(key)}function walkDiscardedChildNodes(node,skipKeyedNodes){if(node.nodeType===ELEMENT_NODE){var curChild=node.firstChild;while(curChild){var key=undefined;if(skipKeyedNodes&&(key=getNodeKey(curChild))){addKeyedRemoval(key)}else{onNodeDiscarded(curChild);if(curChild.firstChild){walkDiscardedChildNodes(curChild,skipKeyedNodes)}}curChild=curChild.nextSibling}}}function removeNode(node,parentNode,skipKeyedNodes){if(onBeforeNodeDiscarded(node)===false){return}if(parentNode){parentNode.removeChild(node)}onNodeDiscarded(node);walkDiscardedChildNodes(node,skipKeyedNodes)}function indexTree(node){if(node.nodeType===ELEMENT_NODE||node.nodeType===DOCUMENT_FRAGMENT_NODE$1){var curChild=node.firstChild;while(curChild){var key=getNodeKey(curChild);if(key){fromNodesLookup[key]=curChild}indexTree(curChild);curChild=curChild.nextSibling}}}indexTree(fromNode);function handleNodeAdded(el){onNodeAdded(el);var curChild=el.firstChild;while(curChild){var nextSibling=curChild.nextSibling;var key=getNodeKey(curChild);if(key){var unmatchedFromEl=fromNodesLookup[key];if(unmatchedFromEl&&compareNodeNames(curChild,unmatchedFromEl)){curChild.parentNode.replaceChild(unmatchedFromEl,curChild);morphEl(unmatchedFromEl,curChild)}else{handleNodeAdded(curChild)}}else{handleNodeAdded(curChild)}curChild=nextSibling}}function cleanupFromEl(fromEl,curFromNodeChild,curFromNodeKey){while(curFromNodeChild){var fromNextSibling=curFromNodeChild.nextSibling;if(curFromNodeKey=getNodeKey(curFromNodeChild)){addKeyedRemoval(curFromNodeKey)}else{removeNode(curFromNodeChild,fromEl,true)}curFromNodeChild=fromNextSibling}}function morphEl(fromEl,toEl,childrenOnly){var toElKey=getNodeKey(toEl);if(toElKey){delete fromNodesLookup[toElKey]}if(!childrenOnly){var beforeUpdateResult=onBeforeElUpdated(fromEl,toEl);if(beforeUpdateResult===false){return}else if(beforeUpdateResult instanceof HTMLElement){fromEl=beforeUpdateResult;indexTree(fromEl)}morphAttrs(fromEl,toEl);onElUpdated(fromEl);if(onBeforeElChildrenUpdated(fromEl,toEl)===false){return}}if(fromEl.nodeName!=="TEXTAREA"){morphChildren(fromEl,toEl)}else{specialElHandlers.TEXTAREA(fromEl,toEl)}}function morphChildren(fromEl,toEl){var skipFrom=skipFromChildren(fromEl,toEl);var curToNodeChild=toEl.firstChild;var curFromNodeChild=fromEl.firstChild;var curToNodeKey;var curFromNodeKey;var fromNextSibling;var toNextSibling;var matchingFromEl;outer:while(curToNodeChild){toNextSibling=curToNodeChild.nextSibling;curToNodeKey=getNodeKey(curToNodeChild);while(!skipFrom&&curFromNodeChild){fromNextSibling=curFromNodeChild.nextSibling;if(curToNodeChild.isSameNode&&curToNodeChild.isSameNode(curFromNodeChild)){curToNodeChild=toNextSibling;curFromNodeChild=fromNextSibling;continue outer}curFromNodeKey=getNodeKey(curFromNodeChild);var curFromNodeType=curFromNodeChild.nodeType;var isCompatible=undefined;if(curFromNodeType===curToNodeChild.nodeType){if(curFromNodeType===ELEMENT_NODE){if(curToNodeKey){if(curToNodeKey!==curFromNodeKey){if(matchingFromEl=fromNodesLookup[curToNodeKey]){if(fromNextSibling===matchingFromEl){isCompatible=false}else{fromEl.insertBefore(matchingFromEl,curFromNodeChild);if(curFromNodeKey){addKeyedRemoval(curFromNodeKey)}else{removeNode(curFromNodeChild,fromEl,true)}curFromNodeChild=matchingFromEl;curFromNodeKey=getNodeKey(curFromNodeChild)}}else{isCompatible=false}}}else if(curFromNodeKey){isCompatible=false}isCompatible=isCompatible!==false&&compareNodeNames(curFromNodeChild,curToNodeChild);if(isCompatible){morphEl(curFromNodeChild,curToNodeChild)}}else if(curFromNodeType===TEXT_NODE||curFromNodeType==COMMENT_NODE){isCompatible=true;if(curFromNodeChild.nodeValue!==curToNodeChild.nodeValue){curFromNodeChild.nodeValue=curToNodeChild.nodeValue}}}if(isCompatible){curToNodeChild=toNextSibling;curFromNodeChild=fromNextSibling;continue outer}if(curFromNodeKey){addKeyedRemoval(curFromNodeKey)}else{removeNode(curFromNodeChild,fromEl,true)}curFromNodeChild=fromNextSibling}if(curToNodeKey&&(matchingFromEl=fromNodesLookup[curToNodeKey])&&compareNodeNames(matchingFromEl,curToNodeChild)){if(!skipFrom){addChild(fromEl,matchingFromEl)}morphEl(matchingFromEl,curToNodeChild)}else{var onBeforeNodeAddedResult=onBeforeNodeAdded(curToNodeChild);if(onBeforeNodeAddedResult!==false){if(onBeforeNodeAddedResult){curToNodeChild=onBeforeNodeAddedResult}if(curToNodeChild.actualize){curToNodeChild=curToNodeChild.actualize(fromEl.ownerDocument||doc)}addChild(fromEl,curToNodeChild);handleNodeAdded(curToNodeChild)}}curToNodeChild=toNextSibling;curFromNodeChild=fromNextSibling}cleanupFromEl(fromEl,curFromNodeChild,curFromNodeKey);var specialElHandler=specialElHandlers[fromEl.nodeName];if(specialElHandler){specialElHandler(fromEl,toEl)}}var morphedNode=fromNode;var morphedNodeType=morphedNode.nodeType;var toNodeType=toNode.nodeType;if(!childrenOnly){if(morphedNodeType===ELEMENT_NODE){if(toNodeType===ELEMENT_NODE){if(!compareNodeNames(fromNode,toNode)){onNodeDiscarded(fromNode);morphedNode=moveChildren(fromNode,createElementNS(toNode.nodeName,toNode.namespaceURI))}}else{morphedNode=toNode}}else if(morphedNodeType===TEXT_NODE||morphedNodeType===COMMENT_NODE){if(toNodeType===morphedNodeType){if(morphedNode.nodeValue!==toNode.nodeValue){morphedNode.nodeValue=toNode.nodeValue}return morphedNode}else{morphedNode=toNode}}}if(morphedNode===toNode){onNodeDiscarded(fromNode)}else{if(toNode.isSameNode&&toNode.isSameNode(morphedNode)){return}morphEl(morphedNode,toNode,childrenOnly);if(keyedRemovalList){for(var i=0,len=keyedRemovalList.length;i<len;i++){var elToRemove=fromNodesLookup[keyedRemovalList[i]];if(elToRemove){removeNode(elToRemove,elToRemove.parentNode,false)}}}}if(!childrenOnly&&morphedNode!==fromNode&&fromNode.parentNode){if(morphedNode.actualize){morphedNode=morphedNode.actualize(fromNode.ownerDocument||doc)}fromNode.parentNode.replaceChild(morphedNode,fromNode)}return morphedNode}}var morphdom=morphdomFactory(morphAttrs);return morphdom});</script>
 <script>/* ======================================================================
    THE MERCHANT'S TABLE · ENGINE  (v2)
    Pure game logic. No DOM access anywhere in this section.
@@ -767,7 +860,16 @@ function transfer(from,to,value){const v=Math.min(value,from.fl);from.fl-=v;to.f
 function doPledge(p,sel){let value=0;CKEYS.forEach(k=>{const q=Math.floor(sel[k]||0);if(q>0&&p.port[k]>=q){p.port[k]-=q;value+=q*S.prices[k];}});
   const gain=Math.round(value*PLEDGE_RATE);p.fl+=gain;S._injected+=gain;return gain;}
 /* ---------------------------- TRADE ---------------------------- */
+/* One trade per market phase. mode "order" = any mix of buys and sells, executed together:
+   sale proceeds can fund purchases; selling 2+ kinds costs the sell fee (10% if you start with 0 florins);
+   buying is free; you can't buy and sell the same commodity in one order. */
 function tradeQuote(p,t){
+  if(t.mode==="order"){const buy=t.buy||{},sell=t.sell||{};let sales=0,buys=0,kinds=0,any=false,ok=true;
+    CKEYS.forEach(k=>{const b=Math.floor(buy[k]||0),s=Math.floor(sell[k]||0);if(b<0||s<0||(b>0&&s>0))ok=false;
+      if(s>0){any=true;kinds++;sales+=s*S.prices[k];if(s>(p.port[k]||0))ok=false;}if(b>0){any=true;buys+=b*S.prices[k];}});
+    Object.keys(buy).concat(Object.keys(sell)).forEach(k=>{if(!CMAP[k])ok=false;});
+    const rate=kinds>=2?(p.fl===0?BROKE_FEE:SELL_FEE):0;const fee=Math.round(sales*rate);const net=sales-fee-buys;
+    return {sales,buys,gross:sales,fee,rate,net,kinds,ok:ok&&any&&p.fl+net>=0};}
   if(t.mode==="buy"){const q=Math.floor(t.q||0),pr=S.prices[t.k];return {gross:q*pr,fee:0,net:q*pr,ok:q>=1&&p.fl>=q*pr,kinds:1};}
   const sel=t.mode==="sell"?{[t.k]:t.q}:(t.sel||{});
   let gross=0,kinds=0,ok=true;CKEYS.forEach(k=>{const q=Math.floor(sel[k]||0);if(q>0){kinds++;gross+=q*S.prices[k];if(q>p.port[k])ok=false;}});
@@ -777,7 +879,8 @@ function tradeQuote(p,t){
 function doTrade(p,t){
   if(p.traded||S.phase!=="market")return {ok:false,why:"One trade per market phase."};
   const q=tradeQuote(p,t);if(!q.ok)return {ok:false,why:"That trade is not possible."};
-  if(t.mode==="buy"){p.fl-=q.gross;p.port[t.k]+=Math.floor(t.q);}
+  if(t.mode==="order"){CKEYS.forEach(k=>{const s=Math.floor((t.sell||{})[k]||0),b=Math.floor((t.buy||{})[k]||0);p.port[k]+=b-s;});p.fl+=q.net;}
+  else if(t.mode==="buy"){p.fl-=q.gross;p.port[t.k]+=Math.floor(t.q);}
   else{const sel=t.mode==="sell"?{[t.k]:t.q}:t.sel;CKEYS.forEach(k=>{const n=Math.floor(sel[k]||0);if(n>0)p.port[k]-=n;});p.fl+=q.net;}
   p.traded=true;return Object.assign({ok:true},q);
 }
@@ -812,6 +915,21 @@ function gameOverReason(){if(Math.max(...S.players.map(wealth))>=S.target)return
 function applyFinalReprice(){const before={};CKEYS.forEach(k=>before[k]=S.prices[k]);evolveMarket();
   S._finalMove={};CKEYS.forEach(k=>S._finalMove[k]=S.prices[k]-before[k]);}
 function ranking(){return S.players.map((p,i)=>({p,i,v:wealth(p)})).sort((a,b)=>b.v-a.v||b.p.fl-a.p.fl);}
+/* Gentle trading hints for the market prompt. Suggestions, never instructions. */
+function tradeHints(p){const out=[];const lastHand=S.handNo>=S.totalHands;const hv=holdingsValue(p);
+  const moves=CKEYS.map(k=>{const h=S.history[k]||[];return {k,p:S.prices[k],d:h.length>1?h[h.length-1]-h[h.length-2]:0,d2:h.length>2?h[h.length-2]-h[h.length-3]:0};});
+  const held=moves.filter(m=>p.port[m.k]>0);const cheap=moves.slice().sort((a,b)=>a.p-b.p)[0];const rich=held.slice().sort((a,b)=>b.p-a.p)[0];
+  if(p.fl<ANTE)out.push(hv>0?`You can't cover the ${ANTE} fl ante right now. Selling something would get you dealt in this hand.`:`You can't cover the ${ANTE} fl ante this hand.`);
+  else if(p.fl<ANTE*4&&hv>0)out.push(`Your purse is thin (${p.fl} fl). A small sale would give you room to call bets and boasts.`);
+  if(lastHand)out.push(`This is the last hand. Goods are valued at the closing price after one more market move, while florins stay exactly as they are.`);
+  if(rich&&rich.p>=12&&out.length<2)out.push(`${CMAP[rich.k].n} is near the top of its range at ${rich.p} fl. Some merchants would take the gain; others ride it.`);
+  const riser=moves.filter(m=>m.d>0&&m.d2>0).sort((a,b)=>b.d-a.d)[0];
+  if(riser&&out.length<2)out.push(`${CMAP[riser.k].n} has climbed two hands running. Momentum can continue, or it can turn.`);
+  if(p.fl>=ANTE*16&&cheap&&cheap.p<=8&&out.length<2)out.push(`You have florins to spare. ${CMAP[cheap.k].n} is trading low at ${cheap.p} fl, if you think it has room to recover.`);
+  const need=COMM.filter(c=>!(p.powerUsed&&p.powerUsed[c.k])&&(p.port[c.k]||0)<c.cost);
+  if(need.length&&out.length<2){const c=need[0];out.push(`You hold ${p.port[c.k]} ${c.n.toLowerCase()}, short of the ${c.cost} needed for ${c.ab}.`);}
+  if(!out.length)out.push(`Prices moved since the last hand. The ticker shows where each good has been heading.`);
+  return out.slice(0,2);}
 /* ===================== END ENGINE ===================== */
 
 /* ======================================================================
@@ -823,7 +941,7 @@ function newRoomCode(){let s="";for(let i=0;i<4;i++)s+=ROOM_ALPHA[Math.floor(Mat
 function randToken(){let s="";for(let i=0;i<16;i++)s+="abcdefghijklmnopqrstuvwxyz0123456789"[Math.floor(Math.random()*36)];return s;}
 
 /* host-side bookkeeping that never leaves the host */
-const HOST={tokens:[],passed:{},seq:0};
+const HOST={tokens:[],passed:{},seq:0,dmTimes:{}};
 
 /* Build what one seat is allowed to see. */
 function makeView(real,seat){
@@ -838,12 +956,13 @@ function makeView(real,seat){
     if(!reveal)p.priv=(p.priv||[]).map(()=>0);
     p.preview=null;
   });
+  v.dms=(real.dms||[]).filter(m=>m.f===seat||m.to===seat).slice(-150); // private messages: only your own conversations
   v.mySeat=seat;v.mp=true;return v;
 }
 function mpLog(text,seat,type){S.lastAct={seq:++HOST.seq,seat,type:type||"info",text,pot:S.pot};}
 
 /* Lobby */
-function hostInitLobby(hostName,pi,hi){S.players=[{name:hostName||"Host",pi:pi||0,hi:hi||0}];S.phase="lobby";S.conn=[true];S.ready=[false];
+function hostInitLobby(hostName,pi,hi){S.players=[{name:hostName||"Host",pi:pi||0,hi:hi||0}];S.phase="lobby";S.conn=[true];S.ready=[false];S.dms=[];S.dmSeq=0;
   HOST.tokens=[randToken()];HOST.passed={};HOST.seq=0;S.lastAct=null;return HOST.tokens[0];}
 function hostJoin(msg){ // returns {seat,token} or {err}
   const t=msg.token&&HOST.tokens.indexOf(msg.token);
@@ -889,6 +1008,7 @@ function hostHandle(seat,a){
   if(!a||typeof a!=="object")return {err:"Bad action"};
   const p=S.players[seat];if(!p)return {err:"Unknown seat"};
   const nm=p.name;const t=a.type;
+  if(t==="dm")return hostDM(seat,a);
   if(t==="profile"){if(S.phase!=="lobby")return {err:"Game already started"};p.name=cleanName(a.name,seat);p.pi=(a.pi|0)%6;p.hi=(a.hi|0)%4;return {ok:true,quiet:true};}
   if(t==="settings"){if(seat!==0||S.phase!=="lobby")return {err:"Only the host can change settings"};
     if(typeof a.targetAuto==="boolean")S.targetAuto=a.targetAuto;if(a.target)S.target=Math.max(300,Math.min(5000,a.target|0));
@@ -932,6 +1052,13 @@ function hostHandle(seat,a){
 }
 function hostRematch(){if(S.phase!=="over")return false;S.players=S.players.map(p=>({name:p.name,pi:p.pi,hi:p.hi}));S.phase="lobby";
   S.ready=S.players.map(()=>false);S._show=null;S.window=null;S.pendingChoice=null;S.eventCard=null;S.handNo=0;mpLog("Back to the lobby",0);return true;}
+/* Private one-to-one messages, relayed by the host. */
+const DM_MAX=300;
+function hostDM(seat,a){const to=a.to|0;if(!S.players[to]||to===seat||typeof a.to!=="number")return {err:"Pick someone to message"};
+  const text=String(a.text==null?"":a.text).replace(/[\u0000-\u0008\u000b-\u001f\u007f]/g,"").trim().slice(0,DM_MAX);if(!text)return {err:"Type a message first"};
+  const now=Date.now();const times=(HOST.dmTimes[seat]=(HOST.dmTimes[seat]||[]).filter(x=>now-x<5000));if(times.length>=8)return {err:"Slow down a little"};times.push(now);
+  S.dms=S.dms||[];S.dmSeq=(S.dmSeq||0)+1;S.dms.push({id:S.dmSeq,f:seat,to,x:text,t:now});if(S.dms.length>500)S.dms.splice(0,S.dms.length-500);
+  return {ok:true,quiet:true,dm:true};}
 
 /* ===================== ART (SVG generators · sound · ambient) ===================== */
 const PALETTES=[
@@ -1121,24 +1248,29 @@ function bestFiveDice(p,ev,size){ // colour the scoring five: private dice garne
   const privLeft=p.priv.slice();return ev.best.map(v=>{const j=privLeft.indexOf(v);const priv=j>=0;if(priv)privLeft.splice(j,1);return die(v,priv?"garnet":"bone",size);}).join("");}
 
 /* ====================== RENDER ====================== */
+/* Patch the DOM in place (morphdom) instead of replacing it, so taps don't replay entrance animations or flash. */
+function patchDOM(el,html){if(typeof morphdom==="undefined"){el.innerHTML=html;return;}
+  const tmp=el.cloneNode(false);tmp.innerHTML=html;
+  morphdom(el,tmp,{childrenOnly:true,onBeforeElUpdated:(from,to)=>{if(from.isEqualNode(to))return false;
+    if(from===document.activeElement&&from.tagName==="INPUT"&&from.type!=="range"&&from.type!=="checkbox"){to.value=from.value;}return true;}});}
 function render(){
   const inGame=!["title","setup","join","lobby"].includes(U.screen);$("bar").hidden=!inGame;if(inGame)renderBar();
   const f={title:rTitle,setup:rSetup,join:rJoin,lobby:rLobby,market:rMarket,deal:rDeal,table:rTable,result:rResult,score:rScore,end:rEnd}[U.screen]||rTitle;
-  $("view").innerHTML=f();$("view").dataset.screen=U.screen;
-  renderSheet();
+  patchDOM($("view"),`<div id="scr-${U.screen}" class="scr">${f()}</div>`);$("view").dataset.screen=U.screen;if(typeof renderNet==="function")renderNet();
+  renderSheet();if(typeof renderChat==="function")renderChat();
   if(U.rollPending){requestAnimationFrame(rollFx);U.rollPending=false;}
   if(U.fly){const fly=U.fly;U.fly=null;requestAnimationFrame(()=>flyCoin(fly.from));}
   save();
 }
 function renderBar(){
   const left=S.totalHands-S.handNo;
-  $("bar").innerHTML=`<span class="mark">The Merchant's Table</span>
+  patchDOM($("bar"),`<span class="mark">The Merchant's Table</span>
    <span class="bar-meta">Hand <b class="num">${S.handNo}</b> of ${S.totalHands} · First to <b class="num">${S.target}</b>${left>=0?` · ${left} left`:""}</span>
    <span class="bar-sp"></span>
    <button class="ibtn" data-act="sheet" data-arg="holdings">${uiIcon("scales")}<span class="lbl">Holdings</span></button>
    <button class="ibtn" data-act="sheet" data-arg="rules">${uiIcon("book")}<span class="lbl">Rules</span></button>
    <button class="ibtn" data-act="mute" aria-label="${U.muted?"Turn sound on":"Turn sound off"}">${uiIcon(U.muted?"mute":"sound")}</button>
-   <button class="ibtn" data-act="sheet" data-arg="leave">${uiIcon("door")}<span class="lbl">Leave</span></button>`;
+   <button class="ibtn" data-act="sheet" data-arg="leave">${uiIcon("door")}<span class="lbl">Leave</span></button>`);
 }
 
 /* ---------------- TITLE ---------------- */
@@ -1187,6 +1319,9 @@ function rSetup(){ensurePlayers();if(S.targetAuto)S.target=autoTarget(S.count);
      <div class="cfg-box"><span class="label">Turn limit</span>
        <div class="stepper"><button data-act="turns" data-arg="-1" aria-label="Fewer turns">−</button><b class="num">${S.totalHands}</b><button data-act="turns" data-arg="1" aria-label="More turns">+</button></div>
        <span class="soft it" style="font-size:13px">If nobody reaches the target, the richest merchant after this many hands wins.</span></div>
+     <div class="cfg-box"><span class="label">Trading tips</span>
+       <div class="row"><div class="toggle"><button data-act="hintsSet" data-arg="1" aria-pressed="${hintsOn()}">On</button><button data-act="hintsSet" data-arg="0" aria-pressed="${!hintsOn()}">Off</button></div></div>
+       <span class="soft it" style="font-size:13px">A prompt with a gentle tip opens each market. Experienced players can turn it off.</span></div>
      <div class="cfg-box"><span class="label">Dice numerals</span>
        <div class="row"><div class="toggle"><button data-act="numerals" data-arg="arabic" aria-pressed="${S.numerals!=="roman"}">1 2 3</button><button data-act="numerals" data-arg="roman" aria-pressed="${S.numerals==="roman"}">I II III</button></div>
        <div class="dice">${die(5,"bone","md")}${die(8,"garnet","md")}</div></div></div>
@@ -1300,7 +1435,7 @@ function trayHTML(L,p){
   const allinCall=L.canCall&&L.callAmt<L.toCall;const callLbl=allinCall?`All-in · ${L.callAmt} fl`:`Call ${L.callAmt} fl`;
   const chal=L.boastTargets.map(i=>`<button class="btn btn-line btn-sm" data-act="challenge" data-arg="${i}">Challenge ${esc(S.players[i].name)}</button>`).join("");
   const powersLeft=6-CKEYS.filter(k=>p.powerUsed&&p.powerUsed[k]).length;
-  return `<div class="tray turn-banner" data-turn="${S.turn}">${MP()?mineHTML():""}
+  return `<div class="tray turn-banner" id="tray-${S.handNo}-${S.street}-${S.turn}" data-turn="${S.turn}">${MP()?mineHTML():""}
     <div class="who">${portrait(p,56)}
       <div style="flex:1;min-width:160px"><div class="nm">${MP()?"Your turn":esc(p.name)+" to act"}</div>
         <div class="meta">Chips <b class="num">${fl(p.fl)}</b> · in this round <b class="num">${p.committed}</b>${L.toCall>0?` · to call <b class="num">${L.toCall}</b>`:""}${p.priv.length>2?" · 3 private dice":""}</div></div>
@@ -1378,10 +1513,10 @@ function rEnd(){const rk=ranking();const w=rk[0];const byT=S._endReason==="targe
 function renderSheet(){const root=$("sheet");const sh=U.sheet;if(!sh){root.innerHTML="";return;}
   const f=SHEETS()[sh.type];
   if(!f){root.innerHTML="";return;}
-  root.innerHTML=`<div class="scrim" data-act="scrim"><div class="sheet ${sh.type==="holdings"||sh.type==="rules"?"wide":""} ledger" role="dialog" aria-modal="true">${f(sh)}</div></div>`;
+  patchDOM(root,`<div class="scrim" id="scrim" data-act="scrim"><div id="sh-${sh.type}${sh.type==="power"?"-"+sh.stage:""}" class="sheet ${sh.type==="holdings"||sh.type==="rules"?"wide":""} ledger" role="dialog" aria-modal="true">${f(sh)}</div></div>`);
   if(sh.type==="power"&&sh.stage==="result")requestAnimationFrame(rollFx);
 }
-function SHEETS(){return {holdings:shHoldings,rules:shRules,leave:shLeave,trade:shTrade,raise:shRaise,boast:shBoast,challenge:shChallenge,power:shPower,pledge:shPledge};}
+function SHEETS(){return {tradePrompt:shTradePrompt,holdings:shHoldings,rules:shRules,leave:shLeave,trade:shTrade,raise:shRaise,boast:shBoast,challenge:shChallenge,power:shPower,pledge:shPledge};}
 /* live-update a sheet while a slider is dragged, without rebuilding the slider itself */
 function patchSheet(){const f=SHEETS()[U.sheet&&U.sheet.type];if(!f)return;const tmp=document.createElement("div");tmp.innerHTML=f(U.sheet);
   [".read",".quote",'[data-act$="Go"]'].forEach(sel=>{const a=document.querySelector("#sheet "+sel),b=tmp.querySelector(sel);if(!a||!b)return;
@@ -1404,31 +1539,43 @@ function shRules(){const rows=RANK_NAMES.map((n,r)=>({n,r})).reverse();
      <p class="soft it" style="margin-top:6px;font-size:14px">If the hand ends early because everyone folds, the remaining dice are rolled out to settle boasts. A boaster who folds loses the boast.</p></div>
    <div><h4>Commodity powers</h4><div class="scroll-x"><table class="rtable"><thead><tr><th>Good</th><th>Power</th><th>Cost</th></tr></thead><tbody>${COMM.map(c=>`<tr><td>${icon(c.k)} ${c.n}</td><td><b>${c.ab}.</b> ${c.abd}</td><td>${c.cost}</td></tr>`).join("")}</tbody></table></div>
      <p class="soft it" style="margin-top:6px;font-size:14px">Each power once per game, and one power per hand. Nudges stop at 1 and 8. All-in merchants get a chance to use a power at each new street.</p></div>
-   <div><h4>Trading and running dry</h4><p>One trade per market phase. Buying or selling a single commodity is free. Selling several kinds at once costs a ${Math.round(SELL_FEE*100)}% fee (${Math.round(BROKE_FEE*100)}% if you have no florins). During betting, if you can't cover a call, you may <b>pledge</b> goods to the bank at 50% of market value.</p></div>
+   <div><h4>Trading and running dry</h4><p>One trade per market phase, and it can mix buying and selling: set every purchase and sale, then execute them together. Sale proceeds can pay for purchases. Buying is free. Selling two or more kinds in one trade costs a ${Math.round(SELL_FEE*100)}% fee on the sales (${Math.round(BROKE_FEE*100)}% if you start with no florins). During betting, if you can't cover a call, you may <b>pledge</b> goods to the bank at 50% of market value.</p></div>
    <div><h4>Events</h4><p>Each hand draws one card: price shocks for a commodity or a group, market-wide booms and panics, lost or gained stock, and cards that let the richest or poorest merchant move goods or bend a price. Cards never create or destroy florins.</p></div>
   </div>`;}
 /* --- trade --- */
-function shTrade(sh){const p=S.players[sh.pi];const t=sh;
-  const mode=t.mode;let body="";
-  if(mode!=="multi"){const opts=COMM.filter(c=>mode==="buy"?true:p.port[c.k]>0);if(!opts.some(c=>c.k===t.k))t.k=opts[0]&&opts[0].k;
-    const maxQ=t.k?(mode==="buy"?Math.floor(p.fl/S.prices[t.k]):p.port[t.k]):0;t.q=Math.max(0,Math.min(t.q||0,maxQ));
-    const q=t.k?tradeQuote(p,{mode,k:t.k,q:t.q}):null;
-    body=`<div class="ctiles">${COMM.map(c=>{const ok=mode==="buy"||p.port[c.k]>0;return `<button class="ctile" data-act="tk" data-arg="${c.k}" aria-pressed="${t.k===c.k}" ${ok?"":"disabled"}>${icon(c.k)}<b>${c.n}</b><span class="num">${S.prices[c.k]} fl · hold ${p.port[c.k]}</span></button>`;}).join("")}</div>
-     ${t.k?`<div class="slider"><div class="read num">${t.q} ${CMAP[t.k].n}</div>
-       <div class="stepper" style="justify-content:center"><button data-act="tq" data-arg="-1" aria-label="One less">−</button><input type="range" id="tqr" data-inp="tq" min="0" max="${maxQ}" step="1" value="${t.q}" aria-label="Quantity"><button data-act="tq" data-arg="1" aria-label="One more">+</button></div>
-       <div class="quick"><button class="btn btn-ink btn-sm" data-act="tqset" data-arg="${maxQ}">Max · ${maxQ}</button></div></div>
-     <div class="quote">${t.q===0?"Choose a quantity.":mode==="buy"?`Pay <b>${q.gross} fl</b> · chips ${p.fl} → <b>${p.fl-q.gross}</b>`:`Receive <b>${q.net} fl</b>, no fee · chips ${p.fl} → <b>${p.fl+q.net}</b>`}</div>`:`<div class="quote">No goods to sell.</div>`}`;
-    t._label=t.q>0&&t.k?`${mode==="buy"?"Buy":"Sell"} ${t.q} ${CMAP[t.k].n} · ${q.gross} fl`:null;}
-  else{t.sel=t.sel||{};const q=tradeQuote(p,{mode:"multi",sel:t.sel});
-    body=`<div style="display:grid;gap:6px">${COMM.filter(c=>p.port[c.k]>0).map(c=>`<div class="qrow"><span>${icon(c.k)} <b>${c.n}</b> <span class="soft">@ ${S.prices[c.k]}</span></span>
-      <span class="stepper"><button data-act="ms" data-arg="${c.k}:-1" aria-label="One less ${c.n}">−</button><b class="num">${t.sel[c.k]||0}</b><button data-act="ms" data-arg="${c.k}:1" aria-label="One more ${c.n}">+</button></span><span class="soft num">/ ${p.port[c.k]}</span></div>`).join("")||`<p class="soft">No goods to sell.</p>`}</div>
-     <div class="quote">${q.gross===0?"Pick the goods to sell.":`Gross <b>${q.gross} fl</b>${q.fee?` − ${Math.round(q.rate*100)}% fee <b>${q.fee} fl</b>`:" · no fee (one kind)"} = receive <b>${q.net} fl</b> · chips ${p.fl} → <b>${p.fl+q.net}</b>`}</div>`;
-    t._label=q.ok?`Sell bundle · receive ${q.net} fl`:null;}
-  return sheetHead(`Market · one trade`,`${esc(p.name)} · <span class="num">${fl(p.fl)}</span>`)+`<div style="display:grid;gap:12px">
-   <div class="toggle" style="justify-self:center"><button data-act="tmode" data-arg="buy" aria-pressed="${mode==="buy"}">Buy</button><button data-act="tmode" data-arg="sell" aria-pressed="${mode==="sell"}">Sell one kind</button><button data-act="tmode" data-arg="multi" aria-pressed="${mode==="multi"}">Sell several</button></div>
-   ${body}
-   <p class="soft it" style="margin:0;font-size:13.5px;text-align:center">Single-kind trades are free. Selling several kinds at once costs ${p.fl===0?"10% (you have no florins)":"5%"}.</p>
-   <div class="row c"><button class="btn btn-ink" data-act="close">Cancel</button><button class="btn btn-gold" data-act="tradeGo" ${t._label?"":"disabled"}>${t._label||"Confirm trade"}</button></div></div>`;}
+function tradeOrder(sh){const buy={},sell={};CKEYS.forEach(k=>{const v=sh.sel[k]||0;if(v>0)buy[k]=v;else if(v<0)sell[k]=-v;});return {mode:"order",buy,sell};}
+function shTrade(sh){const p=S.players[sh.pi];sh.sel=sh.sel||{};const q=tradeQuote(p,tradeOrder(sh));const any=CKEYS.some(k=>sh.sel[k]);
+  const rows=COMM.map(c=>{const v=sh.sel[c.k]||0;const pr=S.prices[c.k];
+    const canSell=-(v-1)<=p.port[c.k];const tryBuy=Object.assign({},sh.sel,{[c.k]:v+1});const canBuy=tradeQuote(p,tradeOrder({sel:tryBuy})).ok||(v<0);
+    const lab=v>0?`Buy ${v}`:v<0?`Sell ${-v}`:"—";const amt=v?`${v>0?"−":"+"}${Math.abs(v)*pr} fl`:"";
+    return `<div class="trow ${v>0?"buy":v<0?"sell":""}"><span class="tn">${icon(c.k)}<span><b>${c.n}</b><small class="num">${pr} fl · you hold ${p.port[c.k]}${v?` → ${p.port[c.k]+v}`:""}</small></span></span>
+      <span class="tstep"><button data-act="tadj" data-arg="${c.k}:-1" ${canSell?"":"disabled"} aria-label="Sell one more ${c.n}">−</button><b class="num">${lab}</b><button data-act="tadj" data-arg="${c.k}:1" ${canBuy?"":"disabled"} aria-label="Buy one more ${c.n}">+</button></span>
+      <span class="tamt num">${amt}</span></div>`;}).join("");
+  const after=p.fl+q.net;
+  const summary=!any?`<div class="quote">Tap <b>+</b> to buy or <b>−</b> to sell. Mix both in one trade.</div>`
+    :`<div class="tsum num">${q.sales?`<div><span>Sales</span><b>+${q.sales} fl</b></div>`:""}${q.fee?`<div><span>Fee (${Math.round(q.rate*100)}%, ${q.kinds} kinds sold)</span><b>−${q.fee} fl</b></div>`:""}${q.buys?`<div><span>Purchases</span><b>−${q.buys} fl</b></div>`:""}
+      <div class="net"><span>Florins</span><b>${p.fl} → ${after}</b></div>${!q.ok?`<div class="bad">${after<0?"Not enough florins for these purchases.":"Adjust the order to continue."}</div>`:""}</div>`;
+  sh._label=any&&q.ok?(q.net>0?`Execute trade · receive ${q.net} fl`:q.net<0?`Execute trade · pay ${-q.net} fl`:"Execute trade"):null;
+  return sheetHead(`Market · one trade per hand`,`${esc(p.name)} · <span class="num">${fl(p.fl)}</span>`)+`<div style="display:grid;gap:10px">
+   <p class="soft" style="margin:0;font-size:14px">Set everything you want to buy and sell, then execute it all at once. After that, the market is closed to you until next hand.</p>
+   <div class="tlist">${rows}</div>${summary}
+   <p class="soft it" style="margin:0;font-size:12.5px;text-align:center">Buying is free. Selling two or more kinds costs ${Math.round(SELL_FEE*100)}% of sales (${Math.round(BROKE_FEE*100)}% if you start with no florins).</p>
+   <div class="row c"><button class="btn btn-ink" data-act="${any?"tclear":"close"}">${any?"Clear":"Cancel"}</button><button class="btn btn-gold" data-act="tradeGo" ${sh._label?"":"disabled"}>${sh._label||"Execute trade"}</button></div></div>`;}
+/* --- trade prompt (hints) --- */
+function hintsOn(){const v=lsGet("mt-hints");return v!==false;}
+function setHints(on){lsSet("mt-hints",!!on);}
+function shTradePrompt(sh){const hintsLine=`<label class="hint-toggle"><input type="checkbox" data-inp="hints" ${hintsOn()?"checked":""}> Show trading tips each hand</label>`;
+  if(MP()){const p=S.players[ME()];const hs=tradeHints(p);
+    return `<div class="tp">${portrait(p,64)}<div class="eyebrow">Hand ${S.handNo} · the market is open</div><h2 class="h2">Trade before the deal?</h2>
+     <div class="tip"><span class="tag gold">Tip</span>${hs.map(h=>`<p>${esc(h)}</p>`).join("")}</div>
+     <div class="row c"><button class="btn btn-ink" data-act="close">Not this hand</button><button class="btn btn-gold" data-act="trade" data-arg="${ME()}">Open the market</button></div>${hintsLine}</div>`;}
+  const list=S.players.map((p,i)=>p.traded?"":`<div class="tp-row">${portrait(p,40)}<div style="min-width:0"><b>${esc(p.name)}</b> <span class="soft num">· ${fl(p.fl)}</span><p>${esc(tradeHints(p)[0])}</p></div><button class="btn btn-line btn-sm" style="color:var(--ink);border-color:rgba(42,29,18,.35)" data-act="trade" data-arg="${i}">Trade</button></div>`).join("");
+  return `<div class="tp"><div class="eyebrow">Hand ${S.handNo} · the market is open</div><h2 class="h2">Anyone trading before the deal?</h2>
+   <div class="tp-list">${list}</div>
+   <div class="row c"><button class="btn btn-gold" data-act="close">Back to the market</button></div>${hintsLine}</div>`;}
+function maybeTradePrompt(){if(!hintsOn()||U.screen!=="market"||S.pendingChoice||U.sheet||U.tradePromptHand===S.handNo)return;
+  if(MP()){const p=S.players[ME()];if(!p||p.traded||S.ready[ME()])return;}else if(S.players.every(p=>p.traded))return;
+  U.tradePromptHand=S.handNo;U.sheet={type:"tradePrompt"};renderSheet();}
 /* --- raise --- */
 function shRaise(sh){const L=legal();const p=S.players[S.turn];const lo=Math.min(L.minRaise,L.maxRaise),hi=L.maxRaise;sh.v=Math.max(lo,Math.min(hi,sh.v||lo));
   const potBet=Math.min(hi,Math.max(lo,S.currentBet+S.pot+L.toCall));const half=Math.min(hi,Math.max(lo,S.currentBet+Math.round((S.pot+L.toCall)/2)));
@@ -1512,7 +1659,7 @@ function flyCoin(from){const s=document.querySelector(`.seat[data-seat="${from}"
       {duration:560+k*90,easing:"cubic-bezier(.3,.7,.4,1)",delay:k*60,fill:"forwards"}).onfinish=()=>el.remove();}}
 
 /* ====================== FLOW ====================== */
-function startGame(){S.players.forEach((p,i)=>{p.name=(p.name||"").trim()||`Merchant ${i+1}`;});newGame();startHand();U.screen="market";U.expand=null;SFX.card();render();}
+function startGame(){S.players.forEach((p,i)=>{p.name=(p.name||"").trim()||`Merchant ${i+1}`;});newGame();startHand();U.screen="market";U.expand=null;U.tradePromptHand=0;SFX.card();render();setTimeout(maybeTradePrompt,700);}
 function dealHand(){S.players.forEach(p=>{p.flAtDeal=p.fl;p.pledged=0;});postAntes();SFX.dice(4);
   const live=liveIdx();
   if(live.length===0){S._show={winners:[],byFold:true,pots:[],boasts:[],nobody:true};S.phase="result";U.screen="result";return render();}
@@ -1532,7 +1679,7 @@ function step(act){if(MP()){U.armed=null;U.sheet=null;send(act);render();return;
   continueHand();}
 function toResult(){U.screen="result";U.sheet=null;U.tray="bet";render();
   const sh=S._show;if(sh&&sh.winners&&sh.winners.length){SFX.win();requestAnimationFrame(()=>{const r=document.querySelector(`.srow[data-row="${sh.winners[0]}"]`);if(r){const b=r.getBoundingClientRect();FX.burst(b.left+40,b.top+b.height/2,36);}});}}
-function nextHand(){startHand();U.screen="market";U.expand=null;SFX.card();render();$("view").scrollTop=0;}
+function nextHand(){startHand();U.screen="market";U.expand=null;SFX.card();render();$("view").scrollTop=0;setTimeout(maybeTradePrompt,700);}
 function finishGame(){const why=gameOverReason();S._endReason=why;if(why==="cap")applyFinalReprice();else S._finalMove=null;U.screen="end";clearSave();render();
   SFX.win();setTimeout(()=>FX.burst(innerWidth/2,innerHeight*.3,90),200);}
 
@@ -1556,17 +1703,14 @@ const ACT={
   scrim(_,el,e){if(e.target===el){const sh=U.sheet;if(sh&&sh.type==="power"&&sh.stage!=="choose")return;U.sheet=null;render();}},
   leave(){U.sheet=null;U.screen="title";render();},
   expand(i){U.expand=U.expand===+i?null:+i;render();},
-  choose(v){const pc=S.pendingChoice;if(!pc)return;if(MP())return send({type:"choose",v:pc.decree?v:+v});resolveEventChoice(pc.decree?v:+v);SFX.coin();render();},
-  trade(i){U.sheet={type:"trade",pi:+i,mode:"buy",k:"wheat",q:0,sel:{}};render();},
-  tmode(m){Object.assign(U.sheet,{mode:m,q:0,sel:{}});render();},
-  tk(k){U.sheet.k=k;U.sheet.q=0;render();},
-  tq(d){U.sheet.q=(U.sheet.q||0)+ +d;render();},
-  tqset(v){U.sheet.q=+v;render();},
-  ms(a){const [k,d]=a.split(":");const p=S.players[U.sheet.pi];const s=U.sheet.sel;s[k]=Math.max(0,Math.min(p.port[k],(s[k]||0)+ +d));render();},
-  tradeGo(){const t=U.sheet;const p=S.players[t.pi];
-    if(MP()){send({type:"trade",t:t.mode==="multi"?{mode:"multi",sel:t.sel}:{mode:t.mode,k:t.k,q:t.q}});U.sheet=null;render();return;}
-    const r=doTrade(p,t.mode==="multi"?{mode:"multi",sel:t.sel}:{mode:t.mode,k:t.k,q:t.q});
-    if(!r.ok)return toast(r.why);SFX.coin();U.sheet=null;render();toast(`${p.name}: trade done`);},
+  choose(v){const pc=S.pendingChoice;if(!pc)return;if(MP())return send({type:"choose",v:pc.decree?v:+v});resolveEventChoice(pc.decree?v:+v);SFX.coin();render();setTimeout(maybeTradePrompt,500);},
+  trade(i){U.sheet={type:"trade",pi:+i,sel:{}};render();},
+  tadj(a){const [k,d]=a.split(":");const sh=U.sheet;const p=S.players[sh.pi];const v=(sh.sel[k]||0)+ +d;
+    if(v<-p.port[k])return;const next=Object.assign({},sh.sel,{[k]:v});if(+d>0&&v>0&&!tradeQuote(p,tradeOrder({sel:next})).ok)return;sh.sel=next;render();},
+  tclear(){U.sheet.sel={};render();},
+  tradeGo(){const sh=U.sheet;const p=S.players[sh.pi];const order=tradeOrder(sh);
+    if(MP()){send({type:"trade",t:order});U.sheet=null;render();return;}
+    const r=doTrade(p,order);if(!r.ok)return toast(r.why);SFX.coin();U.sheet=null;render();toast(`${p.name}: trade done`);},
   deal(){if(S.pendingChoice)return;dealHand();},
   peekShow(){U.peekShown=true;SFX.dice(2);render();},
   peekHide(){U.peekShown=false;U.peekPos++;if(U.peekPos>=U.peekQueue.length){U.screen="table";continueHand();}else render();},
@@ -1625,6 +1769,7 @@ const ACT={
   mpForce(){send({type:"force"});},
   mpPass(){send({type:"pass"});},
   mpRematch(){send({type:"rematch"});},
+  hintsSet(v){setHints(v==="1");render();},
   toResultLocal(){U.screen="result";render();},
 };
 function usePower(sh,params){const p=S.players[sh.pi];
@@ -1636,7 +1781,7 @@ function bindInput(){
   document.addEventListener("click",e=>{SFX.unlock();const el=e.target.closest("[data-act]");if(!el||el.disabled)return;const a=el.dataset.act;
     if(a==="peekClose"&&Date.now()-lastPointerPeek<400)return;
     const f=ACT[a];if(f)f(el.dataset.arg,el,e);});
-  document.addEventListener("keydown",e=>{if(e.key==="Escape"){if(U.peekOpen)return closePeek();if(U.sheet&&!(U.sheet.type==="power"&&U.sheet.stage!=="choose")){U.sheet=null;render();}}
+  document.addEventListener("keydown",e=>{if(e.key==="Escape"){if(U.peekOpen)return closePeek();if(U.chatOpen&&!U.sheet){U.chatOpen=false;return renderChat();}if(U.sheet&&!(U.sheet.type==="power"&&U.sheet.stage!=="choose")){U.sheet=null;render();}}
     const el=e.target.closest&&e.target.closest("[data-peek]");if(el&&(e.key===" "||e.key==="Enter")){e.preventDefault();U.peekOpen?closePeek():openPeek(+el.dataset.peek,"tap");}
     const d=e.target.closest&&e.target.closest(".die[data-act]");if(d&&(e.key===" "||e.key==="Enter")){e.preventDefault();d.click();}});
   let t0=0;
@@ -1646,6 +1791,7 @@ function bindInput(){
   document.addEventListener("contextmenu",e=>{if(e.target.closest("[data-peek]"))e.preventDefault();});
   document.addEventListener("input",e=>{const el=e.target;const k=el.dataset&&el.dataset.inp;if(!k)return;
     if(k==="name"){S.players[+el.dataset.i].name=el.value;return;}
+    if(k==="hints"){setHints(el.checked);toast(el.checked?"Trading tips on":"Trading tips off. Turn them back on in setup or the lobby");if(!el.checked&&U.sheet&&U.sheet.type==="tradePrompt"){U.sheet=null;render();}return;}
     if(k==="myname"){const pr=profile();pr.name=el.value;lsSet("mt-profile",pr);return;}
     if(k==="joincode"){el.value=el.value.toUpperCase().replace(/[^A-Z]/g,"").slice(0,4);U.joinCode=el.value;return;}
     const v=+el.value;
@@ -1653,7 +1799,7 @@ function bindInput(){
     patchSheet();});
   document.addEventListener("change",e=>{const k=e.target.dataset&&e.target.dataset.inp;if(k&&k!=="name"){const id=e.target.id;renderSheet();const n=$(id);if(n)n.focus();}});
 }
-function boot(){bindInput();FX.init();const room=roomFromURL();if(room){U.joinCode=room;U.screen="join";}render();}
+function boot(){bindInput();FX.init();if(autoRejoin())return;const room=roomFromURL();if(room){U.joinCode=room;U.screen="join";}render();}
 
 /* ===================== MULTIPLAYER TRANSPORT + SCREENS (DOM) ===================== */
 const PEER_PREFIX="mercantila-v2-";
@@ -1668,7 +1814,13 @@ function roomFromURL(){try{const q=new URLSearchParams(location.search).get("roo
 function joinURL(code){const u=location.href.split("?")[0].split("#")[0];let sig=null;try{sig=new URLSearchParams(location.search).get("signal");}catch(e){}return `${u}?room=${code}${sig?"&signal="+encodeURIComponent(sig):""}`;}
 function peerAvailable(){return typeof Peer!=="undefined";}
 /* optional self-hosted signaling server: ?signal=host:port (defaults to the free public PeerJS server) */
-function peerOpts(){const o={debug:0};try{const s=new URLSearchParams(location.search).get("signal")||lsGet("mt-signal");if(s){const [h,pt]=String(s).split(":");Object.assign(o,{host:h,port:+pt||443,path:"/peerjs",secure:!/^(localhost|127\.|192\.168\.|10\.)/.test(h)});lsSet("mt-signal",s);}}catch(e){}return o;}
+const ICE_SERVERS=[
+  {urls:["stun:stun.l.google.com:19302","stun:stun1.l.google.com:19302"]},
+  {urls:"stun:stun.cloudflare.com:3478"},
+  {urls:["turn:eu-0.turn.peerjs.com:3478","turn:us-0.turn.peerjs.com:3478"],username:"peerjs",credential:"peerjsp"},
+  {urls:["turn:openrelay.metered.ca:80","turn:openrelay.metered.ca:443","turns:openrelay.metered.ca:443?transport=tcp"],username:"openrelayproject",credential:"openrelayproject"}];
+function peerOpts(){const o={debug:0,config:{iceServers:ICE_SERVERS,sdpSemantics:"unified-plan"}};
+  try{const s=new URLSearchParams(location.search).get("signal");if(s){const [h,pt]=String(s).split(":");Object.assign(o,{host:h,port:+pt||443,path:"/peerjs",secure:!/^(localhost|127\.|192\.168\.|10\.)/.test(h)});}}catch(e){}return o;}
 
 /* keep the screen awake so phones don't drop the connection mid-hand */
 async function keepAwake(){try{if(navigator.wakeLock&&!NET.wake){NET.wake=await navigator.wakeLock.request("screen");NET.wake.addEventListener("release",()=>{NET.wake=null;});}}catch(e){}}
@@ -1676,7 +1828,8 @@ typeof document!=="undefined"&&document.addEventListener("visibilitychange",()=>
 
 /* ---------------- host ---------------- */
 function withReal(fn){const view=S;S=NET.real;try{return fn();}finally{NET.real=S;S=view;}}
-function hostSave(){lsSet("mt-host",{code:NET.code,real:NET.real,host:{tokens:HOST.tokens,passed:HOST.passed,seq:HOST.seq},at:Date.now()});}
+function markActive(){lsSet("mt-active",{role:NET.role,code:NET.code,at:Date.now()});}
+function hostSave(){markActive();lsSet("mt-host",{code:NET.code,real:NET.real,host:{tokens:HOST.tokens,passed:HOST.passed,seq:HOST.seq},at:Date.now()});}
 function hostCreate(resume){
   if(!peerAvailable())return toast("Multiplayer needs an internet connection");
   const pr=profile();
@@ -1691,7 +1844,8 @@ function hostOpenPeer(resume,attempt){
   const peer=new Peer(PEER_PREFIX+NET.code,peerOpts());NET.peer=peer;
   peer.on("open",()=>{NET.status="";render();});
   peer.on("connection",conn=>hostAccept(conn));
-  peer.on("disconnected",()=>{NET.status="Reconnecting to the lobby server…";render();setTimeout(()=>{try{peer.reconnect();}catch(e){}},1500);});
+  peer.on("disconnected",()=>{if(NET.peer!==peer)return;if(NET.real&&NET.real.phase==="lobby"){NET.status="Reconnecting to the lobby server…";render();}
+    let tries=0;const retry=()=>{if(NET.peer!==peer||NET.role!=="host"||!peer.disconnected)return;if(++tries>4){hostOpenPeer(true,0);return;}try{peer.reconnect();}catch(e){}setTimeout(retry,3000);};setTimeout(retry,1000);});
   peer.on("error",e=>{
     if(e.type==="unavailable-id"){ // the code is still held (e.g. after a reload): retry, or pick a new code for a fresh lobby
       if(resume||NET.real.phase!=="lobby"||attempt<1){NET.status="Reclaiming your room code…";render();setTimeout(()=>hostOpenPeer(resume,attempt+1),3000);}
@@ -1716,7 +1870,7 @@ function hostAccept(conn){let seat=null;
 }
 function hostTick(){const now=Date.now();let changed=false;
   Object.keys(NET.conns).forEach(s=>{const c=NET.conns[s];try{c.send({t:"ping"});}catch(e){}
-    if(now-(NET.lastSeen[s]||0)>15000){delete NET.conns[s];try{c.close();}catch(e){}NET.real.conn[s]=false;changed=true;}});
+    if(now-(NET.lastSeen[s]||0)>25000){delete NET.conns[s];try{c.close();}catch(e){}NET.real.conn[s]=false;changed=true;}});
   if(changed)hostBroadcast();}
 function hostBroadcast(){const real=NET.real;if(!real)return;
   real.players.forEach((_,i)=>{if(i===0)return;const c=NET.conns[i];if(c&&c.open){try{c.send({t:"view",v:makeView(real,i)});}catch(e){}}});
@@ -1724,38 +1878,48 @@ function hostBroadcast(){const real=NET.real;if(!real)return;
 function hostAct(a){const r=withReal(()=>hostHandle(0,a));if(r.err){toast(r.err);failPending();}hostBroadcast();}
 
 /* ---------------- guest ---------------- */
-function guestSave(){lsSet("mt-guest",{code:NET.code,token:NET.token,at:Date.now()});}
-function guestJoin(code){
+function guestSave(){lsSet("mt-guest",{code:NET.code,token:NET.token,at:Date.now()});markActive();}
+function guestJoin(code,rebuild){
   if(!peerAvailable())return toast("Multiplayer needs an internet connection");
   code=String(code||"").trim().toUpperCase();if(!/^[A-Z]{4}$/.test(code))return toast("Room codes are 4 letters");
   const sv=lsGet("mt-guest");NET.token=sv&&sv.code===code?sv.token:null;
-  NET.role="guest";NET.code=code;NET.status="Connecting to the table…";U.screen="lobby";S=Object.assign({players:[],phase:"connecting",ui:S.ui});render();
+  NET.role="guest";NET.code=code;NET.status="Connecting to the table…";
+  if(!rebuild||!S.players||!S.players.length){U.screen="lobby";S=Object.assign({players:[],phase:"connecting",ui:S.ui});render();}else renderNet();
   if(NET.peer)try{NET.peer.destroy();}catch(e){}
   const peer=new Peer(peerOpts());NET.peer=peer;
   peer.on("open",()=>guestConnect());
   peer.on("disconnected",()=>{setTimeout(()=>{try{peer.reconnect();}catch(e){}},1500);});
   peer.on("error",e=>{
     if(e.type==="peer-unavailable"){NET.status=`No table found with code ${code}. Check the code, or ask the host to reopen the game.`;render();setTimeout(guestConnect,5000);return;}
-    if(e.type==="network"||e.type==="server-error"||e.type==="socket-error"){NET.status="Can't reach the lobby server. Retrying…";render();setTimeout(()=>guestJoin(code),4000);return;}
+    if(e.type==="network"||e.type==="server-error"||e.type==="socket-error"){NET.status="Can't reach the lobby server. Retrying…";renderNet();if(U.screen==="lobby")render();setTimeout(()=>{if(NET.peer===peer&&NET.role==="guest")guestJoin(code,true);},4000);return;}
   });
-  clearInterval(NET.watch);NET.watch=setInterval(()=>{if(NET.role!=="guest")return;if(NET.conn&&NET.conn.open&&Date.now()-NET.lastHost>14000){NET.status="Lost the host. Reconnecting…";render();try{NET.conn.close();}catch(e){}guestConnect();}},5000);
+  clearInterval(NET.watch);NET.watch=setInterval(()=>{if(NET.role!=="guest")return;const quiet=Date.now()-NET.lastHost;
+    if(NET.conn&&NET.conn.open&&quiet>25000){NET.status="Lost the host. Reconnecting…";renderNet();try{NET.conn.close();}catch(e){}NET.conn=null;guestConnect();}
+    else if(NET.conn&&NET.conn.open&&quiet>9000){if(!NET.status){NET.status=`Waiting for ${S.players&&S.players[0]?S.players[0].name+"'s":"the host's"} phone…`;renderNet();}}
+    else if((!NET.conn||!NET.conn.open)&&!NET.connecting)guestConnect();},3000);
   keepAwake();
 }
-function guestConnect(){const peer=NET.peer;if(!peer||peer.destroyed||NET.role!=="guest")return;if(peer.disconnected){try{peer.reconnect();}catch(e){}return;}
+function guestConnect(){const peer=NET.peer;if(NET.role!=="guest")return;if(!peer||peer.destroyed){if(!NET.rebuilding){NET.rebuilding=true;setTimeout(()=>{NET.rebuilding=false;if(NET.role==="guest")guestJoin(NET.code,true);},1000);}return;}if(peer.disconnected){try{peer.reconnect();}catch(e){}return;}
   if(NET.conn&&NET.conn.open)return;
-  const conn=peer.connect(PEER_PREFIX+NET.code,{reliable:true});NET.conn=conn;
-  conn.on("open",()=>{const pr=profile();NET.lastHost=Date.now();conn.send({t:"hello",name:pr.name,pi:pr.pi,hi:pr.hi,token:NET.token});});
+  const conn=peer.connect(PEER_PREFIX+NET.code,{reliable:true,serialization:"json"});NET.conn=conn;NET.connecting=true;
+  setTimeout(()=>{if(NET.conn===conn&&!conn.open){NET.connecting=false;try{conn.close();}catch(e){}NET.conn=null;}},12000); // a connect attempt that never opens is abandoned and retried
+  conn.on("open",()=>{NET.connecting=false;const pr=profile();NET.lastHost=Date.now();conn.send({t:"hello",name:pr.name,pi:pr.pi,hi:pr.hi,token:NET.token});});
   conn.on("data",d=>{if(!d||typeof d!=="object")return;NET.lastHost=Date.now();
-    if(d.t==="ping"){try{conn.send({t:"pong"});}catch(e){}return;}
+    if(d.t==="ping"){try{conn.send({t:"pong"});}catch(e){}if(NET.status&&/Waiting for/.test(NET.status)){NET.status="";renderNet();}return;}
     if(d.t==="welcome"){NET.seat=d.seat;NET.token=d.token;NET.status="";guestSave();return;}
-    if(d.t==="view"){NET.status="";applyView(d.v);return;}
+    if(d.t==="view"){if(!NET._mark||Date.now()-NET._mark>60000){NET._mark=Date.now();markActive();}const was=NET.status;NET.status="";applyView(d.v);if(was)renderNet();return;}
     if(d.t==="err"){toast(d.msg);failPending();if(d.fatal){NET.status=d.msg;lsDel("mt-guest");render();}}
   });
-  conn.on("close",()=>{if(NET.role!=="guest")return;NET.status="Connection lost. Reconnecting…";render();setTimeout(guestConnect,2000);});
+  conn.on("close",()=>{if(NET.role!=="guest"||NET.conn!==conn)return;NET.conn=null;NET.connecting=false;NET.status="Connection lost. Reconnecting…";renderNet();setTimeout(guestConnect,1500);});
   conn.on("error",()=>{});
 }
-function send(a){if(NET.role==="host")return hostAct(a);if(NET.conn&&NET.conn.open){try{NET.conn.send({t:"act",a});}catch(e){toast("Not connected");}}else toast("Not connected to the host yet");}
-function leaveMP(){const wasHost=NET.role==="host";try{if(NET.peer)NET.peer.destroy();}catch(e){}clearInterval(NET.pinger);clearInterval(NET.watch);
+function send(a){if(NET.role==="host")return hostAct(a);if(NET.conn&&NET.conn.open){try{NET.conn.send({t:"act",a});return;}catch(e){}}
+  toast("Reconnecting to the table. Try again in a moment");failPending();}
+/* connection banner + status dot, drawn without touching the game screen */
+function renderNet(){const el=$("netbar");if(!el)return;const show=MP()&&NET.status&&U.screen!=="lobby";
+  el.hidden=!show;if(show)el.innerHTML=`<span class="spin" aria-hidden="true"></span>${esc(NET.status)}`;
+  document.body.classList.toggle("net-down",MP()&&NET.role==="guest"&&!(NET.conn&&NET.conn.open));}
+function leaveMP(){lsDel("mt-active");const wasHost=NET.role==="host";try{if(NET.peer)NET.peer.destroy();}catch(e){}clearInterval(NET.pinger);clearInterval(NET.watch);
   Object.assign(NET,{role:"solo",peer:null,conns:{},conn:null,status:""});if(NET.wake)try{NET.wake.release();}catch(e){}
   S={players:[],count:3,totalHands:10,target:525,targetAuto:true,numerals:"arabic",phase:"idle",ui:Object.assign(freshUI(),{muted:U.muted})};U.screen="title";render();
   if(wasHost)toast("Table closed. You can resume hosting from the title screen");}
@@ -1778,7 +1942,12 @@ function applyView(v){const prev=S;const ui=prev.ui||freshUI();v.ui=ui;const me=
     if(act.seat!==me&&!["reveal","deal","market"].includes(act.type))toast(act.text);
     if(act.type==="market"||act.type==="start")SFX.card();}
   if(v.turn===me&&prev.turn!==me&&ph==="betting"&&v.players[me]&&!v.players[me].folded&&!v.players[me].allin){try{navigator.vibrate&&navigator.vibrate(60);}catch(e){}}
+  const prevMax=Math.max(0,...((prev.dms||[]).map(m=>m.id)));
+  const incoming=(v.dms||[]).filter(m=>m.id>prevMax&&m.to===me&&prev.players&&prev.players.length);
   render();
+  if(incoming.length)chatIncoming(incoming[incoming.length-1]);
+  if(ph==="market")setTimeout(maybeTradePrompt,prev.phase!=="market"?800:0);
+  renderChat();
   if(ph==="result"&&prev.phase!=="result"){const sh=v._show;if(sh&&sh.winners&&sh.winners.length){sh.winners.includes(me)?SFX.win():SFX.lose();
     requestAnimationFrame(()=>{const r=document.querySelector(`.srow[data-row="${sh.winners[0]}"]`);if(r){const b=r.getBoundingClientRect();FX.burst(b.left+40,b.top+b.height/2,36);}});}}
   if(ph==="over"&&prev.phase!=="over"){SFX.win();setTimeout(()=>FX.burst(innerWidth/2,innerHeight*.3,90),200);}
@@ -1822,7 +1991,8 @@ function rLobby(){const me=ME();const host=NET.role==="host";const url=NET.code?
       <span class="tag ${S.conn[i]?"ok":"warn"}">${i===0?"Host":S.conn[i]?"Here":"Away"}</span></div>`).join("")}</div>
    </div>
    <div class="ledger" style="display:grid;gap:12px"><div class="label" style="text-align:center">Your merchant</div>${profileCard(profile(),true)}
-     <div class="row c"><button class="btn btn-ink btn-sm" data-act="saveProfile">Update my merchant</button></div></div>
+     <div class="row c"><button class="btn btn-ink btn-sm" data-act="saveProfile">Update my merchant</button></div>
+     <div class="row c"><span class="label">Trading tips</span><div class="toggle"><button data-act="hintsSet" data-arg="1" aria-pressed="${hintsOn()}">On</button><button data-act="hintsSet" data-arg="0" aria-pressed="${!hintsOn()}">Off</button></div></div></div>
    ${host?`<div class="ledger cfg">
      <div class="cfg-box"><span class="label">Win target</span><div class="toggle"><button data-act="mpset" data-arg="auto" aria-pressed="${S.targetAuto}">Auto</button><button data-act="mpset" data-arg="custom" aria-pressed="${!S.targetAuto}">Custom</button></div>
        <div class="stepper"><button data-act="mpset" data-arg="t-" ${S.targetAuto?"disabled":""} aria-label="Lower target">−</button><b class="num">${S.targetAuto?autoTarget(S.players.length):S.target}</b><button data-act="mpset" data-arg="t+" ${S.targetAuto?"disabled":""} aria-label="Raise target">+</button></div></div>
@@ -1850,8 +2020,79 @@ function mpTrayHTML(L){const me=ME();const p=S.players[me];const host=NET.role==
    ${canPow||(host&&who&&!S.conn[S.turn])?`<div class="minor">${canPow?`<button class="btn btn-line btn-sm" data-act="power" data-arg="${me}">⚒ Use a power</button>`:""}
      ${host&&who&&!S.conn[S.turn]?`<button class="btn btn-wax btn-sm" data-act="mpForce">Auto-play for ${esc(who.name)}</button>`:""}</div>`:""}</div>`;}
 
+/* ===================== CHAT (private 1:1 messenger) ===================== */
+function chatKey(){return "mt-chat-read-"+(NET.code||"");}
+function chatRead(){if(!U.chatRead||U.chatReadKey!==chatKey()){U.chatRead=lsGet(chatKey())||{};U.chatReadKey=chatKey();}return U.chatRead;}
+function chatMarkRead(seat){const r=chatRead();const last=Math.max(0,...(S.dms||[]).filter(m=>m.f===seat&&m.to===ME()).map(m=>m.id));if((r[seat]||0)<last){r[seat]=last;lsSet(chatKey(),r);}}
+function chatUnread(seat){const r=chatRead();return (S.dms||[]).filter(m=>m.f===seat&&m.to===ME()&&m.id>(r[seat]||0)).length;}
+function chatUnreadTotal(){return (S.players||[]).reduce((a,_,i)=>i===ME()?a:a+chatUnread(i),0);}
+function chatThread(seat){return (S.dms||[]).filter(m=>(m.f===seat&&m.to===ME())||(m.f===ME()&&m.to===seat));}
+function chatTime(t){const d=new Date(t);let h=d.getHours(),m=d.getMinutes();const ap=h>=12?"PM":"AM";h=h%12||12;return `${h}:${String(m).padStart(2,"0")} ${ap}`;}
+function chatVisible(){return MP()&&S.players&&S.players.length>1&&S.mySeat!=null&&["lobby","market","table","result","score","end"].includes(U.screen);}
+const CHAT_QUICK=["Nice hand","Bluffing?","Want to trade?","Good game"];
+function chatIconSVG(){return `<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.9A8 8 0 1 1 21 12z"/></svg>`;}
+function chatListHTML(){const me=ME();
+  const rows=S.players.map((p,i)=>{if(i===me)return "";const th=chatThread(i);const last=th[th.length-1];const un=chatUnread(i);
+    return `<button class="chat-contact ${un?"unread":""}" data-act="chatWith" data-arg="${i}">
+      <span class="cc-pt">${portrait(p,40)}<i class="dot ${S.conn&&S.conn[i]?"on":""}"></i></span>
+      <span class="cc-mid"><b>${esc(p.name)}</b><span>${last?(last.f===me?"You: ":"")+esc(last.x):`<em>${S.conn&&S.conn[i]?"Say hello":"Away"}</em>`}</span></span>
+      <span class="cc-end">${last?`<small>${chatTime(last.t)}</small>`:""}${un?`<i class="badge">${un}</i>`:""}</span></button>`;}).join("");
+  return `<div class="chat-head"><div class="ch-title">Messages</div><button class="chat-x" data-act="chatClose" aria-label="Close messages">✕</button></div>
+   <div class="chat-list">${rows}</div><p class="chat-note">Messages are private between the two of you.</p>`;}
+function chatMsgsHTML(seat){const me=ME();const th=chatThread(seat);if(!th.length)return `<div class="chat-empty">No messages yet. Only ${esc(S.players[seat].name)} will see what you send.</div>`;
+  let out="",lastT=0;th.forEach((m,j)=>{if(m.t-lastT>5*60e3)out+=`<div class="chat-stamp">${chatTime(m.t)}</div>`;lastT=m.t;
+    const mine=m.f===me;const nextSame=th[j+1]&&th[j+1].f===m.f&&th[j+1].t-m.t<5*60e3;
+    out+=`<div class="bub ${mine?"me":"them"} ${nextSame?"grouped":""}">${esc(m.x)}</div>`;});return out;}
+function chatConvoHeadHTML(seat){const p=S.players[seat];const on=S.conn&&S.conn[seat];
+  return `<button class="chat-back" data-act="chatBack" aria-label="Back to all messages">‹</button>
+   <span class="cc-pt">${portrait(p,34)}<i class="dot ${on?"on":""}"></i></span>
+   <div class="ch-who"><b>${esc(p.name)}</b><small>${on?"At the table":"Away"}</small></div>
+   <button class="chat-x" data-act="chatClose" aria-label="Close messages">✕</button>`;}
+function renderChat(){const root=$("chat");if(!root)return;
+  if(!chatVisible()){root.innerHTML="";document.body.classList.remove("has-chat");return;}
+  document.body.classList.add("has-chat");
+  if(!root.querySelector(".chat-fab"))root.innerHTML=`<button class="chat-fab" data-act="chatOpen" aria-label="Messages">${chatIconSVG()}<i class="badge" hidden></i></button><div class="chat-panel" role="dialog" aria-label="Messages" hidden></div><div class="chat-toast" hidden></div>`;
+  const fab=root.querySelector(".chat-fab"),badge=fab.querySelector(".badge"),panel=root.querySelector(".chat-panel");
+  if(U.chatOpen&&U.chatWith!=null&&!S.players[U.chatWith])U.chatWith=null;
+  if(U.chatOpen&&U.chatWith!=null)chatMarkRead(U.chatWith);
+  const un=chatUnreadTotal();badge.hidden=!un;badge.textContent=un>9?"9+":un;fab.hidden=!!U.chatOpen;
+  if(!U.chatOpen){panel.hidden=true;panel.dataset.view="";return;}
+  panel.hidden=false;
+  if(U.chatWith==null){panel.dataset.view="list";panel.innerHTML=chatListHTML();return;}
+  const seat=U.chatWith;
+  if(panel.dataset.view!=="c"+seat){panel.dataset.view="c"+seat;
+    panel.innerHTML=`<div class="chat-head">${chatConvoHeadHTML(seat)}</div><div class="chat-msgs" id="chatmsgs">${chatMsgsHTML(seat)}</div>
+     <div class="chat-quick">${CHAT_QUICK.map(q=>`<button data-act="chatQuick" data-arg="${esc(q)}">${esc(q)}</button>`).join("")}</div>
+     <form class="chat-compose" data-chatform><input id="chatin" autocomplete="off" maxlength="${DM_MAX}" placeholder="Message ${esc(S.players[seat].name)}" aria-label="Message"><button type="submit" class="chat-send" aria-label="Send"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 11.5 21 3l-8.5 18-2-7.5z" fill="currentColor"/></svg></button></form>`;
+    const box=$("chatmsgs");box.scrollTop=box.scrollHeight;return;}
+  const box=$("chatmsgs");const nearBottom=box.scrollHeight-box.scrollTop-box.clientHeight<80;
+  panel.querySelector(".chat-head").innerHTML=chatConvoHeadHTML(seat);box.innerHTML=chatMsgsHTML(seat);if(nearBottom)box.scrollTop=box.scrollHeight;}
+function chatIncoming(m){const p=S.players[m.f];if(!p)return;
+  if(U.chatOpen&&U.chatWith===m.f){SFX.tap();return;}
+  SFX.coin();try{navigator.vibrate&&navigator.vibrate([40,40,40]);}catch(e){}
+  const t=document.querySelector("#chat .chat-toast");if(!t)return;
+  t.innerHTML=`<button data-act="chatWith" data-arg="${m.f}">${portrait(p,34)}<span><b>${esc(p.name)}</b><span>${esc(m.x)}</span></span></button>`;t.hidden=false;t.classList.remove("show");void t.offsetWidth;t.classList.add("show");
+  clearTimeout(chatIncoming._t);chatIncoming._t=setTimeout(()=>{t.hidden=true;},4500);}
+function chatSendText(text){text=String(text||"").trim();if(!text||U.chatWith==null)return;send({type:"dm",to:U.chatWith,text});}
+Object.assign(ACT,{
+  chatOpen(){U.chatOpen=true;renderChat();},
+  chatClose(){U.chatOpen=false;renderChat();},
+  chatBack(){U.chatWith=null;renderChat();},
+  chatWith(i){U.chatOpen=true;U.chatWith=+i;const t=document.querySelector("#chat .chat-toast");if(t)t.hidden=true;renderChat();setTimeout(()=>{const n=$("chatin");if(n&&matchMedia("(hover:hover)").matches)n.focus();},50);},
+  chatQuick(q){chatSendText(q);},
+});
+if(typeof document!=="undefined")document.addEventListener("submit",e=>{if(!e.target.matches||!e.target.matches("[data-chatform]"))return;e.preventDefault();
+  const n=$("chatin");if(!n)return;chatSendText(n.value);n.value="";n.focus();});
+
+/* After a reload (or the phone discarding the tab), jump straight back into the game you were in. */
+function autoRejoin(){const a=lsGet("mt-active");if(!a||!a.code||Date.now()-(a.at||0)>6*3600e3||!peerAvailable())return false;
+  const room=roomFromURL();if(room&&room!==a.code)return false;
+  if(a.role==="host"){const hs=lsGet("mt-host");if(!hs||hs.code!==a.code||!hs.real||hs.real.phase==="over")return false;hostCreate(true);toast("Reopened your table "+a.code);return true;}
+  if(a.role==="guest"){const gs=lsGet("mt-guest");if(!gs||gs.code!==a.code)return false;guestJoin(a.code);toast("Rejoining table "+a.code+"…");return true;}
+  return false;}
+
 if(typeof window!=="undefined"&&typeof document!=="undefined"&&document.getElementById("view")){boot();}
-if(typeof module!=="undefined")module.exports={makeView,hostHandle,hostJoin,hostInitLobby,hostStart,hostDeal,hostNext,hostFlow,hostRematch,HOST,newRoomCode,S,newGame,startHand,postAntes,apply,legal,evalHand,cmp,wealth,holdingsValue,doShowdown,doPledge,canPledge,activeIdx,liveIdx,streetDone,advanceStreet,nextActor,firstActive,abilityReady,doAbility,allinPending,evolveMarket,buildPots,settlePots,settleBoasts,endHandByFold,challengeTerms,boastCap,tradeQuote,doTrade,CMAP,CKEYS,COMM,ANTE,PMIN,PMAX,EVENTS,GROUPS,HAND_TIERS,RANK_NAMES,RK,drawEvent,applyEvent,resolveEventChoice,shuffleEvents,richestIdx,poorestIdx,applyFinalReprice,gameOverReason,ranking,autoTarget,bestOf,bestFull,SELL_FEE,BROKE_FEE,PLEDGE_RATE,BOAST_CAP};
+if(typeof module!=="undefined")module.exports={tradeHints,hostDM,DM_MAX,makeView,hostHandle,hostJoin,hostInitLobby,hostStart,hostDeal,hostNext,hostFlow,hostRematch,HOST,newRoomCode,S,newGame,startHand,postAntes,apply,legal,evalHand,cmp,wealth,holdingsValue,doShowdown,doPledge,canPledge,activeIdx,liveIdx,streetDone,advanceStreet,nextActor,firstActive,abilityReady,doAbility,allinPending,evolveMarket,buildPots,settlePots,settleBoasts,endHandByFold,challengeTerms,boastCap,tradeQuote,doTrade,CMAP,CKEYS,COMM,ANTE,PMIN,PMAX,EVENTS,GROUPS,HAND_TIERS,RANK_NAMES,RK,drawEvent,applyEvent,resolveEventChoice,shuffleEvents,richestIdx,poorestIdx,applyFinalReprice,gameOverReason,ranking,autoTarget,bestOf,bestFull,SELL_FEE,BROKE_FEE,PLEDGE_RATE,BOAST_CAP};
 </script>
 </body>
 </html>
